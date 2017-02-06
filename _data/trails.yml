@@ -1,0 +1,24 @@
+- name: Tri-County Triangle Trail
+  slug: tri-county-triangle-trail #web friendly name of the trail
+  file: "tri-county-ridewithgps.geojson"
+  gpx: "Tri_County_Triangle_Trail_Ride.gpx"
+  center: "[39.4366,-83.2083]"
+  zoom: 12
+  description: This trail is a gentle ride from Washington Court House to Chillicothe. Plans are in the works to expand the trail to Circleville.
+  area: Washington Court House to Chillicothe
+  distance: 33 miles
+  surface: Asphalt and Crushed Stone
+  img: header.jpg
+  map:
+  pois:
+    - name: parkingRobinsonRd
+      icon: parking #any mapkey icon - http://mapkeyicons.com/
+      latlng: "[39.52395, -83.38547]"
+      title:  Parking
+      description: Robinson Rd SE Parking Area
+
+    - name: parkingChilli
+      icon: parking
+      latlng: "[39.34928,-82.99633]"
+      title:  Parking
+      description: Chillicothe SR 104 Parking Area
