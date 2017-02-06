@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>OVRDC Bikeways Portal</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link rel="stylesheet" href="/vendor/bootstrap/css/bootstrap.min.css" type="text/css">
+
+    <!-- Custom Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lato|Muli|Catamaran" rel="stylesheet">
+
+    <!-- Plugin CSS -->
+    <!--link rel="stylesheet" href="/css/animate.min.css" type="text/css"-->
+    <link rel="stylesheet" href="/vendor/font-awesome/css/font-awesome.min.css">
+    <!--link rel="stylesheet" href="/vendor/simple-line-icons/css/simple-line-icons.css"-->
+    <!--link rel="stylesheet" href="/vendor/device-mockups/device-mockups.min.css"-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+
+    <link href="/css/main.css" rel="stylesheet">
+
+    <!-- MAPs-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+    <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js"></script>
+
+    <!-- omnivore -->
+    <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js"></script>
+
+    <!-- leaflet-fullscreen -->
+    <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css" />
+    <script src="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js"></script>
+
+    <!-- leaflet-providers -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-providers/1.1.15/leaflet-providers.min.js"></script>
+    <!--end maps-->
+
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+    
+
+</head>
+
+
+<body id="page-top" class="animated">
+  <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span><i class="fa fa-bars fa-lg"></i>
+            </button>
+            <a class="navbar-brand page-scroll" href="#page-top">Southern Ohio Outdoors</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav navbar-right">
+              <li>
+                  <a class="page-scroll" href="/bikeways">Bikeways</a>
+              </li>
+                <li>
+                    <a class="page-scroll" href="/hiking-trails">Hking Trails</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="/mountain-biking">Mountain Bike Trails</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="#overview-map">Map</a>
+                </li>
+                <li>
+                    <a class="page-scroll btn btn-outline btn-sm-nav" href="/events">Events</a>
+                </li>
+                <li>
+                    <a class="" href="#"><i class="fa fa-search fa-lg"></i></a>
+                </li>
+            </ul>
+            <input id="search-nav" type="text" class="form-control" placeholder="Search by Trail Name or City" style="display:none;">
+        </div>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container-fluid -->
+</nav>
+
+    <header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="header-content animated">
+                    <div class="header-content-inner text-center" style="position: relative;">
+                        <h4>Explore Southern Ohio's Amazing Bikeways, Hiking Trails & Mountain Bike Trails</h4>
+                        <h1>Southern Ohio Outdoors</h1>
+                        <a href="#trails" class="btn btn-outline btn-xl page-scroll">Start Exploring</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+  <section class="animated">
+  <div id="trails" class="container">
+    <div class="row">
+      <div class="col-lg-12 text-center">
+        <h2 class="section-heading">Explore the Trails</h2>
+      </div>
+      <div class="col-lg-3 text-center"></div>
+      <div class="col-lg-6 text-center">
+        <input type="text" class="form-control" placeholder="Search by Trail Name or CIty">
+      </div>
+    </div>
+    <div class="col-lg-3 text-center"></div>
+    <div class="col-lg-12 text-center">
+      <hr class="primary">
+      <br />
+    </div>
+  </div>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-4 text-center">
+        <div class="service-box">
+          <img src="/img/portfolio/1.jpg" class="img-responsive" alt="Responsive image">
+          <h3>Bikeways</h3>
+          <p class="text-muted">Our templates are updated regularly so they don't break.</p>
+          <a class="btn btn-outline btn-xl btn-inverse">View the Trails</a>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 text-center">
+        <div class="service-box">
+          <img src="/img/portfolio/1.jpg" class="img-responsive" alt="Responsive image">
+          <h3>Hiking Trails</h3>
+          <p class="text-muted">You can use this theme as is, or you can make changes!</p>
+          <a class="btn btn-outline btn-xl btn-inverse">View the Trails</a>
+
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-4 text-center">
+        <div class="service-box">
+          <img src="/img/portfolio/1.jpg" class="img-responsive" alt="Responsive image">
+          <!--i class="fa fa-4x fa-newspaper-o wow bounceIn text-primary" data-wow-delay=".2s"></i-->
+          <h3>Mountain Bike Trails</h3>
+          <p class="text-muted">We update dependencies to keep things fresh.</p>
+          <a class="btn btn-outline btn-xl btn-inverse">View the Trails</a>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+  <section id="portfolio" class="download bg-primary text-center">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <h2 class="section-heading">Views from the Trails</h2>
+                <p>A glimpse into the wonderful scenery of Southern Ohio</p>
+                <hr>
+                
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="no-padding" id="portfolio">
+    <div class="container-fluid">
+        <div class="row no-gutter">
+            <div class="col-lg-4 col-sm-6">
+                <a href="#" class="portfolio-box">
+                    <img src="/img/portfolio/1.jpg" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="#" class="portfolio-box">
+                    <img src="/img/portfolio/2.jpg" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="#" class="portfolio-box">
+                    <img src="/img/portfolio/3.jpg" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="#" class="portfolio-box">
+                    <img src="/img/portfolio/4.jpg" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="#" class="portfolio-box">
+                    <img src="/img/portfolio/5.jpg" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div class="col-lg-4 col-sm-6">
+                <a href="#" class="portfolio-box">
+                    <img src="/img/portfolio/6.jpg" class="img-responsive" alt="">
+                    <div class="portfolio-box-caption">
+                        <div class="portfolio-box-caption-content">
+                            <div class="project-category text-faded">
+                                Category
+                            </div>
+                            <div class="project-name">
+                                Project Name
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <section>
+  <div id="overview-map" class="container" style="margin-bottom:50px;">
+      <div class="row">
+          <div class="col-lg-12 text-center">
+              <h2 class="section-heading">Overview Map of Southern Ohio Trails</h2>
+              <hr class="primary">
+              <br />
+              <a id="explore" class="btn btn-outline btn-xl btn-inverse">Explore the Map</a>
+          </div>
+      </div>
+  </div>
+  <div id="map" style="position:realtive;width:100%;height:570px;"></div>
+</section>
+
+  <script>
+  if (L.Browser.mobile) {
+    var drag = false;
+  }else{var drag = true}
+
+  function buildMap() {
+    var map = new L.Map('map', {
+      dragging: drag,
+      scrollWheelZoom: false,
+      zoomControl: false
+    });
+    var latlng = [39,-83];
+    map.setView(latlng, 9);
+    //OpenMapTiles basemaps served from the OVRDC Vector Tile Server on a Digital Ocean Droplet using mbtiles-server OST updated 1/25/2017
+    var omtAttribution = "<a href=\"http://www.ovrdc.org/gis\" target=\"_blank\"><i class='fa fa-creative-commons ' aria-hidden='true'></i>&nbsp;OVRDC</a>&nbsp;<a href=\"http://openmaptiles.org/\" target=\"_blank\"><i class='fa fa-copyright' aria-hidden='true'></i>&nbsp;OpenMapTiles</a>&nbsp;<a href=\"http://www.openstreetmap.org/about/\" target=\"_blank\"><i class='fa fa-copyright' aria-hidden='true'></i>&nbsp;OpenStreetMap</a>";
+
+    L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
+      maxZoom: 18,
+      attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy;<a href="https://carto.com/attribution">CARTO</a>'
+    }).addTo(map);
+    var newZoom = L.control.zoom();
+    var explore = document.getElementById('explore');
+    explore.addEventListener('click', function() {
+      map.toggleFullscreen() // Either go fullscreen, or cancel the existing fullscreen.
+      newZoom.addTo(map);
+      if (map.hasLayer(roadTrails)) {
+        map.removeLayer(roadTrails);
+        setTimeout(function() {
+          map.addLayer(roadTrails)
+        }, 200);
+      }
+      map.scrollWheelZoom.enable();
+      map.dragging.enable();
+    });
+    map.on('fullscreenchange', function () {
+      if (!map.isFullscreen()) {
+        map.remove();
+        setTimeout(function() {
+          buildMap()
+        }, 100);
+      }
+    });
+    var roadTrails = new L.geoJson(null, {
+      color: '#7fbf7b',
+      //dashArray: "5,5",
+      weight: 4,
+      opacity: 0.8,
+      //clickable: false,
+    }).addTo(map);
+    omnivore.geojson('https://www.ovrdc.org/apps/assets/data/bikeways/OVRDC_Bikeways.geojson', null, roadTrails);
+
+    omnivore.geojson('https://www.ovrdc.org/apps/assets/data/bikeways/Gravel_Grinding_101_ridewithgps.geojson', null, roadTrails);
+
+    omnivore.geojson('https://www.ovrdc.org/apps/assets/data/bikeways/Ridgetop_Ramble_ridewithgps.geojson', null, roadTrails);
+  }
+  buildMap();
+  </script>
+
+  <footer>
+  <div class="container">
+    <a href="#page-top" class="page-scroll">Return to Top</a>
+    <hr />
+    <br />
+    <p>&copy; 2016 theme by <a rel="nofollow" target="blank" href="https://startbootstrap.com/template-overviews/new-age/">Start Bootstrap</a> Built with <a target="_blank" rel="nofollow" href="https://jekyllrb.com/">Jekyll</a> by
+      <a target="_blank" rel="nofollow"
+          href="https://it.linkedin.com/in/antoniotrento">Antonio Trento</a> hosted on <a target="_blank" rel="nofollow" href="https://github.com/jekynewage/jekynewage.github.io">Github</a>. All Rights Reserved.</p>
+    <ul class="list-inline">
+      <li>
+        <a href="#">Privacy</a>
+      </li>
+      <li>
+        <a href="#">Terms</a>
+      </li>
+      <li>
+        <a href="#">FAQ</a>
+      </li>
+    </ul>
+  </div>
+</footer>
+
+  <!-- jQuery -->
+<script src="/js/jquery.js"></script>
+
+<!-- Bootstrap Core JavaScript
+<script src="js/bootstrap.min.js"></script> -->
+
+<!-- Plugin JavaScript -->
+<script src="/js/jquery.easing.min.js"></script>
+<script src="/js/jquery.fittext.js"></script>
+<!--script src="/js/wow.min.js"></script-->
+
+<!-- Custom Theme JavaScript -->
+<script src="/js/creative.js"></script>
+
+<!-- jQuery
+<script src="/vendor/jquery/jquery.min.js"></script> -->
+
+<!-- Bootstrap Core JavaScript -->
+<script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+
+<!-- Theme JavaScript -->
+<script src="/js/new-age.min.js"></script>
+
+
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '']);
+          _gaq.push(['_trackPageview']);
+  (function () {
+      var ga = document.createElement('script');
+      ga.type = 'text/javascript';
+      ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+
+
+</body>
+
+</html>
