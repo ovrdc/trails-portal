@@ -1,21 +1,16 @@
-#New Age Jekyll theme
+# Trails Portal built with Jekyll
 =========================
 
-## If you are a company and you're going to use the blog: 
-1. contact bootstrap start up and ask.
-2. contact me because there is to remove some useless part.
+=========================
+## About the Jekyll New Age Theme
+Jekyll New Age Theme originally based on [New Age bootstrap theme ](https://startbootstrap.com/template-overviews/new-age/)
 
-Jekyll theme based on [New Age bootstrap theme ](https://startbootstrap.com/template-overviews/new-age/)
-
-# Demo
-View this jekyll theme in action [here](https://jekynewage.github.io/)
-
-## Built by
+### Built by
 [Antonio Trento](https://it.linkedin.com/in/antoniotrento)
 
 This Jekyll template was created to develop, landing pages, squeeze pages, portfolio and blog or all the above.
 
-###I integrated analytical tools and marketing such as:
+### I integrated analytical tools and marketing such as:
 - Google Ad Words
 - Google analytics
 - Disqus comment system
