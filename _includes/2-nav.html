@@ -5,7 +5,7 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span><i class="fa fa-bars fa-lg"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top">{{site.title}}</a>
+            <a class="navbar-brand page-scroll" href="{% if page.title != "homepage" %}{{site.baseurl}}/{%else%}#page-top{%endif%}">{{site.title}}</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -15,10 +15,10 @@
                   <a class="page-scroll" href="{{site.baseurl}}/bikeways">Bikeways</a>
               </li>
                 <li>
-                    <a class="page-scroll" href="{{site.baseurl}}/hiking-trails">Hking Trails</a>
+                    <a class="page-scroll" href="{{site.baseurl}}/hiking-trails">Hkinging & Bridle</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="{{site.baseurl}}/mountain-biking">Mountain Bike Trails</a>
+                    <a class="page-scroll" href="{{site.baseurl}}/mountain-biking">Mountain Biking</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#overview-map">Map</a>

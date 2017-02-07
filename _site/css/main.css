@@ -8042,6 +8042,11 @@ body {
   .intro-header .post-heading .subheading {
     font-size: 30px; } }
 /*custom*/
+#trailmap {
+  height: 480px;
+  width: 100%;
+  border: solid thin lightgray; }
+
 .nav > li > a {
   padding: 15px 8px; }
 

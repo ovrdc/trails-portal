@@ -6,11 +6,12 @@
 <body id="page-top">
   {% include 2-nav.html %}
   {% include 3-header.html %}
-  {% if page.layout == 'default'%}{% include 4-trails-overview.html %}{%elsif page.layout == 'trails'%}{%include 4-trails.html%}{%endif%}
+  {% if page.layout == 'default'%}{% include 4-trails-overview.html %}{%else%}{%include 4-trails.html%}{%endif%}
   {% include 5-gallery.html %}
   {% include 6-overview-map.html %}
   {% include 7-footer.html %}
   {% include 8-scripts.html %}
+  {% include 9-overview-map.html%}
   {{content}}
 </body>
 

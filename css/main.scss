@@ -56,6 +56,11 @@ $theme-dark: #222;
   "base"
 ;
 /*custom*/
+#trailmap {
+  height: 480px;
+  width: 100%;
+  border: solid thin lightgray;
+}
 .nav > li > a {
   padding: 15px 8px;
 }

@@ -1,0 +1,57 @@
+<script>
+if (L.Browser.mobile) {
+  var drag = false;
+}else{var drag = true}
+
+function buildMap() {
+  var map = new L.Map('map', {
+    dragging: drag,
+    scrollWheelZoom: false,
+    zoomControl: false
+  });
+  var latlng = [39,-83];
+  map.setView(latlng, 9);
+  //OpenMapTiles basemaps served from the OVRDC Vector Tile Server on a Digital Ocean Droplet using mbtiles-server OST updated 1/25/2017
+  var omtAttribution = "<a href=\"http://www.ovrdc.org/gis\" target=\"_blank\"><i class='fa fa-creative-commons ' aria-hidden='true'></i>&nbsp;OVRDC</a>&nbsp;<a href=\"http://openmaptiles.org/\" target=\"_blank\"><i class='fa fa-copyright' aria-hidden='true'></i>&nbsp;OpenMapTiles</a>&nbsp;<a href=\"http://www.openstreetmap.org/about/\" target=\"_blank\"><i class='fa fa-copyright' aria-hidden='true'></i>&nbsp;OpenStreetMap</a>";
+
+  L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/dark_all/{z}/{x}/{y}.png', {
+    maxZoom: 18,
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy;<a href="https://carto.com/attribution">CARTO</a>'
+  }).addTo(map);
+  var newZoom = L.control.zoom();
+  var explore = document.getElementById('explore');
+  explore.addEventListener('click', function() {
+    map.toggleFullscreen() // Either go fullscreen, or cancel the existing fullscreen.
+    newZoom.addTo(map);
+    if (map.hasLayer(roadTrails)) {
+      map.removeLayer(roadTrails);
+      setTimeout(function() {
+        map.addLayer(roadTrails)
+      }, 200);
+    }
+    map.scrollWheelZoom.enable();
+    map.dragging.enable();
+  });
+  map.on('fullscreenchange', function () {
+    if (!map.isFullscreen()) {
+      map.remove();
+      setTimeout(function() {
+        buildMap()
+      }, 100);
+    }
+  });
+  var roadTrails = new L.geoJson(null, {
+    color: '#7fbf7b',
+    //dashArray: "5,5",
+    weight: 4,
+    opacity: 0.8,
+    //clickable: false,
+  }).addTo(map);
+  omnivore.geojson('https://www.ovrdc.org/apps/assets/data/bikeways/OVRDC_Bikeways.geojson', null, roadTrails);
+
+  omnivore.geojson('https://www.ovrdc.org/apps/assets/data/bikeways/Gravel_Grinding_101_ridewithgps.geojson', null, roadTrails);
+
+  omnivore.geojson('https://www.ovrdc.org/apps/assets/data/bikeways/Ridgetop_Ramble_ridewithgps.geojson', null, roadTrails);
+}
+buildMap();
+</script>

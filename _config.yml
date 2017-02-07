@@ -2,8 +2,8 @@
 title: Southern Ohio Trails
 logo:
 email: mmeyer@ovrdc.org
-description: Explore Southern Ohio's Amazing Bikeways, Hiking & Bridle Trails, and Mountain Bike Trails
-subtitle: Explore Southern Ohio's Amazing Bikeways, Hiking & Bridle Trails, and Mountain Bike Trails
+description: Explore Southern Ohio's Amazing Bikeways, Hiking, Bridle & and Mountain Bike Trails
+about: Explore Southern Ohio's Amazing Bikeways, Hiking & Bridle Trails, and Mountain Bike Trails
 
 baseurl: "https://ovrdc.github.io/trails-portal/" # the subpath of your site, e.g. /blog/ (If you use organization leave empty)
 url: "https://ovrdc.github.io/trails-portal/" #https://jekynewage.github.io" # the base hostname & protocol for your site
@@ -11,8 +11,6 @@ url: "https://ovrdc.github.io/trails-portal/" #https://jekynewage.github.io" # t
 google_analytics: ""
 addthis_id:
 disqus_account:
-
-baseurl: "https://ovrdc.github.io/bikeways/"
 
 # Social networks usernames (many more available: flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.) see all icon at fontawesome.io
 social:
