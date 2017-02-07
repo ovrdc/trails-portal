@@ -3,6 +3,9 @@
 
 @charset "utf-8";
 
+{% include css/bootstrap.min.css %}
+{% include css/animate.min.css %}
+
 // Example Defaults
 // $base-font-family: Helvetica, Arial, sans-serif;
 // $base-font-size:   16px;
@@ -49,19 +52,29 @@ $theme-dark: #222;
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
-        "mixins",
-        "base"
+  "mixins",
+  "base"
 ;
 /*custom*/
+.nav > li > a {
+  padding: 15px 8px;
+}
 .btn-sm-nav {
   padding: 4px 10px!important;
   margin-top: 10px!important;
+  font-size: 11px;
+}
+.btn-sm-img {
+  font-size: 11px;
+}
+.portfolio-box .btn-sm-img:hover {
+  color: #333;
+  background-color: white!important;
 }
 @media (min-width: 768px) {
   .navbar-default.affix .btn-sm-nav:hover {
     color:white!important;
   }
-
   header {
     min-height: 50%;
   }

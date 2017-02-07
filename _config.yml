@@ -1,15 +1,12 @@
 # Site settings
-title: OVRDC Bikeways Portal
-email:
-description: Explore Southern Ohio's Amazing Bikeways, Hiking Trails and Mountain Bike Trails
+title: Southern Ohio Trails
+logo:
+email: mmeyer@ovrdc.org
+description: Explore Southern Ohio's Amazing Bikeways, Hiking & Bridle Trails, and Mountain Bike Trails
+subtitle: Explore Southern Ohio's Amazing Bikeways, Hiking & Bridle Trails, and Mountain Bike Trails
 
-baseurl: "" # the subpath of your site, e.g. /blog/ (If you use organization leave empty)
-url: "" #https://jekynewage.github.io" # the base hostname & protocol for your site
-
-#Google Ad Words Data from scripts code (using Google responsive options) and ad client
-data-ad-slot:
-data-ad-client:
-google_ad_client:
+baseurl: "https://ovrdc.github.io/trails-portal/" # the subpath of your site, e.g. /blog/ (If you use organization leave empty)
+url: "https://ovrdc.github.io/trails-portal/" #https://jekynewage.github.io" # the base hostname & protocol for your site
 
 google_analytics: ""
 addthis_id:
@@ -19,21 +16,61 @@ baseurl: "https://ovrdc.github.io/bikeways/"
 
 # Social networks usernames (many more available: flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.) see all icon at fontawesome.io
 social:
-  - title: twitter
-    url: https://twitter.com/lantoniotrento
-  - title: facebook
-    url: https://facebook.com/lantoniotrento
-  - title: google-plus
-    url: https://plus.google.com/+AntoniotrentoIt
-  #- title: github
-  #  url: http://github.com/jekyll
+  - title: flikr
+    url:
 
 # Build settings
 markdown: kramdown
 highlighter: rouge
 permalink: pretty
-paginate: 5
+#paginate: 5
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
-
+include: ["_pages"]
 gems: [jekyll-paginate, jekyll-feed]
-# Build settings
+
+#Jekyll Collections & Defaults
+collections:
+  trails:
+    output: true
+
+defaults:
+  - scope:
+      path: ""
+      type: trails
+    values:
+      layout: trails
+
+#retina_magick settings:
+#original images should be 1920x1280 to maintain ratios crop not current working
+retinamagick:
+  small:
+    source: /img/homepage-images
+    destination: /img/homepage-images/small
+    scale: "640x427"
+
+  medium:
+    source: /img/homepage-images
+    destination: /img/homepage-images/medium
+    scale: "960x640"
+
+  large:
+    source: /img/homepage-images
+    destination: /img/homepage-images/large
+    scale: "1920x1280"
+
+  small2:
+    source: /img/trail-images
+    destination: /img/trail-images/small
+    scale: "640x427"
+
+  medium2:
+    source: /img/trail-images
+    destination: /img/trail-images/medium
+    scale: "960x640"
+
+  large2:
+    source: /img/trail-images
+    destination: /img/trail-images/large
+    scale: "1920x1280"
+
+#sample images provided by pixbay

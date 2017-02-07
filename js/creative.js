@@ -43,6 +43,6 @@
     })*/
 
     // Initialize WOW.js Scrolling Animations
-    new WOW().init();
+    //new WOW().init();
 
 })(jQuery); // End of use strict
