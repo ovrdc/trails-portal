@@ -20,7 +20,6 @@ social:
 # Build settings
 markdown: kramdown
 highlighter: rouge
-permalink: pretty
 #paginate: 5
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 include: ["_pages"]
@@ -37,6 +36,12 @@ defaults:
       type: trails
     values:
       layout: trails
+defaults:
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: page
 
 #retina_magick settings:
 #original images should be 1920x1280 to maintain ratios crop not current working

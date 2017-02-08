@@ -31,7 +31,7 @@ a {
   transition: all 0.35s;
   color: $theme-primary;
   &:hover, &:focus {
-    color: #fcbd20;
+    color: $theme-secondary;
   }
 }
 
@@ -73,7 +73,7 @@ p {
       letter-spacing: 1px;
       color: $theme-primary;
       &:hover, &:focus {
-        color: #fcbd20;
+        color: $theme-secondary;
       }
     }
     .navbar-toggle {

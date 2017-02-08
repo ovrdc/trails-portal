@@ -64,6 +64,9 @@ $theme-dark: #222;
 .nav > li > a {
   padding: 15px 8px;
 }
+.nav > li > a .fa-lg {
+  line-height: 1.33em;
+}
 .btn-sm-nav {
   padding: 4px 10px!important;
   margin-top: 10px!important;
@@ -75,6 +78,16 @@ $theme-dark: #222;
 .portfolio-box .btn-sm-img:hover {
   color: #333;
   background-color: white!important;
+}
+@media (min-width: 1400px) {
+  .container {
+    width: 1360px;
+  }
+}
+@media (min-width: 1600px) {
+  .container {
+    width: 1540px;
+  }
 }
 @media (min-width: 768px) {
   .navbar-default.affix .btn-sm-nav:hover {

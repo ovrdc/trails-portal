@@ -7600,7 +7600,7 @@ a {
   transition: all 0.35s;
   color: #7fbf7b; }
   a:hover, a:focus {
-    color: #fcbd20; }
+    color: #1b7837; }
 
 hr {
   max-width: 100px;
@@ -7635,7 +7635,7 @@ p {
     letter-spacing: 1px;
     color: #7fbf7b; }
     .navbar-default .navbar-header .navbar-brand:hover, .navbar-default .navbar-header .navbar-brand:focus {
-      color: #fcbd20; }
+      color: #1b7837; }
   .navbar-default .navbar-header .navbar-toggle {
     font-size: 12px;
     color: #222222;
@@ -8050,6 +8050,9 @@ body {
 .nav > li > a {
   padding: 15px 8px; }
 
+.nav > li > a .fa-lg {
+  line-height: 1.33em; }
+
 .btn-sm-nav {
   padding: 4px 10px !important;
   margin-top: 10px !important;
@@ -8062,6 +8065,12 @@ body {
   color: #333;
   background-color: white !important; }
 
+@media (min-width: 1400px) {
+  .container {
+    width: 1360px; } }
+@media (min-width: 1600px) {
+  .container {
+    width: 1540px; } }
 @media (min-width: 768px) {
   .navbar-default.affix .btn-sm-nav:hover {
     color: white !important; }

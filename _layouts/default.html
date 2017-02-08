@@ -1,4 +1,6 @@
-<!DOCTYPE html>
+---
+layout: compress
+---
 <html lang="en">
 
 {% include 1-head.html %}
@@ -6,7 +8,7 @@
 <body id="page-top">
   {% include 2-nav.html %}
   {% include 3-header.html %}
-  {% if page.layout == 'default'%}{% include 4-trails-overview.html %}{%else%}{%include 4-trails.html%}{%endif%}
+  {% if page.layout == 'default'%}{% include 4-trails-overview.html %}{%elsif page.layout == 'page'%}{%include 4-trails-list.html%}{%else%}{%include 4-trails.html%}{%endif%}
   {% include 5-gallery.html %}
   {% include 6-overview-map.html %}
   {% include 7-footer.html %}
