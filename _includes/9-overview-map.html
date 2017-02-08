@@ -1,5 +1,5 @@
 <script>
-if (L.Browser.mobile) {
+if (L.Browser.android) {
   var drag = false;
   var basemap = L.Mapzen.BasemapStyles.BubbleWrap
 }else{
@@ -50,7 +50,7 @@ function buildMap() {
     if (!map.isFullscreen()) {
       map.toggleFullscreen();
       x = true;
-      if (!L.Browser.mobile) {tangramLayer.scene.load(L.Mapzen.BasemapStyles.Walkabout);}
+      if (!L.Browser.android) {tangramLayer.scene.load(L.Mapzen.BasemapStyles.Walkabout);}
       newZoom.addTo(map);
       geocoder.addTo(map);
       if (map.hasLayer(roadTrails)) {
@@ -68,7 +68,7 @@ function buildMap() {
       map.invalidateSize();
       map.removeControl(newZoom);
       map.removeControl(geocoder);
-      if (!L.Browser.mobile) {tangramLayer.scene.load(L.Mapzen.BasemapStyles.WalkaboutNoLabels);}
+      if (!L.Browser.android) {tangramLayer.scene.load(L.Mapzen.BasemapStyles.WalkaboutNoLabels);}
       map.scrollWheelZoom.disable();
       map.dragging.disable();
       x = false;
