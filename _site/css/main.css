@@ -8093,3 +8093,10 @@ body {
 footer {
   background-color: transparent;
   color: #333; }
+
+.section-heading.trail-list {
+  margin-top: 0; }
+
+@media (max-width: 768px) {
+  .img-thumbnail.trail-list {
+    display: none; } }

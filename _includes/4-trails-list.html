@@ -1,14 +1,24 @@
 <section id="content" class="animated">
   <div class="container">
-    <div class="container">
+      {% assign sorted_trails = site.trails | sort:"title" %}
+      {% for trail in sorted_trails %}{% if page.type == trail.type %}
       <div class="row">
-        <div class="col-lg-12">
-          {% for trail in site.trails %}{% if page.type == trail.type %}
-          <h3 class="section-heading"><a href="..{{trail.url}}">{{trail.title}}</a></h3>
-          {%endif%}{%endfor%}
-          </ul>
+        <div class="col-lg-3 col-md-3 col-sm-3">
+          <img src="{{site.baseurl}}/img/trail-images/small/{{trail.img}}" class="img-thumbnail trail-list" alt="Responsive image">
+        </div>
+        <div class="col-lg-9 col-md-9 col-sm-9">
+          <blockquote>
+            <h3 class="section-heading trail-list">
+              <a href="..{{trail.url}}">{{trail.title}}</a>
+            </h3>
+            <p>{{trail.subtitle}}<br>
+            <span class="text-muted">Length: {{trail.length}} miles<br>
+            Surface: {{trail.surface}}<br>
+            Directions: <br>
+            Counties: for loop<br><span></p>
+          </blockquote>
         </div>
       </div>
-    </div>
+      {%endif%}{%endfor%}
   </div>
 </section>
