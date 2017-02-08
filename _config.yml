@@ -11,7 +11,7 @@ url: "https://ovrdc.github.io/trails-portal" #https://jekynewage.github.io" # th
 google_analytics: ""
 addthis_id:
 disqus_account:
-
+permalink: pretty
 # Social networks usernames (many more available: flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.) see all icon at fontawesome.io
 social:
   - title: flikr
@@ -32,7 +32,7 @@ collections:
 
 defaults:
   - scope:
-      path: ""
+      path: "_trails"
       type: trails
     values:
       layout: trails

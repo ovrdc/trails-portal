@@ -8056,7 +8056,8 @@ body {
 .btn-sm-nav {
   padding: 4px 10px !important;
   margin-top: 10px !important;
-  font-size: 11px; }
+  font-size: 11px;
+  color: #222; }
 
 .btn-sm-img {
   font-size: 11px; }

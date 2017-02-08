@@ -25,15 +25,17 @@ function buildMap() {
   });
   var latlng = [39.098,-83.047];
   map.setView(latlng, 9);
-  var geocoder = L.Mapzen.geocoder(key);
+  var geocoder = L.Mapzen.geocoder(key, {
+    layers: ["locality", "street"]
+  });
   /*geocoder.addTo(map);*/
   var newZoom = L.control.zoom();
   var explore = document.getElementById('explore');
 
   var roadTrails = new L.geoJson(null, {
     color: '#3c763d',
-    weight: 4,
-    opacity: 1,
+    weight: 8,
+    opacity: 0.7,
   }).addTo(map);
   omnivore.geojson('https://www.ovrdc.org/apps/assets/data/bikeways/OVRDC_Bikeways.geojson', null, roadTrails);
 
