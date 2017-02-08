@@ -28,7 +28,8 @@ function buildMap() {
   var latlng = [39.098,-83.047];
   map.setView(latlng, 9);
   var geocoder = L.Mapzen.geocoder(key, {
-    layers: ["locality", "street"]
+    layers: ["locality", "street"],
+    expanded: false
   });
   /*geocoder.addTo(map);*/
   var newZoom = L.control.zoom();
