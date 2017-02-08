@@ -7,17 +7,14 @@ var map,
   tangramLayer,
   x = false,
   key = L.Mapzen.apiKey = "mapzen-btYeCLJ",
-  labels = L.Mapzen.BasemapStyles.Walkabout,
-  nolabels = L.Mapzen.BasemapStyles.WalkaboutNoLabels;
-
+  labels = L.Mapzen.BasemapStyles.Walkabout;
 function buildMap() {
   map = new L.Mapzen.map('map', {
     dragging: drag,
     scrollWheelZoom: false,
     zoomControl: false,
     tangramOptions: {
-      scene: nolabels
-    }
+      scene:L.Mapzen.BasemapStyles.WalkaboutNoLabels    }
   });
   /*why did I have to look through source code to find this??*/
   map.on('tangramloaded', function(e) {
@@ -68,7 +65,7 @@ function buildMap() {
       map.invalidateSize();
       map.removeControl(newZoom);
       map.removeControl(geocoder);
-      tangramLayer.scene.load(nolabels);
+      tangramLayer.scene.load( L.Mapzen.BasemapStyles.WalkaboutNoLabels);
       map.scrollWheelZoom.disable();
       map.dragging.disable();
       x = false;
