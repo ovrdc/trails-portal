@@ -1,7 +1,11 @@
 <script>
 if (L.Browser.mobile) {
   var drag = false;
-}else{var drag = true}
+  var basemap = L.Mapzen.BasemapStyles.BubbleWrap
+}else{
+  var drag = true;
+  var basemap = L.Mapzen.BasemapStyles.WalkaboutNoLabels
+  }
 
 var map,
   tangramLayer,
@@ -12,7 +16,10 @@ function buildMap() {
   map = new L.Mapzen.map('map', {
     dragging: drag,
     scrollWheelZoom: false,
-    zoomControl: false
+    zoomControl: false,
+    tangramOptions: {
+      scene: basemap
+    }
   });
   /*why did I have to look through source code to find this??*/
   map.on('tangramloaded', function(e) {
@@ -43,9 +50,7 @@ function buildMap() {
     if (!map.isFullscreen()) {
       map.toggleFullscreen();
       x = true;
-      if(tangramLayer) {
-        tangramLayer.scene.load(labels);
-      }
+      if (!L.Browser.mobile) {tangramLayer.scene.load(L.Mapzen.BasemapStyles.Walkabout);}
       newZoom.addTo(map);
       geocoder.addTo(map);
       if (map.hasLayer(roadTrails)) {
@@ -63,7 +68,7 @@ function buildMap() {
       map.invalidateSize();
       map.removeControl(newZoom);
       map.removeControl(geocoder);
-      tangramLayer.scene.load( L.Mapzen.BasemapStyles.WalkaboutNoLabels);
+      if (!L.Browser.mobile) {tangramLayer.scene.load(L.Mapzen.BasemapStyles.WalkaboutNoLabels);}
       map.scrollWheelZoom.disable();
       map.dragging.disable();
       x = false;
