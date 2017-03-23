@@ -1,7 +1,7 @@
 <section id="content" class="animated">
   <div class="container">
     <div class="row">
-      <div class="col-lg-10 col-md-10 col-sm-12">
+      <div class="col-lg-9 col-md-9 col-sm-12">
       {% assign sorted_trails = site.trails | sort:"title" %}
       {% for trail in sorted_trails %}{% if page.type == trail.type %}
       <div class="row">
@@ -24,7 +24,7 @@
       </div>
       {%endif%}{%endfor%}
       </div>
-        <div id="trail-list" class="col-lg-2 col-md-2 col-sm-0">
+        <div id="trail-list" class="col-lg-3 col-md-3 col-sm-12">
           <ul style="list-style:none;">
             {% for trail in sorted_trails %}{% if page.type == trail.type %}<li>{{trail.title}}</li>{%endif%}{%endfor%}</div>
     </div>
