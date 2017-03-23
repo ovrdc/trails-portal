@@ -25,8 +25,8 @@
       {%endif%}{%endfor%}
       </div>
         <div id="trail-list" class="col-lg-2 col-md-2 col-sm-0">
-          <ul style="list-style:none;">{% assign sorted_trails = site.trails | sort:"title" %}
-      {% for trail in sorted_trails %}{% if page.type == trail.type %}<li>{{trail.title}}{%endif%}{%endfor%}</div>
+          <ul style="list-style:none;">
+            {% for trail in sorted_trails %}{% if page.type == trail.type %}<li>{{trail.title}}</li>{%endif%}{%endfor%}</div>
     </div>
   </div>
 </section>
