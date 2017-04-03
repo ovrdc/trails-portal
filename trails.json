@@ -1,0 +1,5 @@
+{
+  {%for trail in site.trails%}
+  {"name":"trail.name"},
+  {%endfor%}
+}
