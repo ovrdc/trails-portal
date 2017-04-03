@@ -3,9 +3,7 @@ layout: trails
 title: Tri-County Triangle Trail
 subtitle: A gentle ride from Washington Court House to Chillicothe.
 img: tri-county-triangle-trail-01.jpg
-center: "[39.4366,-83.2083]"
 type: bikeway
-zoom: 12
 area: Washington Court House to Chillicothe
 cities:
   - Washington Court House
@@ -16,13 +14,14 @@ counties:
 length: 33
 surface: Asphalt and Crushed Stone
 map:
-  layers:
-    trails:
-      - name: Tri-County Triangle Trail
-        type: bikepath
-        filetype: tri-county-ridewithgps.geojson
-        gpx: Tri_County_Triangle_Trail_Ride.gpx
-    pois:
+  - center: "[39.4366,-83.2083]"
+  - zoom: 12
+  - layers:
+    - name: Tri-County Triangle Trail
+      type: bikepath
+      filetype: tri-county-ridewithgps.geojson
+      gpx: Tri_County_Triangle_Trail_Ride.gpx
+   - pois:
       - name: parkingRobinsonRd
         icon: parking #any mapkey icon - http://mapkeyicons.com/
         latlng: "[39.52395, -83.38547]"
