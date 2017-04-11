@@ -12,12 +12,12 @@
     <link href="https://fonts.googleapis.com/css?family=Lato|Muli|Catamaran" rel="stylesheet">
 
     <!-- Plugin CSS -->
-    <!--link rel="stylesheet" href="{{site.baseurl}}/css/animate.min.css" type="text/css"-->
-    <link rel="stylesheet" href="{{site.baseurl}}/vendor/font-awesome/css/font-awesome.min.css">
-    <!--link rel="stylesheet" href="{{site.baseurl}}/vendor/simple-line-icons/css/simple-line-icons.css"-->
-    <!--link rel="stylesheet" href="{{site.baseurl}}/vendor/device-mockups/device-mockups.min.css"-->
+    <!--link rel="stylesheet" href="{{site.baseurl}}/assets/css/animate.min.css" type="text/css"-->
+    <link rel="stylesheet" href="{{site.baseurl}}/assets/vendor/font-awesome/css/font-awesome.min.css">
+    <!--link rel="stylesheet" href="{{site.baseurl}}/assets/vendor/simple-line-icons/css/simple-line-icons.css"-->
+    <!--link rel="stylesheet" href="{{site.baseurl}}/assets/vendor/device-mockups/device-mockups.min.css"-->
 
-    <link href="{{site.baseurl}}/css/main.css" rel="stylesheet">
+    <link href="{{site.baseurl}}/assets/css/main.css" rel="stylesheet">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -28,7 +28,7 @@
 
     {% if site.addthis_id %}
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
-    <script type="text/javascript" src="{{site.baseurl}}/s7.addthis.com/js/300/addthis_widget.js#pubid={{ site.addthis_id }}"></script>
+    <script type="text/javascript" src="{{site.baseurl}}/assets/s7.addthis.com/js/300/addthis_widget.js#pubid={{ site.addthis_id }}"></script>
     {% endif %}
 
     {% if site.google_analytics %}
@@ -46,5 +46,7 @@
       })();
     </script>
     {% endif %}
+    <link rel="stylesheet" href="{{site.baseurl}}/assets/vendor/mapkey/MapkeyIcons.css" />
+
 
 </head>

@@ -1,0 +1,41 @@
+<script>
+var trailmap = new L.map('trailmap', {
+  center: {{page.center}},
+  zoom: {{page.zoom}},
+});
+var Esri_WorldTopoMap = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Topo_Map/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Esri, DeLorme, NAVTEQ, TomTom, Intermap, iPC, USGS, FAO, NPS, NRCAN, GeoBase, Kadaster NL, Ordnance Survey, Esri Japan, METI, Esri China (Hong Kong), and the GIS User Community'
+}).addTo(trailmap);
+var Esri_WorldShadedRelief = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
+	attribution: 'Tiles &copy; Esri &mdash; Source: Esri',
+	maxZoom: 13
+});
+var pois = L.geoJson().addTo(trailmap);
+{%for poi in page.pois %}
+var parking = L.icon.mapkey({icon:"parking",color:'white',background:"black",size:24, boxShadow:false});
+var {{poi.name}} = L.marker({{poi.latlng}}, {icon:parking});
+pois.addLayer({{poi.name}});
+{% endfor%}
+var trails = L.geoJson(null, {
+  style: {
+    color: '#1b7837',
+    weight: 5,
+    opacity: 1
+  },
+  filter: function(feature) {
+    if (feature.properties.Status == "Existing") {
+      return true
+    }
+  },
+  onEachFeature: function (feature, trail) {
+    trail.bindPopup(feature.properties.Name)
+  }
+}).addTo(trailmap);
+{% for layer in page.layers %}
+$.getJSON("{{site.baseurl}}/trails/data/{{layer.file}}", function(data) {
+  console.log(data);
+  //var layer = new L.geoJson(data);
+  trails.addData(data)
+});
+{% endfor %}
+</script>

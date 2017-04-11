@@ -5,8 +5,8 @@ email: mmeyer@ovrdc.org
 description: Explore Southern Ohio's Amazing Bikeways, Hiking, Bridle & and Mountain Bike Trails
 about: Explore Southern Ohio's Amazing Bikeways, Hiking & Bridle Trails, and Mountain Bike Trails
 
-baseurl: "https://ovrdc.github.io/trails-portal" # the subpath of your site, e.g. /blog/ (If you use organization leave empty)
-url: "https://ovrdc.github.io/trails-portal" #https://jekynewage.github.io" # the base hostname & protocol for your site
+baseurl: "/trails-portal" # the subpath of your site, e.g. /blog/ (If you use organization leave empty)
+url: "https://ovrdc.github.io" #https://jekynewage.github.io" # the base hostname & protocol for your site
 
 google_analytics: ""
 addthis_id:
@@ -47,33 +47,32 @@ defaults:
 #original images should be 1920x1280 to maintain ratios crop not current working
 retinamagick:
   small:
-    source: /img/homepage-images
-    destination: /img/homepage-images/small
+    source: /assets/img/homepage-images
+    destination: /assets/img/homepage-images/small
     scale: "640x427"
 
   medium:
-    source: /img/homepage-images
-    destination: /img/homepage-images/medium
+    source: /assets/img/homepage-images
+    destination: /assets/img/homepage-images/medium
     scale: "960x640"
 
   large:
-    source: /img/homepage-images
-    destination: /img/homepage-images/large
+    source: /assets/img/homepage-images
+    destination: /assets/img/homepage-images/large
     scale: "1920x1280"
-
   small2:
-    source: /img/trail-images
-    destination: /img/trail-images/small
+    source: /_trails/images
+    destination: /trails/images/small
     scale: "640x427"
 
   medium2:
-    source: /img/trail-images
-    destination: /img/trail-images/medium
+    source: /_trails/images
+    destination: /trails/images/medium
     scale: "960x640"
 
   large2:
-    source: /img/trail-images
-    destination: /img/trail-images/large
+    source: /_trails/images
+    destination: /trails/images/large
     scale: "1920x1280"
 
 #sample images provided by pixbay

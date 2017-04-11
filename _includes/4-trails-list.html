@@ -1,32 +1,37 @@
+<div class="container visible-sm visible-xs" style="padding-top:60px;margin-bottom:-80px;">
+  <button id="test" type="button" class="btn btn-outline btn-xs" data-toggle="offcanvas" style="z-index:9999;border-radius:0;">Trail List</button>
+</div>
 <section id="content" class="animated">
   <div class="container">
-    <div class="row">
+    <div class="row row-offcanvas row-offcanvas-right">
       <div class="col-lg-9 col-md-9 col-sm-12">
-      {% assign sorted_trails = site.trails | sort:"title" %}
-      {% for trail in sorted_trails %}{% if page.type == trail.type %}
-      <div class="row">
-        <div class="col-lg-3 col-md-3 col-sm-3">
-          <img src="{{site.baseurl}}/img/trail-images/small/{{trail.img}}" class="img-thumbnail trail-list" alt="Responsive image">
-        </div>
-        <div class="col-lg-7 col-md-7 col-sm-9">
-          <blockquote>
-            <h3 class="section-heading trail-list">
-              <a href="..{{trail.url}}">{{trail.title}}</a>
-            </h3>
-            <p>{{trail.subtitle}}<br>
-            <span class="text-muted">Length: {{trail.length}} miles<br>
-            Surface: {{trail.surface}}<br>
+        {% assign sorted_trails = site.trails | sort:"title" %}
+        <div class="row">
+        {% for trail in sorted_trails %}{% if page.type == trail.type %}
+          <div class="col-lg-3 col-md-3 col-sm-3">
+            <img src="{{site.baseurl}}/trails/images/small/{{trail.img}}" class="img-thumbnail trail-list" alt="Responsive image">
+          </div>
+          <div class="col-lg-7 col-md-7 col-sm-9">
+            <blockquote>
+              <h3 class="section-heading trail-list">
+                <a href="..{{trail.url}}">{{trail.title}}</a>
+              </h3>
+              <p>{{trail.subtitle}}<br>
+              <span class="text-muted">Length: {{trail.length}} miles<br>
+              Surface: {{trail.surface}}<br>
               Difficulty:<br>
-            Directions: <br>
-            Counties: for loop<br><span></p>
-          </blockquote>
+              Directions: <br>
+              Counties: for loop<br><span></p>
+            </blockquote>
+          </div>
+        {%endif%}{%endfor%}
         </div>
       </div>
-      {%endif%}{%endfor%}
+      <div id="sidebar" class="col-xs-6 col-sm-3 col-md-3 sidebar-offcanvas" style="border-left:solid thin lightgray;">
+        <ul style="list-style:none;">
+          {% for trail in sorted_trails %}{% if page.type == trail.type %}<li><a href="{{site.baseurl}}/{{trail.url}}">{{trail.title}}</a></li>{%endif%}{%endfor%}
+        </ul>
       </div>
-        <div id="trail-list" class="col-lg-3 col-md-3 col-sm-12" style="border-left:solid thin lightgray;">
-          <ul style="list-style:none;">
-            {% for trail in sorted_trails %}{% if page.type == trail.type %}<li>{{trail.title}}</li>{%endif%}{%endfor%}</div>
     </div>
   </div>
 </section>

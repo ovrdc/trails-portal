@@ -1,0 +1,205 @@
+---
+---
+
+@charset "utf-8";
+
+{% include css/bootstrap.min.css %}
+{% include css/animate.min.css %}
+
+// Example Defaults
+// $base-font-family: Helvetica, Arial, sans-serif;
+// $base-font-size:   16px;
+// $small-font-size:  $base-font-size * 0.875;
+// $base-line-height: 1.5;
+
+// $spacing-unit:     30px;
+
+// $text-color:       #111;
+// $background-color: #fdfdfd;
+// $brand-color:      #2a7ae2;
+
+// $grey-color:       #828282;
+// $grey-color-light: lighten($grey-color, 40%);
+// $grey-color-dark:  darken($grey-color, 25%);
+
+// // Width of the content area
+// $content-width:    800px;
+
+// $on-palm:          600px;
+// $on-laptop:        800px;
+
+// Using media queries with like this:
+// @include media-query($on-palm) {
+//     .wrapper {
+//         padding-right: $spacing-unit / 2;
+//         padding-left: $spacing-unit / 2;
+//     }
+// }
+
+// variables.less link and gradient background
+//$head-primary: #7b4397 ;
+//$head-secondary: #dc2430 ;
+//$theme-primary: #fdcc52 ;
+//$theme-secondary: #fdc539 ;
+//$theme-dark: #222;
+
+$head-primary: #1b7837 ;
+$head-secondary: #1b7837 ;
+$theme-primary: #7fbf7b ;
+$theme-secondary: #1b7837 ;
+$theme-dark: #222;
+
+
+// Import partials from `sass_dir` (defaults to `_sass`)
+@import
+  "mixins",
+  "base"
+;
+/*custom*/
+#results-container {
+  background: white;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 9999;
+  text-align: center;
+  left: 15px;
+  right: 15px;
+  margin: 10px 0;
+}
+#results-container.active {
+  border: solid thin lightgray;
+}
+#results-container li {
+  list-style: none;
+  padding: 10px 0;
+}
+#trailmap {
+  height: 530px;
+  width: 100%;
+  border: solid thin lightgray;
+  margin-top:20px;
+}
+.nav > li > a {
+  padding: 15px 8px;
+}
+.nav > li > a .fa-lg {
+  line-height: 1.33em;
+}
+.btn-sm-nav {
+  padding: 4px 10px!important;
+  margin-top: 10px!important;
+  font-size: 11px;
+  color: #222;
+}
+.btn-sm-img {
+  font-size: 11px;
+}
+.portfolio-box .btn-sm-img:hover {
+  color: #333;
+  background-color: white!important;
+}
+@media (min-width: 1400px) {
+  .container {
+    width: 1360px;
+  }
+}
+@media (min-width: 1600px) {
+  .container {
+    width: 1540px;
+  }
+}
+@media (min-width: 768px) {
+  .navbar-default.affix .btn-sm-nav:hover {
+    color:white!important;
+  }
+  header {
+    min-height: 50%;
+  }
+  header .header-content {
+    height: 50vh;
+  }
+}
+.img-responsive {
+  margin: 0 auto;
+}
+.btn-inverse {
+  color: #333;
+}
+.service-box {
+  margin-bottom: 80px;
+}
+footer {
+  background-color: transparent;
+  color: #333;
+}
+.section-heading.trail-list {
+  margin-top: 0;
+}
+@media (max-width:768px) {
+  .img-thumbnail.trail-list {
+    display: none;
+  }
+}
+/*
+ * Off Canvas
+ * --------------------------------------------------
+ */
+@media screen and (max-width: 992px) {
+  .row-offcanvas {
+    position: relative;
+    -webkit-transition: all .25s ease-out;
+         -o-transition: all .25s ease-out;
+            transition: all .25s ease-out;
+  }
+
+  .row-offcanvas-right {
+    right: 0;
+  }
+
+  .row-offcanvas-left {
+    left: 0;
+  }
+
+  .row-offcanvas-right
+  .sidebar-offcanvas {
+    right: -50%; /* 6 columns */
+    display: none;
+  }
+
+  .row-offcanvas-left
+  .sidebar-offcanvas {
+    left: -50%; /* 6 columns */
+    display: none;
+  }
+  .row-offcanvas-right.active
+  .sidebar-offcanvas {
+    display: block;
+  }
+  .row-offcanvas-left.active
+  .sidebar-offcanvas {
+    display: block;
+  }
+
+  .row-offcanvas-right.active {
+    right: 60%; /* 6 columns */
+    display: block;
+  }
+
+  .row-offcanvas-left.active {
+    left: 60%; /* 6 columns */
+    display: block;
+  }
+
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 70%; /* 6 columns */
+  }
+}
+@media screen and (max-width:768px) {
+  .sidebar-offcanvas {
+    position: absolute;
+    top: 0;
+    width: 60%; /* 6 columns */
+  }
+}

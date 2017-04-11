@@ -1,5 +1,11 @@
-{
+---
+layout: compress
+---
+[
   {%for trail in site.trails%}
-  {"name":"trail.name"},
+  {
+    "trail":"{{trail.title}}",
+    "url": "{{site.baseurl}}{{trail.url}}"
+  }{% unless forloop.last %},{% endunless %}
   {%endfor%}
-}
+]

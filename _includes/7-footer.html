@@ -1,5 +1,11 @@
 <footer>
   <div class="container">
+    <div class="row">
+      {% if page.homepage %}{%else%}<div class="col-lg-8 col-sm-12 col-lg-offset-2" style="margin-top: -50px;margin-bottom: 50px;">
+        <input id="search-input" type="text" class="form-control" placeholder="Search by Trail Name or City">
+        <ul id="results-container"></ul>
+      </div>{%endif%}
+    </div>
     <a href="#page-top" class="page-scroll">Return to Top</a>
     <hr />
     <br />
