@@ -29,7 +29,7 @@
       </div>
       <div id="sidebar" class="col-xs-6 col-sm-3 col-md-3 sidebar-offcanvas" style="border-left:solid thin lightgray;">
         <ul style="list-style:none;">
-          {% for trail in sorted_trails %}{% if page.type == trail.type %}<li><a href="{{site.baseurl}}/{{trail.url}}">{{trail.title}}</a></li>{%endif%}{%endfor%}
+          {% for trail in sorted_trails %}{% if page.type == trail.type %}<li><a href="{{site.baseurl}}{{trail.url}}">{{trail.title}}</a></li>{%endif%}{%endfor%}
         </ul>
       </div>
     </div>

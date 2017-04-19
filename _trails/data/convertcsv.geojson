@@ -1,0 +1,200 @@
+{
+   "type": "FeatureCollection",
+   "features": [
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -83.20349693,38.74109686 ]
+    },
+    "properties": {
+    "Title":"Park",
+    "Location":"Shawnee State Park Lodge",
+    "Description":"Set next to a lake, this casual hotel is surrounded by the forested hills of Shawnee State Park.Wood-paneled rooms have minifridges, satellite TV and private balconies. Rustic 2-bedroom cottages have living rooms with gas log fireplaces, dining areas, and fully equipped kitchens, plus screened-in porches and charcoal grills. Some have hot tubs on the porches.The hotel offers a restaurant, a business center and 7 meeting rooms. Leisure facilities include indoor and outdoor pools, a hot tub, a sauna and an 18-hole golf course, as well as tennis, volleyball and basketball courts.",
+    "marker-symbol":"park",
+    "marker-color":"#333",
+    "marker-size":"medium"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -83.19731712,38.74159896 ]
+    },
+    "properties": {
+    "Title":"Parking",
+    "Location":"Parking Lot",
+    "Description":"Parking lot next to road and across from Turkey Creek Lake",
+    "marker-symbol":"parking",
+    "marker-color":"#333",
+    "marker-size":"medium"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -83.20023537,38.73784989 ]
+    },
+    "properties": {
+    "Title":"Parking",
+    "Location":"Parking Lot and Access to Beach Area ",
+    "Description":"Parking lot with access to lake beach and swimming area.  Restroom facilities here.",
+    "marker-symbol":"parking",
+    "marker-color":"#333",
+    "marker-size":"medium"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -83.23439598,38.79630625 ]
+    },
+    "properties": {
+    "Title":"POI",
+    "Location":"Ben's Happy Trails Horseman",
+    "Description":"Guided horseback riding",
+    "marker-symbol":"circle-stroked",
+    "marker-color":"#333",
+    "marker-size":"medium"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -83.17826271,38.72797417 ]
+    },
+    "properties": {
+    "Title":"Camping",
+    "Location":"Shawnee State Park Campground",
+    "Description":"Camping, canoe, kayak and paddle boat rental.  Beach area for swimming.  Restroom facilities.",
+    "marker-symbol":"campsite",
+    "marker-color":"#333",
+    "marker-size":"medium"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -83.17178249,38.72598212 ]
+    },
+    "properties": {
+    "Title":"Shelter",
+    "Location":"Mackletree Bridge Shelter",
+    "Description":"Shelter and restrooms available.  Entrance across road to Look Out Trail.  Boat and kayak access to Roosevelt lake.",
+    "marker-symbol":"shelter",
+    "marker-color":"#333",
+    "marker-size":"medium"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -83.19173813,38.86108091 ]
+    },
+    "properties": {
+    "Title":"POI",
+    "Location":"Otway Covered Bridge",
+    "Description":"Picnic shelter and restroom facilities.",
+    "marker-symbol":"circle-stroked",
+    "marker-color":"#333",
+    "marker-size":"medium"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -83.17092419,38.77222014 ]
+    },
+    "properties": {
+    "Title":"POI",
+    "Location":"Copperhead Fire Tower",
+    "Description":"Fire Tower",
+    "marker-symbol":"circle-stroked",
+    "marker-color":"#333",
+    "marker-size":"medium"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -83.15354347,38.72636714 ]
+    },
+    "properties": {
+    "Title":"POI",
+    "Location":"Camp Oyo",
+    "Description":"Boy scout camp",
+    "marker-symbol":"circle-stroked",
+    "marker-color":"#333",
+    "marker-size":"medium"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -83.04805756,38.71869142 ]
+    },
+    "properties": {
+    "Title":"Park",
+    "Location":"Earl Thomas Conley Riverside Park",
+    "Description":"Picnic shelters, splash pad, playground, disc golf, restroom facilities, tennis courts, cross country course, and mountain bike course.",
+    "marker-symbol":"park",
+    "marker-color":"#333",
+    "marker-size":"medium"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -83.05094361,38.71895929 ]
+    },
+    "properties": {
+    "Title":"POI",
+    "Location":"Entrance to Raven Rock Trail",
+    "Description":"Hike up to the top of Raven Rock.  No dogs.  Permit required.  ",
+    "marker-symbol":"circle-stroked",
+    "marker-color":"#333",
+    "marker-size":"medium"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -83.20126534,38.85080448 ]
+    },
+    "properties": {
+    "Title":"Park",
+    "Location":"Gladys Riley Golden Star Lily Preserve",
+    "Description":"Arc of Appalachia preserve featuring 1.0 mile Yellow Buckeye Trail (difficult) and 1.25 mile White Walnut Trail (moderate). Dogs not permitted on trails",
+    "marker-symbol":"park",
+    "marker-color":"#333",
+    "marker-size":"medium"
+    }
+  },
+  {
+    "type": "Feature",
+    "geometry": {
+       "type": "Point",
+       "coordinates":  [ -83.18778992,38.73225939 ]
+    },
+    "properties": {
+    "Title":"Park",
+    "Location":"Shawnee State Park Nature Center",
+    "Description":"State Park Nature Center provides interpretative education and allows public to touch or hold local wildlife",
+    "marker-symbol":"park",
+    "marker-color":"#333",
+    "marker-size":"medium"
+    }
+  }
+]
+}

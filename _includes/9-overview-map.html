@@ -7,13 +7,13 @@ if (L.Browser.android) {
   var basemap = L.Mapzen.BasemapStyles.WalkaboutNoLabels
   }
 
-var map,
+var overviewmap,
   tangramLayer,
   x = false,
   key = L.Mapzen.apiKey = "mapzen-btYeCLJ",
   labels = L.Mapzen.BasemapStyles.Walkabout;
 function buildMap() {
-  map = new L.Mapzen.map('map', {
+  overviewmap = new L.Mapzen.map('largemap', {
     dragging: drag,
     scrollWheelZoom: false,
     zoomControl: false,
@@ -22,11 +22,11 @@ function buildMap() {
     }
   });
   /*why did I have to look through source code to find this??*/
-  map.on('tangramloaded', function(e) {
+  overviewmap.on('tangramloaded', function(e) {
     tangramLayer = e.tangramLayer;
   });
   var latlng = [39.098,-83.047];
-  map.setView(latlng, 9);
+  overviewmap.setView(latlng, 9);
   var geocoder = L.Mapzen.geocoder(key, {
     layers: ["locality", "street"],
     expanded: false,
@@ -40,7 +40,7 @@ function buildMap() {
     color: '#3c763d',
     weight: 8,
     opacity: 0.7,
-  }).addTo(map);
+  }).addTo(overviewmap);
   omnivore.geojson('//www.ovrdc.org/apps/assets/data/trails/bikeways/OVRDC_Bikeways.geojson', null, roadTrails);
 
   omnivore.geojson('//www.ovrdc.org/apps/assets/data/trails/bikeways/Gravel_Grinding_101_ridewithgps.geojson', null, roadTrails);
@@ -49,30 +49,30 @@ function buildMap() {
 
 
   explore.addEventListener('click', function() {
-    if (!map.isFullscreen()) {
-      map.toggleFullscreen();
+    if (!overviewmap.isFullscreen()) {
+      overviewmap.toggleFullscreen();
       x = true;
       if (!L.Browser.android) {tangramLayer.scene.load(L.Mapzen.BasemapStyles.Walkabout);}
-      newZoom.addTo(map);
-      geocoder.addTo(map);
-      if (map.hasLayer(roadTrails)) {
-        map.removeLayer(roadTrails);
+      newZoom.addTo(overviewmap);
+      geocoder.addTo(overviewmap);
+      if (overviewmap.hasLayer(roadTrails)) {
+        overviewmap.removeLayer(roadTrails);
         setTimeout(function() {
-          map.addLayer(roadTrails)
+          overviewmap.addLayer(roadTrails)
         }, 200);
       }
-      map.scrollWheelZoom.enable();
-      map.dragging.enable();
+      overviewmap.scrollWheelZoom.enable();
+      overviewmap.dragging.enable();
     }
   });
-  map.on('fullscreenchange', function () {
-    if (!map.isFullscreen() && x == true) {
-      map.invalidateSize();
-      map.removeControl(newZoom);
-      map.removeControl(geocoder);
+  overviewmap.on('fullscreenchange', function () {
+    if (!overviewmap.isFullscreen() && x == true) {
+      overviewmap.invalidateSize();
+      overviewmap.removeControl(newZoom);
+      overviewmap.removeControl(geocoder);
       if (!L.Browser.android) {tangramLayer.scene.load(L.Mapzen.BasemapStyles.WalkaboutNoLabels);}
-      map.scrollWheelZoom.disable();
-      map.dragging.disable();
+      overviewmap.scrollWheelZoom.disable();
+      overviewmap.dragging.disable();
       x = false;
     }
   });

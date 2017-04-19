@@ -31,7 +31,7 @@
     <script type="text/javascript" src="{{site.baseurl}}/assets/s7.addthis.com/js/300/addthis_widget.js#pubid={{ site.addthis_id }}"></script>
     {% endif %}
 
-    {% if site.google_analytics %}
+    {% if site.google_analytics != "" %}
     <script type="text/javascript">
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', '{{ site.google_analytics }}']);
@@ -47,6 +47,7 @@
     </script>
     {% endif %}
     <link rel="stylesheet" href="{{site.baseurl}}/assets/vendor/mapkey/MapkeyIcons.css" />
+    <script src="{{site.baseurl}}/assets/js/jquery.3.2.1.min.js"></script>
 
 
 </head>

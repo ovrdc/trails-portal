@@ -31,21 +31,8 @@
     
 
     
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', '']);
-              _gaq.push(['_trackPageview']);
-      (function () {
-          var ga = document.createElement('script');
-          ga.type = 'text/javascript';
-          ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0];
-          s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-    
     <link rel="stylesheet" href="/trails-portal/assets/vendor/mapkey/MapkeyIcons.css" />
+    <script src="/trails-portal/assets/js/jquery.3.2.1.min.js"></script>
 
 
 </head>
@@ -77,9 +64,9 @@
                 <li>
                     <a class="page-scroll" href="#overview-map">Map</a>
                 </li>
-                <li>
+                <!--li>
                     <a class="page-scroll btn btn-outline btn-sm-nav" href="/trails-portal/events">Events</a>
-                </li>
+                </li-->
                 <li>
                     <a class="page-scroll" href="#search-input"><i class="fa fa-search fa-lg"></i></a>
                 </li>
@@ -130,7 +117,7 @@
         <div class="service-box">
           <img src="/trails-portal/assets/img/homepage-images/medium/bikepath.jpg" class="img-responsive" alt="Responsive image">
           <h3>Bikeways</h3>
-          <p class="text-muted">Our templates are updated regularly so they don't break.</p>
+          <p class="text-muted">Southern Ohio has several paved and limestone bike paths.</p>
           <a class="btn btn-outline btn-xl btn-inverse" href="bikeways/">View the Trails</a>
         </div>
       </div>
@@ -138,9 +125,8 @@
         <div class="service-box">
           <img src="/trails-portal/assets/img/homepage-images/medium/hiking.jpg" class="img-responsive" alt="Responsive image">
           <h3>Hiking & Bridle Trails</h3>
-          <p class="text-muted">You can use this theme as is, or you can make changes!</p>
+          <p class="text-muted">With over one hundred miles of hiking and backpacking trails, including the Buckeye Trail and the Shawnee Backpacking Trail, Southern Ohio has your fix when it comes to outdoor adventure.</p>
           <a class="btn btn-outline btn-xl btn-inverse" href="hiking-bridle/">View the Trails</a>
-
         </div>
       </div>
       <div class="col-lg-4 col-md-4 text-center">
@@ -148,7 +134,7 @@
           <img src="/trails-portal/assets/img/homepage-images/medium/mountainbiking.jpg" class="img-responsive" alt="Responsive image">
           <!--i class="fa fa-4x fa-newspaper-o wow bounceIn text-primary" data-wow-delay=".2s"></i-->
           <h3>Mountain Bike Trails</h3>
-          <p class="text-muted">We update dependencies to keep things fresh.</p>
+          <p class="text-muted">Mountain Biking is trending in Southern Ohio, and there are many great rides to choose from.</p>
           <a class="btn btn-outline btn-xl btn-inverse" href="mountain-biking/">View the Trails</a>
 
         </div>
@@ -291,7 +277,7 @@
           </div>
       </div>
   </div>
-  <div id="map" style="position:realtive;width:100%;height:570px;"><img src="/trails-portal/assets/img/map-preview.jpg"</div>
+  <div id="largemap" style="position:realtive;width:100%;height:570px;"><!--img src="/trails-portal/assets/img/map-preview.jpg" /--></div>
 </section>
 
   <footer>
@@ -320,6 +306,7 @@
 </footer>
 
   <!--Main Javascript and jQuery see _includes/js-->
+
 <script type='text/javascript' src="/trails-portal/assets/js/main.js"></script>
 <!-- Maps Javascript -->
 <!--Leaflet
@@ -328,6 +315,8 @@
 <!--mapzen.js -->
 <link rel="stylesheet" href="https://mapzen.com/js/mapzen.css">
 <script src="https://mapzen.com/js/mapzen.min.js"></script>
+<!--script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' /-->
 <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js"></script>
 <!-- omnivore -->
 <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js"></script>
@@ -335,16 +324,17 @@
 <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css" />
 <script src="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js"></script>
 <!--end maps-->
+<!-- need to comine these map scripts-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/2.6.2/fuse.min.js"></script>
-<script src="/trails-portal/assets/vendor/mapkey/L.Icon.Mapkey.js"></script>
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+<link rel="stylesheet" href="/trails-portal/assets/vendor/extra-markers/css/leaflet.extra-markers.min.css">
+<script src="/trails-portal/assets/vendor/extra-markers/src/assets/js/leaflet.extra-markers.js"></script>
 <script>
-$(document).ready(function() {
-  /*Search*/
   SimpleJekyllSearch({
     searchInput: document.getElementById('search-input'),
     resultsContainer: document.getElementById('results-container'),
     json: '/trails-portal/trails.json',
-    searchResultTemplate: '<li><a href="{url}">{trail}</a></li>',
+    searchResultTemplate: '<li><a href="{url}">{trail}</a><br />{description}</li>',
     fuzzy: true
   });
   $("#search-input").on('keyup', function(e) {
@@ -356,7 +346,6 @@ $(document).ready(function() {
   });
   
   
-})
 /*  function startFuse(trails) {
     fuse = new Fuse(trails, options);
     var search = document.getElementById('search-input');
@@ -399,13 +388,13 @@ if (L.Browser.android) {
   var basemap = L.Mapzen.BasemapStyles.WalkaboutNoLabels
   }
 
-var map,
+var overviewmap,
   tangramLayer,
   x = false,
   key = L.Mapzen.apiKey = "mapzen-btYeCLJ",
   labels = L.Mapzen.BasemapStyles.Walkabout;
 function buildMap() {
-  map = new L.Mapzen.map('map', {
+  overviewmap = new L.Mapzen.map('largemap', {
     dragging: drag,
     scrollWheelZoom: false,
     zoomControl: false,
@@ -414,11 +403,11 @@ function buildMap() {
     }
   });
   /*why did I have to look through source code to find this??*/
-  map.on('tangramloaded', function(e) {
+  overviewmap.on('tangramloaded', function(e) {
     tangramLayer = e.tangramLayer;
   });
   var latlng = [39.098,-83.047];
-  map.setView(latlng, 9);
+  overviewmap.setView(latlng, 9);
   var geocoder = L.Mapzen.geocoder(key, {
     layers: ["locality", "street"],
     expanded: false,
@@ -432,7 +421,7 @@ function buildMap() {
     color: '#3c763d',
     weight: 8,
     opacity: 0.7,
-  }).addTo(map);
+  }).addTo(overviewmap);
   omnivore.geojson('//www.ovrdc.org/apps/assets/data/trails/bikeways/OVRDC_Bikeways.geojson', null, roadTrails);
 
   omnivore.geojson('//www.ovrdc.org/apps/assets/data/trails/bikeways/Gravel_Grinding_101_ridewithgps.geojson', null, roadTrails);
@@ -441,30 +430,30 @@ function buildMap() {
 
 
   explore.addEventListener('click', function() {
-    if (!map.isFullscreen()) {
-      map.toggleFullscreen();
+    if (!overviewmap.isFullscreen()) {
+      overviewmap.toggleFullscreen();
       x = true;
       if (!L.Browser.android) {tangramLayer.scene.load(L.Mapzen.BasemapStyles.Walkabout);}
-      newZoom.addTo(map);
-      geocoder.addTo(map);
-      if (map.hasLayer(roadTrails)) {
-        map.removeLayer(roadTrails);
+      newZoom.addTo(overviewmap);
+      geocoder.addTo(overviewmap);
+      if (overviewmap.hasLayer(roadTrails)) {
+        overviewmap.removeLayer(roadTrails);
         setTimeout(function() {
-          map.addLayer(roadTrails)
+          overviewmap.addLayer(roadTrails)
         }, 200);
       }
-      map.scrollWheelZoom.enable();
-      map.dragging.enable();
+      overviewmap.scrollWheelZoom.enable();
+      overviewmap.dragging.enable();
     }
   });
-  map.on('fullscreenchange', function () {
-    if (!map.isFullscreen() && x == true) {
-      map.invalidateSize();
-      map.removeControl(newZoom);
-      map.removeControl(geocoder);
+  overviewmap.on('fullscreenchange', function () {
+    if (!overviewmap.isFullscreen() && x == true) {
+      overviewmap.invalidateSize();
+      overviewmap.removeControl(newZoom);
+      overviewmap.removeControl(geocoder);
       if (!L.Browser.android) {tangramLayer.scene.load(L.Mapzen.BasemapStyles.WalkaboutNoLabels);}
-      map.scrollWheelZoom.disable();
-      map.dragging.disable();
+      overviewmap.scrollWheelZoom.disable();
+      overviewmap.dragging.disable();
       x = false;
     }
   });

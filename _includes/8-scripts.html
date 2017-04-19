@@ -1,4 +1,5 @@
 <!--Main Javascript and jQuery see _includes/js-->
+
 <script type='text/javascript' src="{{site.baseurl}}/assets/js/main.js"></script>
 <!-- Maps Javascript -->
 <!--Leaflet
@@ -7,6 +8,8 @@
 <!--mapzen.js -->
 <link rel="stylesheet" href="https://mapzen.com/js/mapzen.css">
 <script src="https://mapzen.com/js/mapzen.min.js"></script>
+<!--script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
+<link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' /-->
 <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js"></script>
 <!-- omnivore -->
 <script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js"></script>
@@ -14,16 +17,17 @@
 <link rel="stylesheet" href="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css" />
 <script src="https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js"></script>
 <!--end maps-->
+<!-- need to comine these map scripts-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/2.6.2/fuse.min.js"></script>
-<script src="{{site.baseurl}}/assets/vendor/mapkey/L.Icon.Mapkey.js"></script>
+<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+<link rel="stylesheet" href="{{site.baseurl}}/assets/vendor/extra-markers/css/leaflet.extra-markers.min.css">
+<script src="{{site.baseurl}}/assets/vendor/extra-markers/src/assets/js/leaflet.extra-markers.js"></script>
 <script>
-$(document).ready(function() {
-  /*Search*/
   SimpleJekyllSearch({
     searchInput: document.getElementById('search-input'),
     resultsContainer: document.getElementById('results-container'),
     json: '{{site.baseurl}}/trails.json',
-    searchResultTemplate: '<li><a href="{url}">{trail}</a></li>',
+    searchResultTemplate: '<li><a href="{url}">{trail}</a><br />{description}</li>',
     fuzzy: true
   });
   $("#search-input").on('keyup', function(e) {
@@ -47,7 +51,6 @@ $(document).ready(function() {
     $('.row-offcanvas').toggleClass('active');
   });
   {% endif%}
-})
 /*  function startFuse(trails) {
     fuse = new Fuse(trails, options);
     var search = document.getElementById('search-input');
