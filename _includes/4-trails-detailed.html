@@ -1,22 +1,27 @@
 <section id="content" class="animated">
   <div class="container">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-5 col-md-5">
-          <div class="service-box">
-            <h3 class="section-heading">{{page.title}}</h3>
-            <p class="text-muted">{{page.subtitle}}</p>
-            <p>Length: {{page.length}}</p>
-            <p>Surface: {{page.surface}}</p>
-            <p>Counties: {% for county in page.counties | %}{{county}}{% unless forloop.last %},&nbsp;{% endunless %}{% endfor%}</p>
-            <a href="{{page.link}}" class="btn btn-outline btn-sm-nav"><i class="fa fa-external-link">&nbsp;</i>Trail Website</a>
-            <span>&nbsp;</span>
-            <a href="{{site.baseurl}}/trails/data/{{page.gpx}}" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-download"></i>&nbsp;GPX Data</a>
-          </div>
+    {% if page.type == "bikeway" %}
+    <a href="{{site.baseurl}}/bikeways/"><i class="fa fa-reply"></i>&nbsp;Bikeways</a>
+    {% elsif page.type == "mountain" %}
+    <a href="{{site.baseurl}}/mountain-biking/"><i class="fa fa-reply"></i>&nbsp;Mountain Bike Trails</a>
+    {% elsif page.type == "hiking" or page.type == "bridle" %}
+    <a href="{{site.baseurl}}/hiking-bridle/"><i class="fa fa-reply"></i>&nbsp;Hiking & Bridle Trails</a>
+    {% endif %}
+    <div class="row">
+      <div class="col-lg-5 col-md-5">
+        <div class="service-box">
+          <h3 class="section-heading">{{page.title}}</h3>
+          <p class="text-muted">{{page.subtitle}}</p>
+          <p>Length: {{page.length}}</p>
+          <p>Surface: {{page.surface}}</p>
+          <p>Counties: {% for county in page.counties | %}{{county}}{% unless forloop.last %},&nbsp;{% endunless %}{% endfor%}</p>
+          <a href="{{page.link}}" class="btn btn-outline btn-sm-nav"><i class="fa fa-external-link">&nbsp;</i>Trail Website</a>
+          <span>&nbsp;</span>
+          <a href="{{site.baseurl}}/trails/data/{{page.gpx}}" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-download"></i>&nbsp;GPX Data</a>
         </div>
-        <div class="col-lg-7 col-md-7">
-          <div id="trailmap"></div>
-        </div>
+      </div>
+      <div class="col-lg-7 col-md-7">
+        <div id="trailmap"></div>
       </div>
     </div>
   </div>

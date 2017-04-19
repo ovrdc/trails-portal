@@ -1,1 +1,3 @@
-_site/*
+_site/
+.minimagick-cache/
+.sass-cache/

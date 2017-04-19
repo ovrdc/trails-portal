@@ -5,7 +5,8 @@ layout: compress
   {%for trail in site.trails%}
   {
     "trail":"{{trail.title}}",
-    "url": "{{site.baseurl}}{{trail.url}}"
+    "url": "{{site.baseurl}}{{trail.url}}",
+    "description":"{{trail.subtitle}}"
   }{% unless forloop.last %},{% endunless %}
   {%endfor%}
 ]
