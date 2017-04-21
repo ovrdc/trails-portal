@@ -6,11 +6,11 @@
   <div class="container">
 
     <h4>{% if page.maptype == "shared-path" or page.maptype == "roadway" or page.maptype == "bikeway" %}
-      <a href="{{site.baseurl}}/bikeways/"><i class="fa fa-reply"></i>&nbsp;Bikeways</a>
+      <a href="{{site.url}}/bikeways/"><i class="fa fa-reply"></i>&nbsp;Bikeways</a>
       {% elsif page.maptype == "mountain" %}
-      <a href="{{site.baseurl}}/mountain-biking/"><i class="fa fa-reply"></i>&nbsp;Mountain Bike Trails</a>
+      <a href="{{site.url}}/mountain-biking/"><i class="fa fa-reply"></i>&nbsp;Mountain Bike Trails</a>
       {% elsif page.maptype == "hiking" or page.maptype == "bridle" %}
-      <a href="{{site.baseurl}}/hiking-bridle/"><i class="fa fa-reply"></i>&nbsp;Hiking & Bridle Trails</a>
+      <a href="{{site.url}}/hiking-bridle/"><i class="fa fa-reply"></i>&nbsp;Hiking & Bridle Trails</a>
       {% endif %}
     </h4>
     <div class="row row-offcanvas row-offcanvas-right">
@@ -24,7 +24,7 @@
           <p>PLEASE LET ME KNOW WHAT YOU WANT HERE</p>
           <p>
             <a href="{{page.link}}" class="btn btn-outline btn-sm-nav"><i class="fa fa-external-link">&nbsp;</i>Trail Website</a>          <span>&nbsp;</span>
-            <a href="{{site.baseurl}}/trails/data/{{page.gpx}}" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-download"></i>&nbsp;GPX Data</a>
+            <a href="{{site.url}}/trails/data/{{page.gpx}}" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-download"></i>&nbsp;GPX Data</a>
           </p>
           <p>
             &nbsp;

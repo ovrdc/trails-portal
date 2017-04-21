@@ -4,9 +4,9 @@ logo:
 email: mmeyer@ovrdc.org
 description: Explore Southern Ohio's Amazing Bikeways, Hiking, Bridle & and Mountain Bike Trails
 about: Explore Southern Ohio's Amazing Bikeways, Hiking & Bridle Trails, and Mountain Bike Trails
-
+header-img: adena-trail-01.jpg
 baseurl: "" # the subpath of your site, e.g. /blog/ (If you use organization leave empty)
-url: "https://ovrdc.github.io" #https://jekynewage.github.io" # the base hostname & protocol for your site
+url: "https://sohiotrails.surge.sh" #https://jekynewage.github.io" # the base hostname & protocol for your site
 
 google_analytics: ""
 addthis_id:
@@ -23,7 +23,7 @@ highlighter: rouge
 #paginate: 5
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 include: ["_pages"]
-gems: [jekyll-paginate, jekyll-feed]
+gems: [jekyll-paginate, jekyll-feed, jekyll-retinamagick]
 sass:
   style: compressed
 
@@ -67,29 +67,30 @@ defaults:
 #retina_magick settings:
 #original images should be 1920x1280 to maintain ratios crop not current working
 retinamagick:
-  small:
+  small1:
     source: /assets/img/homepage-images
     destination: /assets/img/homepage-images/small
-    scale: "640x427"
+    scale: "320x214"
 
-  medium:
+  medium1:
     source: /assets/img/homepage-images
     destination: /assets/img/homepage-images/medium
-    scale: "960x640"
+    scale: "640x427"
 
-  large:
+  large1:
     source: /assets/img/homepage-images
     destination: /assets/img/homepage-images/large
     scale: "1920x1280"
+
   small2:
     source: /_trails/images
     destination: /trails/images/small
-    scale: "640x427"
+    scale: "320x214"
 
   medium2:
     source: /_trails/images
     destination: /trails/images/medium
-    scale: "960x640"
+    scale: "640x427"
 
   large2:
     source: /_trails/images
