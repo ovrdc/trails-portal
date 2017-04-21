@@ -8,8 +8,13 @@ layout: compress
 <body id="page-top">
   {% include 2-nav.html %}
   {% include 3-header.html %}
-  {% if page.layout == 'default'%}{% include 4-trails-overview.html %}{%elsif page.layout == 'page'%}{%include 4-trails-list.html%}{%endif%}
-  {% if page.layout == 'trails' %}{%include 4-trails-detailed.html%}{%endif%}
+  {% if page.layout == 'trails' %}
+    {%include 4-trails-detailed.html%}
+  {% elsif page.homepage == true %}
+    {% include 4-trails-overview.html %}
+  {% else %}
+    {%include 4-trails-list.html%}
+  {%endif%}
   {% include 5-gallery.html %}
   {% include 6-overview-map-container.html %}
   {% include 7-footer.html %}

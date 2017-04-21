@@ -1,6 +1,7 @@
 ---
 layout: compress
 ---
+{% include js/jquery.3.2.1.min.js %}
 {% include js/jquery.easing.min.js %}
 {% include js/jquery.fittext.js %}
 {% include js/bootstrap.min.js %}

@@ -1,27 +1,62 @@
+<!-- trails detailed-->
+<div id="showlist" class="container visible-sm visible-xs" style="margin-top:60px;margin-bottom:-80px;">
+  <button type="button" class="btn btn-outline btn-xs" data-toggle="offcanvas">Trail List</button>
+</div>
 <section id="content" class="animated">
   <div class="container">
-    {% if page.type == "bikeway" %}
-    <a href="{{site.baseurl}}/bikeways/"><i class="fa fa-reply"></i>&nbsp;Bikeways</a>
-    {% elsif page.type == "mountain" %}
-    <a href="{{site.baseurl}}/mountain-biking/"><i class="fa fa-reply"></i>&nbsp;Mountain Bike Trails</a>
-    {% elsif page.type == "hiking" or page.type == "bridle" %}
-    <a href="{{site.baseurl}}/hiking-bridle/"><i class="fa fa-reply"></i>&nbsp;Hiking & Bridle Trails</a>
-    {% endif %}
-    <div class="row">
-      <div class="col-lg-5 col-md-5">
+
+    <h4>{% if page.maptype == "shared-path" or page.maptype == "roadway" or page.maptype == "bikeway" %}
+      <a href="{{site.baseurl}}/bikeways/"><i class="fa fa-reply"></i>&nbsp;Bikeways</a>
+      {% elsif page.maptype == "mountain" %}
+      <a href="{{site.baseurl}}/mountain-biking/"><i class="fa fa-reply"></i>&nbsp;Mountain Bike Trails</a>
+      {% elsif page.maptype == "hiking" or page.maptype == "bridle" %}
+      <a href="{{site.baseurl}}/hiking-bridle/"><i class="fa fa-reply"></i>&nbsp;Hiking & Bridle Trails</a>
+      {% endif %}
+    </h4>
+    <div class="row row-offcanvas row-offcanvas-right">
+      <div class="col-lg-4 col-md-4">
         <div class="service-box">
-          <h3 class="section-heading">{{page.title}}</h3>
+          <h2 class="section-heading">{{page.Name}}</h2>
           <p class="text-muted">{{page.subtitle}}</p>
           <p>Length: {{page.length}}</p>
           <p>Surface: {{page.surface}}</p>
-          <p>Counties: {% for county in page.counties | %}{{county}}{% unless forloop.last %},&nbsp;{% endunless %}{% endfor%}</p>
-          <a href="{{page.link}}" class="btn btn-outline btn-sm-nav"><i class="fa fa-external-link">&nbsp;</i>Trail Website</a>
-          <span>&nbsp;</span>
-          <a href="{{site.baseurl}}/trails/data/{{page.gpx}}" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-download"></i>&nbsp;GPX Data</a>
+          <p>Counties: {{page.counties}}</p>
+          <p>PLEASE LET ME KNOW WHAT YOU WANT HERE</p>
+          <p>
+            <a href="{{page.link}}" class="btn btn-outline btn-sm-nav"><i class="fa fa-external-link">&nbsp;</i>Trail Website</a>          <span>&nbsp;</span>
+            <a href="{{site.baseurl}}/trails/data/{{page.gpx}}" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-download"></i>&nbsp;GPX Data</a>
+          </p>
+          <p>
+            &nbsp;
+          </p>
+          <p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSfsS-H-YQUvRj-PUMOaZUMPoY4xwvWrRrwFwh92d60gzJDF3w/viewform"  target="_blank" class="btn btn-primary btn-sm">Add Information Form</a>
+          </p>
+          <p>
+            <a href="https://www.ovrdc.org/apps/2017/poi-form.html" target="_blank" class="btn btn-primary btn-sm">Add POI Form</a>
+          </p>
         </div>
       </div>
-      <div class="col-lg-7 col-md-7">
+      <div class="col-lg-6 col-md-6">
         <div id="trailmap"></div>
+      </div>
+      <div id="sidebar" class="col-xs-6 col-sm-3 col-md-2 sidebar-offcanvas" style="border-left:solid thin lightgray;margin-top:20px;">
+        <ul style="list-style:none;">
+          <h4 class="text-muted">{% if page.maptype == "shared-path" or page.maptype == "roadway" or page.maptype == "bikeway" %}
+            Bikeways
+            {% elsif page.maptype == "mountain" %}
+            Mountain Bike Trails
+            {% elsif page.maptype == "hiking" or page.maptype == "bridle" %}
+            Hiking & Bridle Trails
+            {% endif %}
+          </h4>
+          {% assign sorted_trails = site.data.ovrdc_trails | sort:"Name" %}
+          {% for trail in sorted_trails %}
+          {% if trail.maptype == page.maptype %}
+          <li><a href="/trails/{{trail.Name | slugify}}/">{{trail.Name}}</a></li>
+          {%endif%}
+          {%endfor%}
+        </ul>
       </div>
     </div>
   </div>

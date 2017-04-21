@@ -5,7 +5,7 @@ email: mmeyer@ovrdc.org
 description: Explore Southern Ohio's Amazing Bikeways, Hiking, Bridle & and Mountain Bike Trails
 about: Explore Southern Ohio's Amazing Bikeways, Hiking & Bridle Trails, and Mountain Bike Trails
 
-baseurl: "/trails-portal" # the subpath of your site, e.g. /blog/ (If you use organization leave empty)
+baseurl: "" # the subpath of your site, e.g. /blog/ (If you use organization leave empty)
 url: "https://ovrdc.github.io" #https://jekynewage.github.io" # the base hostname & protocol for your site
 
 google_analytics: ""
@@ -24,6 +24,27 @@ highlighter: rouge
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 include: ["_pages"]
 gems: [jekyll-paginate, jekyll-feed]
+sass:
+  style: compressed
+
+#compress settings
+compress_html:
+  clippings: all
+  comments: []
+  endings: []
+  ignore:
+    envs: [PRODUCTION, local, production]
+  blanklines: false
+  startings: [html, head, body]
+
+#data page generation settings
+page_gen-dirs: true # uncomment, if you prefer to generate named folders
+page_gen:
+  - data: 'ovrdc_trails'
+    template: 'trails'
+    name: 'Name'
+    dir: 'trails'
+
 
 #Jekyll Collections & Defaults
 collections:
@@ -41,7 +62,7 @@ defaults:
       path: "_pages"
       type: pages
     values:
-      layout: page
+      layout: default
 
 #retina_magick settings:
 #original images should be 1920x1280 to maintain ratios crop not current working

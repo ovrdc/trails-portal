@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gpx xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.topografix.com/GPX/1/1" xsi:schemaLocation="http://www.topografix.com/GPX/1/1 http://www.topografix.com/GPX/1/1/gpx.xsd" version="1.1" creator="http://ridewithgps.com/">
+  <metadata>
+    <name>Shawnee B Route (Bridge to Bridge)</name>
+    <link href="https://ridewithgps.com/routes/18192758">
+      <text>Shawnee B Route (Bridge to Bridge)</text>
+    </link>
+    <time>2016-12-23T06:49:54Z</time>
+  </metadata>
+  <rte>
+    <name>Shawnee B Route (Bridge to Bridge)</name>
+    <rtept lat="38.72549" lon="-83.17428">
+      <name>Start</name>
+      <cmt>Start of route</cmt>
+    </rtept>
+    <rtept lat="38.708850000000005" lon="-83.25154">
+      <name>Right</name>
+      <cmt>Turn right onto Upper Twin Creek-Rocky Fork Rd</cmt>
+    </rtept>
+    <rtept lat="38.752680000000005" lon="-83.26392000000001">
+      <name>Left</name>
+      <cmt>Turn left onto OH-125 W</cmt>
+    </rtept>
+    <rtept lat="38.75569" lon="-83.26541">
+      <name>Right</name>
+      <cmt>Slight right onto Rocky Fork Rd</cmt>
+    </rtept>
+    <rtept lat="38.764700000000005" lon="-83.26274000000001">
+      <name>Left</name>
+      <cmt>Turn left</cmt>
+    </rtept>
+    <rtept lat="38.764700000000005" lon="-83.26274000000001">
+      <name>Left</name>
+      <cmt>Turn left onto Rocky Fork Rd</cmt>
+    </rtept>
+    <rtept lat="38.831720000000004" lon="-83.23477000000001">
+      <name>Left</name>
+      <cmt>Turn left to stay on Rocky Fork Rd</cmt>
+    </rtept>
+    <rtept lat="38.831970000000005" lon="-83.23571000000001">
+      <name>Right</name>
+      <cmt>Turn right to stay on Rocky Fork Rd</cmt>
+    </rtept>
+    <rtept lat="38.85511" lon="-83.20391000000001">
+      <name>Right</name>
+      <cmt>Turn right onto OH-348 E</cmt>
+    </rtept>
+    <rtept lat="38.861470000000004" lon="-83.19071000000001">
+      <name>Left</name>
+      <cmt>Turn left onto Curtis Smith Rd</cmt>
+    </rtept>
+    <rtept lat="38.861470000000004" lon="-83.19071000000001">
+      <name>Right</name>
+      <cmt>Turn right onto OH-348 W</cmt>
+    </rtept>
+    <rtept lat="38.85511" lon="-83.20391000000001">
+      <name>Left</name>
+      <cmt>Turn left onto Rocky Fork Rd</cmt>
+    </rtept>
+    <rtept lat="38.831970000000005" lon="-83.23571000000001">
+      <name>Left</name>
+      <cmt>Turn left to stay on Rocky Fork Rd</cmt>
+    </rtept>
+    <rtept lat="38.831720000000004" lon="-83.23477000000001">
+      <name>Right</name>
+      <cmt>Turn right to stay on Rocky Fork Rd</cmt>
+    </rtept>
+    <rtept lat="38.764700000000005" lon="-83.26274000000001">
+      <name>Right</name>
+      <cmt>Turn right</cmt>
+    </rtept>
+    <rtept lat="38.764700000000005" lon="-83.26274000000001">
+      <name>Right</name>
+      <cmt>Turn right onto Rocky Fork Rd</cmt>
+    </rtept>
+    <rtept lat="38.75569" lon="-83.26541">
+      <name>Straight</name>
+      <cmt>Continue onto OH-125 E</cmt>
+    </rtept>
+    <rtept lat="38.752680000000005" lon="-83.26392000000001">
+      <name>Right</name>
+      <cmt>Turn right onto Upper Twin Creek-Rocky Fork Rd</cmt>
+    </rtept>
+    <rtept lat="38.708850000000005" lon="-83.25154">
+      <name>Left</name>
+      <cmt>Turn left onto Mackletree Rd</cmt>
+    </rtept>
+    <rtept lat="38.72549" lon="-83.17429">
+      <name>End</name>
+      <cmt>End of route</cmt>
+    </rtept>
+  </rte>
+</gpx>

@@ -2,11 +2,11 @@
 layout: compress
 ---
 [
-  {%for trail in site.trails%}
+  {%for trail in site.data.ovrdc_trails%}
   {
-    "trail":"{{trail.title}}",
-    "url": "{{site.baseurl}}{{trail.url}}",
-    "description":"{{trail.subtitle}}"
+    "trail":"{{trail.Name}}",
+    "url": "/trails/{{trail.Name | slugify}}/",
+    "subtitle":"{{trail.subtitle}}"
   }{% unless forloop.last %},{% endunless %}
   {%endfor%}
 ]

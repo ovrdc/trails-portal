@@ -1,0 +1,32 @@
+{% if page.pois %}
+var pois = new L.geoJson(null, {
+  pointToLayer: function(feature, latlng) {
+    return new L.marker(latlng, {icon:Parking})
+  },
+  onEachFeature: function(feature, layer) {
+    var latlng = layer.feature._latlng.lat + ',' + layer.feature._latlng.lng;
+    layer.bindPopup('<h4>Parking</h4><a href="https://www.google.com/maps/dir/' + latlng + '" target="_blank">Directions</a>');
+  }
+});
+{%for poi in page.pois %}
+{% if poi.name %}
+/*var parking = L.icon.mapkey({icon:"parking",color:'white',background:"black",size:24, boxShadow:false});*/
+var parkingIcon = new L.ExtraMarkers.icon({
+  icon: '{{poi.marker-symbol}}',
+  markerColor: '#333',
+  svgBorderColor: '#333',
+  shape: 'circle',
+  prefix: 'maki',
+  svg: true
+});
+var {{poi.name}} = L.marker({{poi.latlng}}, {icon:parkingIcon});
+latlng = {{poi.latlng | stringify}};
+{{poi.name}}.bindPopup('<h4>Parking</h4><h5><a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr=' + latlng + '" target="_blank">Directions</a></h5>');
+{% if poi.Title == 'Parking' %}
+parkingLayer.addLayer({{poi.name}});
+{% else %}
+pois.addLayer({{poi.name}});
+{% endif %}
+{% endif %}
+{% endfor%}
+{% endif %}

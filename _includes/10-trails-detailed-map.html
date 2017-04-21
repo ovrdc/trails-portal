@@ -1,144 +1,86 @@
 <script>
 /*L.mapbox.accessToken = 'pk.eyJ1Ijoib3ZyZGMiLCJhIjoiRUtXeFFzZyJ9.ufnW36oCZo96m_L9QsAkYg';*/
+
+/*Initialize Map*/
 var map = L.map('trailmap', {
-  center: {{page.center}},
+  center: [{{page.centery}},{{page.centerx}}],
   zoom: {{page.zoom}},
   maxZoom: 20,
-  scrollWheelZoom: false
+  scrollWheelZoom: false,
 });
-var hills = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Source: Esri',
-	maxNativeZoom: 13
+
+var fs = new L.control.fullscreen();
+fs.addTo(map);
+
+/*Basemaps*/
+var hills = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
+  attribution: 'Tiles &copy; Esri &mdash; Source: Esri',
+  maxNativeZoom: 13
 });
-var base = L.tileLayer('http://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png', {
-	maxNativeZoom: 18,
-	attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+var base = L.tileLayer('https://{s}.tile.openstreetmap.se/hydda/full/{z}/{x}/{y}.png', {
+  maxNativeZoom: 18,
+  attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   opacity: 0.8
 });
-var hillshade = new L.layerGroup([hills,base]).addTo(map);
+var hillshade = new L.layerGroup([hills, base]).addTo(map);
 var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-	attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
+  attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
   maxNativeZoom: 18,
   maxZoom: 20
 });
 var labels = L.tileLayer('https://{s}.tile.openstreetmap.se/hydda/roads_and_labels/{z}/{x}/{y}.png', {
-	maxNativeZoom: 18,
+  maxNativeZoom: 18,
   maxZoom: 20,
-	attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 });
-var ortho = new L.layerGroup([esri, labels], {
-});
-/*var Parking = L.MakiMarkers.icon({icon: "parking", color: "#333", size: "m"});*/
+var ortho = new L.layerGroup([esri, labels], {});
 
-var icons = {
-  "Parking": "parking",
-  "Camping": "campsite",
-  "Park": "park",
-  "POI": "circle-stroked",
-  "Shelter": "shelter"
-};
+/*function for poi popup*/
 
-var redMarker = L.ExtraMarkers.icon({
-  icon: 'parking',
-  markerColor: '#333',
-  shape: 'circle',
-  prefix: 'maki',
-  svg: true
-});
+function poiPopup(feature, poi) {
+  var latlng = poi._latlng.lat + ',' + poi._latlng.lng;
+  poi.bindPopup('<h4>' + poi.feature.properties.Title + '</h4>' +
+  '<a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr=' +
+  latlng + '" target="_blank">Directions</a>');
+  }
 
-L.marker([39, -83], {icon: redMarker,});
+/*function for creating the poi icon*/
+
+function createIcon(feature, latlng) {
+  var type = feature.properties.symbol;
+  /* POI Icons with customized Mapbox Maki Icons*/
+  var icon = new L.ExtraMarkers.icon({
+    icon: type,
+    markerColor: '#333',
+    svgBorderColor: '#333',
+    shape: 'circle',
+    prefix: 'maki',
+    svg: true
+  });
+  return new L.marker(latlng, {
+    icon: icon
+  });
+}
 
 var parkingLayer = new L.geoJson(null, {
-  filter: function(feature) {
-    if (feature.properties.Title == 'Parking') {
-      return true
-    }
-  },
-  pointToLayer: function(feature, latlng) {
-    var type = feature.properties["marker-symbol"];
-    console.log(type);
-    var icon = new L.ExtraMarkers.icon({
-      icon: type,
-      markerColor: '#333',
-      svgBorderColor: '#333',
-      shape: 'circle',
-      prefix: 'maki',
-      svg: true
-    });
-    return new L.marker(latlng, {icon:icon});
-  },
-  onEachFeature: function(feature, layer) {
-    var latlng = layer._latlng.lat + ',' + layer._latlng.lng;
-    layer.bindPopup('<h4>'+ layer.feature.properties.Title + '</h4><a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr=' + latlng + '/" target="_blank">Directions</a>');
-  }
+    filter: function(feature) {
+      if (feature.properties.Title == 'Parking') {
+        return true
+      }
+    },
+    pointToLayer: createIcon,
+    onEachFeature: poiPopup
 }).addTo(map);
 
-{% if page.csv %}
 var pois = new L.geoJson(null, {
   filter: function(feature) {
     if (feature.properties.Title != 'Parking') {
       return true
     }
   },
-  pointToLayer: function(feature, latlng) {
-    var type = feature.properties["marker-symbol"];
-    console.log(type);
-    var icon = new L.ExtraMarkers.icon({
-      icon: type,
-      markerColor: '#333',
-      svgBorderColor: '#333',
-      shape: 'circle',
-      prefix: 'maki',
-      svg: true
-    });
-    return new L.marker(latlng, {icon:icon});
-  },
-  onEachFeature: function(feature, layer) {
-    var latlng = layer._latlng.lat + ',' + layer._latlng.lng;
-    layer.bindPopup('<h4>'+ layer.feature.properties.Title + '</h4><a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr=' + latlng + '/" target="_blank">Directions</a>');
-  }
+  pointToLayer: createIcon,
+  onEachFeature: poiPopup
 });
-
-var poidata = omnivore.csv("{{site.baseurl}}/trails/data/{{page.csv}}");
-poidata.on('ready', function() {
-  console.log('csv data ready');
-  pois.addData(poidata.toGeoJSON());
-  console.log(poidata);
-  parkingLayer.addData(poidata.toGeoJSON());
-});
-{% endif %}
-{% if page.pois %}
-var pois = new L.geoJson(null, {
-  pointToLayer: function(feature, latlng) {
-    return new L.marker(latlng, {icon:Parking})
-  },
-  onEachFeature: function(feature, layer) {
-    var latlng = layer.feature._latlng.lat + ',' + layer.feature._latlng.lng;
-    layer.bindPopup('<h4>Parking</h4><a href="https://www.google.com/maps/dir/' + latlng + '" target="_blank">Directions</a>');
-  }
-});
-{%for poi in page.pois %}
-{% if poi.name %}
-/*var parking = L.icon.mapkey({icon:"parking",color:'white',background:"black",size:24, boxShadow:false});*/
-var parkingIcon = new L.ExtraMarkers.icon({
-  icon: '{{poi.marker-symbol}}',
-  markerColor: '#333',
-  svgBorderColor: '#333',
-  shape: 'circle',
-  prefix: 'maki',
-  svg: true
-});
-var {{poi.name}} = L.marker({{poi.latlng}}, {icon:parkingIcon});
-latlng = {{poi.latlng | stringify}};
-{{poi.name}}.bindPopup('<h4>Parking</h4><h5><a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr=' + latlng + '" target="_blank">Directions</a></h5>');
-{% if poi.Title == 'Parking' %}
-parkingLayer.addLayer({{poi.name}});
-{% else %}
-pois.addLayer({{poi.name}});
-{% endif %}
-{% endif %}
-{% endfor%}
-{% endif %}
 
 var trails = L.geoJson(null, {
   style: {
@@ -151,24 +93,25 @@ var trails = L.geoJson(null, {
       return true
     }
   },
-  onEachFeature: function (feature, trail) {
-    trail.bindPopup('<h4>'+ feature.properties.Name+'</h4>');
+  onEachFeature: function(feature, trail) {
+    var p = feature.properties;
+    var popup = '<h4>Name: ' + p.Name +
+    '</h4>Type:' + p.maptype +
+    '<hr /><br />Subtitle: ' + p.subtitle +
+    '<br />Popup: ' + p.popup +
+    '<br />Notes: ' + p.Notes;
+    trail.bindPopup(popup);
   }
 }).addTo(map);
 
-{% for layer in page.layers %}
-$.getJSON("{{site.baseurl}}/trails/data/{{layer.file}}", function(data) {
-  /*console.log(data);*/
-  trails.addData(data)
-});
-{% endfor %}
+/*change basemap to ortho on high zoom*/
 map.on('zoomend', function() {
-  if (map.getZoom() > 16) {
+  if (map.getZoom() > 15) {
     map.removeLayer(hillshade);
     esri.addTo(map);
     labels.addTo(map);
   }
-  if (map.getZoom() < 17) {
+  if (map.getZoom() < 16) {
     if (map.hasLayer(esri)) {
       map.removeLayer(esri);
       map.removeLayer(labels);
@@ -176,6 +119,8 @@ map.on('zoomend', function() {
     }
   }
 });
+
+/*make the map more friendly to scrolling*/
 map.on('click', function() {
   map.scrollWheelZoom.enable();
 });
@@ -188,32 +133,55 @@ map.on('zoomend', function() {
 map.on('mouseout', function() {
   map.scrollWheelZoom.disable();
 });
-{% if page.csv or page.pois %}
+
+/*button for turning on the pois*/
 var poiLayerButton = L.easyButton({
-    states: [{
-        stateName: 'add',
-        icon:      'fa-map-marker fa-2x',
-        title:     'Remove Points of Interest',
-        onClick: function(btn, map) {
-          if (!map.hasLayer(pois)) {
-            map.addLayer(pois)
-          }
-            btn.state('remove');
-        }
-      },{
-            stateName: 'remove',
-            icon:      'fa-times fa-2x',
-            title:     'Add Points of Interest',
-            onClick: function(btn, map) {
-              if (map.hasLayer(pois)) {
-                map.removeLayer(pois)
-              }
-                btn.state('add');    // change state on click!
-            }
-          }
-        ]
+  states: [{
+    stateName: 'add',
+    icon: 'fa-map-marker fa-2x',
+    title: 'Add Points of Interest',
+    onClick: function(btn, map) {
+      if (!map.hasLayer(pois)) {
+        map.addLayer(pois)
+      }
+      btn.state('remove');
+    }
+  }, {
+    stateName: 'remove',
+    icon: 'fa-times fa-2x',
+    title: 'Remove Points of Interest',
+    onClick: function(btn, map) {
+      if (map.hasLayer(pois)) {
+        map.removeLayer(pois)
+      }
+      btn.state('add');
+    }
+  }]
 });
 
 poiLayerButton.addTo(map);
-{% endif %}
+
+/* Load map data and add to layers*/
+$.getJSON("/trails/data/ovrdc_trails_pois.geojson", function() {
+  console.log('done loading poi data')
+})
+.done(function(data) {
+  console.log('poi data ready');
+  pois.addData(data);
+  console.log(data);
+  parkingLayer.addData(data);
+})
+.fail(function() {
+  console.log('error loading poi data')
+});
+
+$.getJSON("/trails/data/ovrdc_trails.geojson", function(data) {
+  console.log('done loading trail data')
+})
+.done(function(data) {
+  trails.addData(data)
+})
+.fail(function() {
+  console.log('error loading trail data')
+});
 </script>
