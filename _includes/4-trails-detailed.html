@@ -17,23 +17,23 @@
       <div class="col-lg-4 col-md-4">
         <div class="service-box">
           <h2 class="section-heading">{{page.Name}}</h2>
-          <p class="text-muted">{{page.subtitle}}</p>
-          <p>Length: {{page.length}}</p>
-          <p>Surface: {{page.surface}}</p>
-          <p>Counties: {{page.counties}}</p>
-          <p>PLEASE LET ME KNOW WHAT YOU WANT HERE</p>
+          <div class=" text-muted">
+            <p class="text-muted">{{page.subtitle}}</p>
+            <hr />
+            <p>Length: {{page.length | truncate: 8, " mi"}}</p>
+            <p>Surface: {{page.surface}}</p>
+            <p>Counties: {{page.counties}}</p>
+            <p>PLEASE LET ME KNOW WHAT YOU WANT HERE</p>
+          </div>
           <p>
             <a href="{{page.link}}" class="btn btn-outline btn-sm-nav"><i class="fa fa-external-link">&nbsp;</i>Trail Website</a>          <span>&nbsp;</span>
             <a href="{{site.url}}/trails/data/{{page.gpx}}" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-download"></i>&nbsp;GPX Data</a>
           </p>
-          <p>
-            &nbsp;
-          </p>
-          <p>
+          <!--p>
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSfsS-H-YQUvRj-PUMOaZUMPoY4xwvWrRrwFwh92d60gzJDF3w/viewform"  target="_blank" class="btn btn-primary btn-sm">Add Information Form</a>
-          </p>
+          </p-->
           <p>
-            <a href="https://www.ovrdc.org/apps/2017/poi-form.html" target="_blank" class="btn btn-primary btn-sm">Add POI Form</a>
+            <a href="https://www.ovrdc.org/apps/2017/poi-form.html" target="_blank" class="btn btn-primary btn-sm">Comment & POI Form</a>
           </p>
         </div>
       </div>

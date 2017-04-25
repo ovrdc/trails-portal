@@ -16,7 +16,7 @@
       {%for img in site.data.trail-images | limit: 6%}
       <div class="col-lg-4 col-sm-6">
         <div href="#" class="portfolio-box">
-          <img src="{{site.url}}/trails/images/medium/{{img.img}}" class="img-responsive" alt="">
+          <img src="/trails/images/medium/{{img.img}}" class="img-responsive" alt="">
           <div class="portfolio-box-caption">
             <div class="portfolio-box-caption-content">
               <div class="project-category text-faded">
@@ -26,7 +26,7 @@
                 {{img.caption}}
               </div>
               <br />
-              <a class="btn btn-outline btn-sm-img" href="{{site.url}}/trails/{{img.name | slugify}}/">View the Trail</a>
+              <a class="btn btn-outline btn-sm-img" href="/trails/{{img.name | slugify}}/">View the Trail</a>
             </div>
           </div>
         </div>

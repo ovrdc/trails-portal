@@ -6,7 +6,7 @@ description: Explore Southern Ohio's Amazing Bikeways, Hiking, Bridle & and Moun
 about: Explore Southern Ohio's Amazing Bikeways, Hiking & Bridle Trails, and Mountain Bike Trails
 header-img: adena-trail-01.jpg
 baseurl: "" # the subpath of your site, e.g. /blog/ (If you use organization leave empty)
-url: "https://sohiotrails.surge.sh" #https://jekynewage.github.io" # the base hostname & protocol for your site
+url: "http://trails.ovrdc.org" #https://jekynewage.github.io" # the base hostname & protocol for your site
 
 google_analytics: ""
 addthis_id:
@@ -75,7 +75,7 @@ retinamagick:
   medium1:
     source: /assets/img/homepage-images
     destination: /assets/img/homepage-images/medium
-    scale: "640x427"
+    scale: "480x320"
 
   large1:
     source: /assets/img/homepage-images
@@ -90,7 +90,7 @@ retinamagick:
   medium2:
     source: /_trails/images
     destination: /trails/images/medium
-    scale: "640x427"
+    scale: "480x320"
 
   large2:
     source: /_trails/images

@@ -4,7 +4,7 @@
 /*Initialize Map*/
 var map = L.map('trailmap', {
   center: [{{page.centery}},{{page.centerx}}],
-  zoom: {{page.zoom}},
+  zoom: {% if page.zoom %}{{page.zoom}}{% else %}11{% endif%},
   maxZoom: 20,
   scrollWheelZoom: false,
 });
@@ -98,6 +98,7 @@ var trails = L.geoJson(null, {
     var popup = '<h4>Name: ' + p.Name +
     '</h4>Type:' + p.maptype +
     '<hr /><br />Subtitle: ' + p.subtitle +
+    '<br />Length: ' + Number(p.length).toFixed(4) + 'mi' +
     '<br />Popup: ' + p.popup +
     '<br />Notes: ' + p.Notes;
     trail.bindPopup(popup);
@@ -139,7 +140,7 @@ var poiLayerButton = L.easyButton({
   states: [{
     stateName: 'add',
     icon: 'fa-map-marker fa-2x',
-    title: 'Add Points of Interest',
+    title: 'Show Points of Interest',
     onClick: function(btn, map) {
       if (!map.hasLayer(pois)) {
         map.addLayer(pois)
@@ -175,10 +176,11 @@ $.getJSON("/trails/data/ovrdc_trails_pois.geojson", function() {
   console.log('error loading poi data')
 });
 
-$.getJSON("/trails/data/ovrdc_trails.geojson", function(data) {
+$.getJSON("/trails/data/ovrdc_trails_web.geojson", function(data) {
   console.log('done loading trail data')
 })
 .done(function(data) {
+  console.log(data);
   trails.addData(data)
 })
 .fail(function() {

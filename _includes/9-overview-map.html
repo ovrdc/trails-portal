@@ -36,7 +36,7 @@ function buildMap() {
   var newZoom = L.control.zoom();
   var explore = document.getElementById('explore');
 
-  $.getJSON("/trails/data/ovrdc_trails.geojson", function(data) {
+  $.getJSON("/trails/data/ovrdc_trails_web.geojson", function(data) {
       console.log('done loading trail data')
     })
     .done(function(data) {
@@ -50,6 +50,16 @@ function buildMap() {
           color: '#3c763d',
           weight: 8,
           opacity: 1,
+        },
+        onEachFeature: function(feature, trail) {
+          var p = feature.properties;
+          var popup = '<h4>Name: ' + p.Name +
+          '</h4>Type:' + p.maptype +
+          '<hr /><br />Subtitle: ' + p.subtitle +
+          '<br />Length: ' + Number(p.length).toFixed(4) + 'mi' +
+          '<br />Popup: ' + p.popup +
+          '<br />Notes: ' + p.Notes;
+          trail.bindPopup(popup);
         }
       }).addTo(overviewmap);
     })

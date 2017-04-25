@@ -5,20 +5,20 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span><i class="fa fa-bars fa-lg"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="{% if page.title != "homepage" %}{{site.url}}/{%else%}#page-top{%endif%}">{{site.title}}</a>
+            <a class="navbar-brand page-scroll" href="{% if page.title != "homepage" %}/{%else%}#page-top{%endif%}">{{site.title}}</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li>
-                  <a class="page-scroll" href="{{site.url}}/bikeways">Bikeways</a>
+                  <a class="page-scroll" href="/bikeways">Bikeways</a>
               </li>
                 <li>
-                    <a class="page-scroll" href="{{site.url}}/hiking-bridle">Hiking & Bridle</a>
+                    <a class="page-scroll" href="/hiking-bridle">Hiking & Bridle</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="{{site.url}}/mountain-biking">Mountain Biking</a>
+                    <a class="page-scroll" href="/mountain-biking">Mountain Biking</a>
                 </li>
                 <li>
                     <a class="page-scroll" href="#overview-map">Map</a>
