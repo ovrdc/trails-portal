@@ -10,9 +10,13 @@ layout: compress
   {% include 3-header.html %}
   {% if page.layout == 'trails' %}
     {%include 4-trails-detailed.html%}
+  {% elsif page.layout == 'parks' %}
+    {% include 4-parks-detailed.html %}
   {% elsif page.homepage == true %}
     {% include 4-trails-overview.html %}
-  {% else %}
+  {% elsif page.index == 'parks' %}
+    {%include 4-parks-list.html%}
+  {% elsif page.index == 'bikeways' %}
     {%include 4-trails-list.html%}
   {%endif%}
   {% include 5-gallery.html %}

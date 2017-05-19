@@ -4,7 +4,7 @@
 /*Initialize Map*/
 var map = L.map('trailmap', {
   center: [{{page.centery}},{{page.centerx}}],
-  zoom: {% if page.zoom %}{{page.zoom}}{% else %}11{% endif%},
+  zoom: {% if page.zoom AND page.zoom != '' or page.zoom != nil %}{{page.zoom}}{% else %}11{% endif%},
   maxZoom: 20,
   scrollWheelZoom: false,
 });
@@ -139,7 +139,7 @@ map.on('mouseout', function() {
 var poiLayerButton = L.easyButton({
   states: [{
     stateName: 'add',
-    icon: 'fa-map-marker fa-2x',
+    icon: 'fa-exclamation-circle fa-2x',
     title: 'Show Points of Interest',
     onClick: function(btn, map) {
       if (!map.hasLayer(pois)) {
@@ -185,5 +185,32 @@ $.getJSON("/trails/data/ovrdc_trails_web.geojson", function(data) {
 })
 .fail(function() {
   console.log('error loading trail data')
+});
+map.createPane('parcelPane');
+map.getPane('parcelPane').style.zIndex = 550;
+var parkData = omnivore.topojson("/parks/data/ovrdc_parks_web_topo.json");
+parkData.on('ready', function(data) {
+  var geojson = parkData.toGeoJSON();
+  var parks = L.vectorGrid.slicer(geojson, {
+    pane: "parcelPane",
+    minZoom: 8,
+    maxNativeZoom: 14,
+    maxZoom: 22,
+    rendererFactory: L.canvas.tile,
+  	attribution: '© OVRDC',
+    interactive: true,
+    getFeatureId: function(feature) {
+      return feature.properties.OBJECTID;
+    },
+  	vectorTileLayerStyles: {
+      sliced: {
+        fillColor: "green",
+        color: "green",
+        weight: 1,
+        fillOpacity: 0.2,
+        fill: true
+      }
+    }
+  }).addTo(map);
 });
 </script>

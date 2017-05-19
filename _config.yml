@@ -6,7 +6,8 @@ description: Explore Southern Ohio's Amazing Bikeways, Hiking, Bridle & and Moun
 about: Explore Southern Ohio's Amazing Bikeways, Hiking & Bridle Trails, and Mountain Bike Trails
 header-img: adena-trail-01.jpg
 baseurl: "" # the subpath of your site, e.g. /blog/ (If you use organization leave empty)
-url: "http://trails.ovrdc.org" #https://jekynewage.github.io" # the base hostname & protocol for your site
+#url: "http://trails.ovrdc.org" #https://jekynewage.github.io" # the base hostname & protocol for your site
+url: "https://sohiotrails.surge.sh"
 
 google_analytics: ""
 addthis_id:
@@ -24,6 +25,7 @@ highlighter: rouge
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 include: ["_pages"]
 gems: [jekyll-paginate, jekyll-feed, jekyll-retinamagick]
+#gems: [jekyll-paginate, jekyll-feed]
 sass:
   style: compressed
 
@@ -33,7 +35,7 @@ compress_html:
   comments: []
   endings: []
   ignore:
-    envs: [PRODUCTION, local, production]
+    envs: [PRODUCTION, local, production, dev, DEVELOPMENT]
   blanklines: false
   startings: [html, head, body]
 
@@ -44,11 +46,17 @@ page_gen:
     template: 'trails'
     name: 'Name'
     dir: 'trails'
+  - data: 'ovrdc_parks'
+    template: 'parks'
+    name: 'NAME'
+    dir: 'parks'
 
 
 #Jekyll Collections & Defaults
 collections:
   trails:
+    output: true
+  parks:
     output: true
 
 defaults:
@@ -57,7 +65,11 @@ defaults:
       type: trails
     values:
       layout: trails
-defaults:
+  - scope:
+      path: "_parks"
+      type: parks
+    values:
+      layout: parks
   - scope:
       path: "_pages"
       type: pages

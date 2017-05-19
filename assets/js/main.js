@@ -7,3 +7,4 @@ layout: compress
 {% include js/bootstrap.min.js %}
 {% include js/new-age.js %}
 {% include js/simple-jekyll-search.js %}
+{% include mapzen/mapzen.min.js %}

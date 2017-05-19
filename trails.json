@@ -5,8 +5,17 @@ layout: compress
   {%for trail in site.data.ovrdc_trails%}
   {
     "trail":"{{trail.Name}}",
+    "type": "trails",
     "url": "/trails/{{trail.Name | slugify}}/",
     "subtitle":"{{trail.subtitle}}"
+  },
+  {%endfor%}
+  {%for park in site.data.ovrdc_parks%}
+  {
+    "trail":"{{park.NAME}}",
+    "type": "parks",
+    "url": "/parks/{{park.NAME | slugify}}/",
+    "subtitle":"{{park.Division}}"
   }{% unless forloop.last %},{% endunless %}
   {%endfor%}
 ]
