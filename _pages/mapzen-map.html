@@ -1,6 +1,8 @@
 ---
 layout: compress
-permalink: /overview-map/
+search: false
+permalink: /mapzen/
+map: true
 ---
 <html lang="en">
 
@@ -9,7 +11,9 @@ permalink: /overview-map/
 <body id="page-top">
   <div id="map" style="position:absolute;top:0;left:0;width:100%;bottom:0"></div>
   {% include 8-scripts.html %}
-  {% include 9-overview-map.html%}
+  <script>
+  {% include 00-mapzen-map.js %}
+  </script>
 </body>
 
 </html>

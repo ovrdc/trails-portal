@@ -16,7 +16,7 @@
   </div>
 </section>
 <div id="showlist"class="container visible-sm visible-xs">
-  <button type="button" class="btn btn-outline btn-xs" data-toggle="offcanvas">Trail List</button>
+  <button type="button" class="btn btn-outline btn-xs" data-toggle="offcanvas">{{page.title}} List</button>
 </div>
 <div class="animated">
   <div class="container">
@@ -24,7 +24,10 @@
       <div class="col-lg-9 col-md-9 col-sm-12">
         {% assign sorted_trails = site.data.ovrdc_trails | sort:"Name" %}
         <div class="row">
-        {% for trail in sorted_trails %}{% if trail.maptype == page.type %}
+        {% for trail in sorted_trails %}
+        {% if trail.maptype == page.type and trail.Status == "Existing" %}
+        {% if trail.subtype == "Extension" %}
+        {% else %}
           <div class="col-lg-3 col-md-3 col-sm-3">
             <img src="/trails/images/small/{{trail.img}}" class="img-thumbnail trail-list" alt="Responsive image">
           </div>
@@ -34,29 +37,18 @@
                 <a href="/trails/{{trail.Name |slugify}}">{{trail.Name}}</a>
               </h3>
               <p>{{trail.subtitle}}<br>
-              <span class="text-muted">Length: {{trail.length}} miles<br>
-              Surface: {{trail.surface}}<br>
-              Difficulty:<br>
-              Directions: <br>
-              Counties: <br><span></p>
+              <span class="text-muted">Length: {{trail.length}} miles<br />
+              Surface: {{trail.surface}}<br />
+              Counties: {{trail.counties}}<br />
+              Directions: <br></span>
             </blockquote>
           </div>
-        {%endif%}{%endfor%}
+        {%endif%}
+        {%endif%}
+        {%endfor%}
         </div>
       </div>
-      <div id="sidebar" class="col-xs-6 col-sm-3 col-md-3 sidebar-offcanvas" style="border-left:solid thin lightgray;">
-        <ul style="list-style:none;">
-          <h4 class="text-muted">{% if page.type == "shared-path" or page.type == "roadway" or page.type == "bikeway" %}
-            Bikeways
-            {% elsif page.type == "mountain" %}
-            Mountain Bike Trails
-            {% elsif page.maptype == "park" or page.maptype == "park" %}
-            Parks
-            {% endif %}
-          </h4>
-          {% for trail in sorted_trails %}{% if trail.maptype == page.type %}<li><a href="/trails/{{trail.Name | slugify}}/">{{trail.Name}}</a></li>{%endif%}{%endfor%}
-        </ul>
-      </div>
+      {% include 4.5-trails.sidebar.html %}
     </div>
   </div>
 </div>

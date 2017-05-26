@@ -1,0 +1,136 @@
+---
+layout: compress
+search: false
+permalink: /map/
+map: true
+css: >
+  #map {
+    top:0;
+    position:absolute;
+    left:0;
+    width:100%;
+    bottom:0;
+  }
+  .sidebar-header {
+    color: #333;
+    background-color:whitesmoke!important;
+  }
+  .sidebar-tabs>li.active,
+  .sidebar-tabs>ul>li.active {
+    color: black!important;
+    background-color:whitesmoke!important;
+  }
+  .sidebar-close {
+    color:black;
+  }
+  .sidebar {
+    z-index:1001!important;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 60px;
+    border-radius: 4px;
+  }
+  #blank {
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    width:100%;
+    z-index:9999;
+    background:white;
+  }
+  @media (max-width:1199px) {
+    .sidebar {
+      width: auto;
+      max-width: 400px;
+    }
+  }
+  .sidebar-footer {
+    position: absolute;
+    bottom: 10px;
+  }
+  .sidebar.collapsed {
+    transition: width 1s;
+  }
+---
+<html lang="en">
+
+{% include 1-head.html %}
+<body id="page-top">
+  <div id="blank" style="position:absolute;top:0;left:0;bottom:0;width:100%;z-index:9999;background:white;"><img style="position:absolute;top:50%;left:50%;margin-top:-60px;margin-left:-60px;" src="/assets/img/ring-alt.gif" /></div>
+  <div id="map">
+    <div id="map-sidebar" class="sidebar collapsed">
+      <!-- Nav tabs -->
+      <div class="sidebar-tabs">
+        <ul role="tablist">
+          <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
+          <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
+          <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
+          <li><a href="https://github.com/Turbo87/sidebar-v2" role="tab" target="_blank"><i class="fa fa-github"></i></a></li>
+        </ul>
+
+        <ul role="tablist">
+          <li><a href="#settings" role="tab"><i class="fa fa-info-circle"></i></a></li>
+        </ul>
+      </div>
+
+      <!-- Tab panes -->
+      <div class="sidebar-content">
+        <div class="sidebar-pane" id="home">
+          <h2 class="sidebar-header">Southern Ohio Trails
+            <span class="sidebar-close"><i class="fa fa-caret-left fa-2x"></i></span>
+          </h2>
+
+          <p>A responsive sidebar for mapping libraries like <a href="http://leafletjs.com/">Leaflet</a> or <a href="http://openlayers.org/">OpenLayers</a>.</p>
+          <div class="sidebar-footer">
+            <a href="/">Return to the Southern Ohio Trails Homepage</a>
+          </div>
+        </div>
+
+        <div class="sidebar-pane" id="profile">
+          <h2 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left fa-2x"></i></span></h2>
+        </div>
+
+        <div class="sidebar-pane" id="messages">
+          <h2 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left fa-2x"></i></span></h2>
+        </div>
+
+        <div class="sidebar-pane" id="settings">
+          <h2 class="sidebar-header">About this Map<span class="sidebar-close"><i class="fa fa-caret-left fa-2x"></i></span></h2>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% include 8-scripts.html %} {% include 10-trails-detailed-map.html%}
+  <script>
+  var getQuery = function(q) {
+    if (q) {
+      var params = {},
+        queries, temp, i, l;
+      /* Split into key/value pairs*/
+      queries = q.split("&");
+      /* Convert the array of strings into an object*/
+      for (i = 0, l = queries.length; i < l; i++) {
+        temp = queries[i].split('=');
+        params[temp[0]] = temp[1];
+      }
+      return params;
+    }
+  };
+
+  var query = getQuery((window.location.search).substring(1));
+
+  var sidebar = new L.control.sidebar('map-sidebar').addTo(map);
+  setTimeout(function() {
+    document.getElementById('blank').style.display = 'none';
+    if (query.sidebar == 'true') {
+      console.log(query.sidebar);
+      sidebar.open('home');
+    }
+  }, 1500);
+
+  </script>
+</body>
+
+</html>

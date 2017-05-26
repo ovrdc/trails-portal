@@ -4,7 +4,7 @@ logo:
 email: mmeyer@ovrdc.org
 description: Explore Southern Ohio's Amazing Bikeways, Hiking, Bridle & and Mountain Bike Trails
 about: Explore Southern Ohio's Amazing Bikeways, Hiking & Bridle Trails, and Mountain Bike Trails
-header-img: adena-trail-01.jpg
+header-img: map-header-gray.jpg
 baseurl: "" # the subpath of your site, e.g. /blog/ (If you use organization leave empty)
 #url: "http://trails.ovrdc.org" #https://jekynewage.github.io" # the base hostname & protocol for your site
 url: "https://sohiotrails.surge.sh"
@@ -35,7 +35,7 @@ compress_html:
   comments: []
   endings: []
   ignore:
-    envs: [PRODUCTION, local, production, dev, DEVELOPMENT]
+    envs: ["PRODUCTION", "local", "dev"]
   blanklines: false
   startings: [html, head, body]
 
@@ -46,10 +46,6 @@ page_gen:
     template: 'trails'
     name: 'Name'
     dir: 'trails'
-  - data: 'ovrdc_parks'
-    template: 'parks'
-    name: 'NAME'
-    dir: 'parks'
 
 
 #Jekyll Collections & Defaults

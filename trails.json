@@ -3,19 +3,18 @@ layout: compress
 ---
 [
   {%for trail in site.data.ovrdc_trails%}
+  {% if trail.Status == "Future" %}
+  {% elsif trail.subtype == "Extension" %}
+  {% else %}
   {
     "trail":"{{trail.Name}}",
-    "type": "trails",
+    "type": "{{trail.maptype}}",
     "url": "/trails/{{trail.Name | slugify}}/",
-    "subtitle":"{{trail.subtitle}}"
+    "cities": "{{trail.cities}}",
+    "counties": "{{trail.counties}}",
+    "subtitle":"{% if trail.subtitle %}{{trail.subtitle}}{%else%} {%endif%}"
   },
+  {% endif %}
   {%endfor%}
-  {%for park in site.data.ovrdc_parks%}
-  {
-    "trail":"{{park.NAME}}",
-    "type": "parks",
-    "url": "/parks/{{park.NAME | slugify}}/",
-    "subtitle":"{{park.Division}}"
-  }{% unless forloop.last %},{% endunless %}
-  {%endfor%}
+  {}
 ]

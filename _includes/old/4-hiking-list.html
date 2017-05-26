@@ -1,7 +1,7 @@
 <section id="content" class="container">
   <div class="row">
     <div class="col-lg-12 text-center">
-      <h2 class="section-heading">Explore the Parks</h2>
+      <h2 class="section-heading">Explore the Trails</h2>
     </div>
     <div class="col-lg-3 text-center"></div>
     <div class="col-lg-6 text-center">
@@ -21,34 +21,18 @@
 <div class="animated">
   <div class="container">
     <div class="row row-offcanvas row-offcanvas-right">
-      <div class="col-lg-9 col-md-9 col-sm-12">
-        {% assign sorted_trails = site.data.ovrdc_parks | sort:"NAME" %}
-        <div class="row">
-        {% for trail in sorted_trails %}{% if trail.maptype == page.type %}
-          <div class="col-lg-3 col-md-3 col-sm-3">
-            <img src="/trails/images/small/adena-trail-01.jpg" class="img-thumbnail trail-list" alt="Responsive image">
-          </div>
-          <div class="col-lg-7 col-md-7 col-sm-9" style="min-height:200px;">
-            <blockquote>
-              <h3 class="section-heading trail-list">
-                <a href="/parks/{{trail.NAME |slugify}}">{{trail.NAME}}</a>
-              </h3>
-            </blockquote>
-          </div>
-        {%endif%}{%endfor%}
-        </div>
-      </div>
+      {% include 4-all-trails.detail.html %}
       <div id="sidebar" class="col-xs-6 col-sm-3 col-md-3 sidebar-offcanvas" style="border-left:solid thin lightgray;">
         <ul style="list-style:none;">
           <h4 class="text-muted">{% if page.type == "shared-path" or page.type == "roadway" or page.type == "bikeway" %}
             Bikeways
             {% elsif page.type == "mountain" %}
             Mountain Bike Trails
-            {% elsif page.maptype == "park" or page.maptype == "park" %}
-            Parks
+            {% elsif page.maptype == "hiking"%}
+            Hiking
             {% endif %}
           </h4>
-          {% for trail in sorted_trails %}{% if trail.maptype == page.type %}<li><a href="/trails/{{trail.NAME | slugify}}/">{{trail.NAME}}</a></li>{%endif%}{%endfor%}
+          {% for trail in sorted_trails %}{% if trail.maptype == page.type AND trail.subtype != "Extension" AND trail.Status == "Existing" %}<li><a href="/trails/{{trail.NAME | slugify}}/">{{trail.NAME}}</a></li>{%endif%}{%endfor%}
         </ul>
       </div>
     </div>

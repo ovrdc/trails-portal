@@ -3,87 +3,13 @@
 <link href="/assets/css/main.css" rel="stylesheet" />
 <!--Main Javascript and jQuery see _includes/js-->
 <script type='text/javascript' src="{{site.baseurl}}/assets/js/main.js"></script>
-<!-- Maps Javascript -->
-<!--Leaflet
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script-->
-<!--script src='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.js'></script>
-<link href='https://api.mapbox.com/mapbox.js/v3.0.1/mapbox.css' rel='stylesheet' /-->
-<script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-hash/v0.2.1/leaflet-hash.js"></script>
-<!-- omnivore -->
-<script src="https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js"></script>
-<!--end maps-->
-<!-- need to comine these map scripts-->
-<!--script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/2.6.2/fuse.min.js"></script-->
-<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
-<link rel="stylesheet" href="{{site.baseurl}}/assets/vendor/extra-markers/css/leaflet.extra-markers.min.css">
-<script src="{{site.baseurl}}/assets/vendor/extra-markers/src/assets/js/leaflet.extra-markers.js"></script>
-<link rel="stylesheet" href="{{site.baseurl}}/assets/vendor/leaflet-easybutton/easy-button.css">
-<script src="{{site.baseurl}}/assets/vendor/leaflet-easybutton/easy-button.js"></script>
-<script src='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/Leaflet.fullscreen.min.js'></script>
-<link href='https://api.mapbox.com/mapbox.js/plugins/leaflet-fullscreen/v1.0.1/leaflet.fullscreen.css' rel='stylesheet' />
-<link rel="stylesheet" href="{{site.baseurl}}/assets/vendor/leaflet-fullscreen/Control.FullScreen.css">
-<script src="{{site.baseurl}}/assets/vendor/leaflet-fullscreen/Control.FullScreen.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet-omnivore/0.3.4/leaflet-omnivore.min.js"></script>
-<script src="//www.ovrdc.org/apps/assets/cssjs/Leaflet.VectorGrid/Leaflet.VectorGrid.bundled.js"></script>
-<script>
-  SimpleJekyllSearch({
-    searchInput: document.getElementById('search-input'),
-    resultsContainer: document.getElementById('results-container'),
-    json: '/trails.json',
-    searchResultTemplate: '<li><a href="{url}">{{site.baseurl}}/{trail}</a><br />{subtitle}</li>',
-    fuzzy: true
-  });
-  $("#search-input").on('keyup', function(e) {
-    if (e.target.value == 0) {
-      $("#results-container").removeClass('active')
-    }else{
-      $("#results-container").fadeIn().addClass('active')
-    }
-  });
-  {% if page.homepage != true %}
-  $("#search-icon").click(function(e) {
-    e.preventDefault();
-    $("#search-input").fadeToggle();
-    return false;
-  });
-  {% endif %}
-  {% if page.type or page.maptype %}
-  /*Off canvas list menu*/
-  $('[data-toggle="offcanvas"]').click(function () {
-    console.log('click');
-    $('.row-offcanvas').toggleClass('active');
-  });
-  {% endif%}
-/*  function startFuse(trails) {
-    fuse = new Fuse(trails, options);
-    var search = document.getElementById('search-input');
-    search.addEventListener('keyup', function(e) {
-        var query = e.target.value;
-        console.log(query);
-        result = fuse.search(query);
-        console.log(result);
-    });
-  }
-  var fuse, result;
-  $.getJSON("/trails-portal/trails.json", function(data) {
-    console.log('success');
-    alert(JSON.stringify(data));
-  })
-  .done(function() {
-    console.log('done')
-  })
-  .fail(function() {
-    console.log('fail')
-  });
-  var options = {
-    shouldSort: true,
-    tokenize: true,
-    maxPatternLength: 32,
-    minMatchCharLength: 3,
-    keys: [
-      "trail"
-    ]
-  };
-})*/
-</script>
+{% if page.map == true %}
+<link href="/assets/vendor/extra-markers/css/leaflet.extra-markers.min.css" rel="stylesheet" />
+<link href="/assets/css/maps.css" rel="stylesheet" />
+<script type='text/javascript' src="{{site.baseurl}}/assets/js/maps.js"></script>
+<script type='text/javascript' src="/assets/vendor/extra-markers/src/assets/js/leaflet.extra-markers.js"></script>
+{% endif %}
+{% if page.search == false %}{% else %}{% include 8.5-search.html %}{% endif %}
+<style>
+{% if page.css %}{{page.css}}{% endif %}
+</style>

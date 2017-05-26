@@ -1,5 +1,3 @@
----
----
 (function(window, document, undefined) {
     "use strict";
     L.ExtraMarkers = {};
@@ -69,12 +67,12 @@
                     svg = '<svg style="fill:'+options.markerColor+';stroke:'+options.svgBorderColor+';fill-opacity:'+options.svgOpacity+';"   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.550368 96.362438" height="100%" width="100%" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"><g transform="translate(-367.08 -289.9)"><path d="m367.08 322.5 17.236-32.604h36.151l18.164 32.25-35.665 64.112z"/></g></svg>';
                 }
                 if (options.prefix == "maki") {
-                  return svg+"<img src='{{site.baseurl}}/assets/vendor/maki-icons/icons/" + options.icon + "-15.svg' />";
+                  return svg+"<img src='/assets/vendor/maki-icons/icons/" + options.icon + "-15.svg' />";
                 }else{
                   return svg+"<i " + iconNumber + iconColorStyle + "class='" + options.extraClasses + " " + options.prefix + " " + options.icon + "'></i>";
                 }
             }
-            
+
             return "<i " + iconNumber + iconColorStyle + "class='" + options.extraClasses + " " + options.prefix + " " + options.icon + "'></i>";
         },
         _setIconStyles: function(img, name) {

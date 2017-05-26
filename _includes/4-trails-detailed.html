@@ -5,12 +5,12 @@
 <section id="content" class="animated">
   <div class="container">
 
-    <h4>{% if page.maptype == "shared-path" or page.maptype == "roadway" or page.maptype == "bikeway" %}
+    <h4>{% if page.maptype == "bikeway" %}
       <a href="{{site.url}}/bikeways/"><i class="fa fa-reply"></i>&nbsp;Bikeways</a>
       {% elsif page.maptype == "mountain" %}
       <a href="{{site.url}}/mountain-biking/"><i class="fa fa-reply"></i>&nbsp;Mountain Bike Trails</a>
-      {% elsif page.maptype == "hiking" or page.maptype == "bridle" %}
-      <a href="{{site.url}}/hiking-bridle/"><i class="fa fa-reply"></i>&nbsp;Hiking & Bridle Trails</a>
+      {% elsif page.maptype == "hiking" %}
+      <a href="{{site.url}}/hiking/"><i class="fa fa-reply"></i>&nbsp;Hiking & Backpacking Trails</a>
       {% endif %}
     </h4>
     <div class="row row-offcanvas row-offcanvas-right">
@@ -20,9 +20,9 @@
           <div class=" text-muted">
             <p class="text-muted">{{page.subtitle}}</p>
             <hr />
-            <p>Length: {{page.length | truncate: 8, " mi"}}</p>
+            <p>Length: {{page.SUM_LengthMi | truncate: 8, " mi"}}</p>
             <p>Surface: {{page.surface}}</p>
-            <p>Counties: {{page.counties}}</p>
+            <p>Counties: {% for county in page.counties %}{{county}}{% unless forloop.last %}, {% endunless %}{% endfor %}<span></p></p>
             <p>PLEASE LET ME KNOW WHAT YOU WANT HERE</p>
           </div>
           <p>
@@ -38,26 +38,48 @@
         </div>
       </div>
       <div class="col-lg-6 col-md-6">
-        <div id="trailmap"></div>
+        <div id="map"></div>
       </div>
-      <div id="sidebar" class="col-xs-6 col-sm-3 col-md-2 sidebar-offcanvas" style="border-left:solid thin lightgray;margin-top:20px;">
-        <ul style="list-style:none;">
-          <h4 class="text-muted">{% if page.maptype == "shared-path" or page.maptype == "roadway" or page.maptype == "bikeway" %}
-            Bikeways
-            {% elsif page.maptype == "mountain" %}
-            Mountain Bike Trails
-            {% elsif page.maptype == "hiking" or page.maptype == "bridle" %}
-            Hiking & Bridle Trails
+        <div id="sidebar" class="col-xs-6 col-sm-3 col-md-2 sidebar-offcanvas" style="border-left:solid thin lightgray;margin-top:20px;background:white;">
+          <ul style="list-style:none;">
+            {% if page.maptype == "bikeway" %}<h4 class="text-muted">
+              Bikeways
+            </h4>
+            {% assign sorted_trails = site.data.ovrdc_trails | sort:"Name" %}
+            {% for trail in sorted_trails %}
+            {% if trail.maptype == "bikeway" and trail.Status == "Existing" %}
+            {% if trail.subtype == "Extension" %}
+            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/">{{trail.Name}}</a></li>
             {% endif %}
-          </h4>
-          {% assign sorted_trails = site.data.ovrdc_trails | sort:"Name" %}
-          {% for trail in sorted_trails %}
-          {% if trail.maptype == page.maptype %}
-          <li><a href="/trails/{{trail.Name | slugify}}/">{{trail.Name}}</a></li>
-          {%endif%}
-          {%endfor%}
-        </ul>
-      </div>
+            {%endif%}
+            {%endfor%}
+            {% endif %}
+            {% if page.maptype == "mountain" %}<h4 class="text-muted">
+              Mountain Bike Trails
+            </h4>
+            {% assign sorted_trails = site.data.ovrdc_trails | sort:"Name" %}
+            {% for trail in sorted_trails %}
+            {% if trail.maptype == "mountain" and trail.Status == "Existing" %}
+            {% if trail.subtype == "Extension" %}
+            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/">{{trail.Name}}</a></li>
+            {% endif %}
+            {%endif%}
+            {%endfor%}
+            {% endif %}
+            {% if page.maptype == "hiking" %}<h4 class="text-muted">
+              Hiking & Backpacking Trails
+            </h4>
+            {% assign sorted_trails = site.data.ovrdc_trails | sort:"Name" %}
+            {% for trail in sorted_trails %}
+            {% if trail.maptype == "hiking" and trail.Status == "Existing" %}
+            {% if trail.subtype == "Extension" %}
+            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/">{{trail.Name}}</a></li>
+            {% endif %}
+            {%endif%}
+            {%endfor%}
+            {% endif %}
+          </ul>
+        </div>
     </div>
   </div>
 </section>

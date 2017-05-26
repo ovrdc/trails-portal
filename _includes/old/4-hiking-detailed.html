@@ -5,12 +5,12 @@
 <section id="content" class="animated">
   <div class="container">
 
-    <h4>{% if page.maptype == "shared-path" or page.maptype == "roadway" or page.maptype == "bikeway" %}
+    <h4>{% if page.maptype == "bikeway" %}
       <a href="{{site.url}}/bikeways/"><i class="fa fa-reply"></i>&nbsp;Bikeways</a>
       {% elsif page.maptype == "mountain" %}
       <a href="{{site.url}}/mountain-biking/"><i class="fa fa-reply"></i>&nbsp;Mountain Bike Trails</a>
-      {% elsif page.maptype == "park"%}
-      <a href="{{site.url}}/parks/"><i class="fa fa-reply"></i>&nbsp;Parks</a>
+      {% elsif page.maptype == "hiking"%}
+      <a href="{{site.url}}/hiking/"><i class="fa fa-reply"></i>&nbsp;Hiking & Backpacking Trails</a>
       {% endif %}
     </h4>
     <div class="row row-offcanvas row-offcanvas-right">
@@ -38,21 +38,21 @@
         </div>
       </div>
       <div class="col-lg-6 col-md-6">
-        <div id="trailmap"></div>
+        <div id="map"></div>
       </div>
       <div id="sidebar" class="col-xs-6 col-sm-3 col-md-2 sidebar-offcanvas" style="border-left:solid thin lightgray;margin-top:20px;">
         <ul style="list-style:none;">
-          <h4 class="text-muted">{% if page.maptype == "shared-path" or page.maptype == "roadway" or page.maptype == "bikeway" %}
+          <h4 class="text-muted">{% if page.maptype =="bikeway" %}
             Bikeways
             {% elsif page.maptype == "mountain" %}
             Mountain Bike Trails
-            {% elsif page.maptype == "park" or page.maptype == "park" %}
-            Parks
+            {% elsif page.maptype == "hiking" %}
+            Hiking & Backpacking Trails
             {% endif %}
           </h4>
           {% assign sorted_trails = site.data.ovrdc_trails | sort:"Name" %}
           {% for trail in sorted_trails %}
-          {% if trail.maptype == page.maptype %}
+          {% if trail.maptype == page.type %}
           <li><a href="/trails/{{trail.Name | slugify}}/">{{trail.Name}}</a></li>
           {%endif%}
           {%endfor%}

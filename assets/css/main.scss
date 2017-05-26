@@ -6,7 +6,6 @@
 {% include css/bootstrap.min.css %}
 {% include css/animate.min.css %}
 {% include css/font-awesome.min.css %}
-{% include mapzen/mapzen.min.css %}
 
 // Example Defaults
 //$base-font-family: Lato, Helvetica, Arial, sans-serif;
@@ -58,21 +57,11 @@ $theme-dark: #222;
   "base"
 ;
 /*custom*/
-/*map*/
-.leaflet-bottom .leaflet-right {
-  width:100%;
+header {
+  background: url(/assets/img/homepage-images/map-header-gray_compressed.jpg),linear-gradient(to left, #39423b, #1b7837);
+  background-size: cover;
+  background-position: center;
 }
-.leaflet-popup-content-wrapper {
-  border-radius: 4px!important;
-}
-/*extra marker*/
-.extra-marker.extra-marker-svg img {
-  margin-top: -38px;
-}
-.leaflet-popup-content {
-  font-family: Muli, Helvetica, Arial, sans-serif;
-}
-/*endmap*/
 #showlist {
   margin-top: -40px;
   margin-bottom: 20px;
@@ -106,6 +95,12 @@ ul.active {
   width: 100%;
   border: solid thin lightgray;
   margin-top:20px;
+}
+.navbar-default .navbar-header .navbar-toggle {
+  padding:8px;
+}
+.navbar-toggle {
+  margin-right:10px;
 }
 .navbar-brand {
   font-size: 22px;

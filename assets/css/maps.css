@@ -1,0 +1,40 @@
+---
+layout: compress
+---
+{% include map-plugins/mapzen.css %}
+{% include map-plugins/easy-button.css%}
+{% include map-plugins/Control.Fullscreen.css%}
+{% include map-plugins/leaflet-sidebar.min.css%}
+/*custom map css*/
+.leaflet-bottom .leaflet-right {
+  width:100%;
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 4px!important;
+}
+/*extra marker*/
+.extra-marker.extra-marker-svg img {
+  margin-top: -38px;
+}
+.leaflet-popup-content {
+  font-family: Muli, Helvetica, Arial, sans-serif;
+}
+.easy-button-button.leaflet-bar-part.leaflet-interactive {
+  padding:2px;
+}
+.sidebar.leaflet-touch,
+.leaflet-touch .leaflet-control-layers,
+.leaflet-touch .leaflet-bar {
+  border: 1px solid rgba(0,0,0,.2);
+}
+.leaflet-container .sidebar-content a:hover,
+.leaflet-control-attribution a:hover,
+.leaflet-control-attribution a:focus,
+.leaflet-container .sidebar-content a:focus {
+  color: #1b7837;
+}
+.leaflet-control-attribution a,
+.leaflet-container .sidebar-content a {
+  color: #7fbf7b;
+}
+/*end map custom css*/
