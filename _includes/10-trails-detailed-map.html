@@ -108,7 +108,7 @@ function trailsStyle(feature) {
     dashArray: getDash(feature.properties.subtype)
   }
 }
-
+var trailPopup = "";
 var trails = L.geoJson(null, {
   style: trailsStyle,
   filter: function(feature) {
@@ -118,16 +118,23 @@ var trails = L.geoJson(null, {
   },
   onEachFeature: function(feature, trail) {
     var p = feature.properties;
-    var popup = '<h4>' + p.Name +
+    trailPopup = '<h4>' + p.Name +
     '</h4>Type:' + p.maptype +
     '<hr /><br />Subtitle: ' + p.subtitle +
     '<br />Length: ' + Number(p["SUM_LengthMi"]).toFixed(4) + ' mi' +
     '<br />Popup: ' + p.popup +
-    '<br />Notes: ' + p.Notes;
-    trail.bindPopup(popup);
+    '<br />Notes: ' + p.Notes +
+    '<button class="btn btn-sm btn-primary-outline" id="moreInfo">More Info</button>';
+    trail.bindPopup(trailPopup);
     trail.bindTooltip(p.Name, {sticky: true});
   }
 }).addTo(map);
+
+$("#moreInfo").click(function() {
+  console.log('click');
+  mapSidebar.open();
+  mapSidebar.setContent(popup)
+});
 
 map.on('popupopen', function() {
   map.closeTooltip()
@@ -146,34 +153,6 @@ map.on('zoomend', function() {
 map.on('mouseout', function() {
   map.scrollWheelZoom.disable();
 });*/
-
-/*button for turning on the pois*/
-var poiLayerButton = L.easyButton({
-  states: [{
-    stateName: 'add',
-    icon: 'fa-product-hunt fa-2x',
-    title: 'Show Points of Interest',
-    onClick: function(btn, map) {
-      if (!map.hasLayer(pois)) {
-        map.addLayer(pois)
-      }
-      btn.state('remove');
-    }
-  }, {
-    stateName: 'remove',
-    icon: 'fa-minus-circle fa-2x',
-    title: 'Remove Points of Interest',
-    onClick: function(btn, map) {
-      if (map.hasLayer(pois)) {
-        map.removeLayer(pois)
-      }
-      btn.state('add');
-    }
-  }],
-  position: "topright"
-});
-
-poiLayerButton.addTo(map);
 
 map.createPane("highlight");
 map.getPane("highlight").style.zIndex=350;
@@ -254,6 +233,65 @@ map.on('zoomend', function() {
     }
   }
 });
+
+var att = document.getElementsByClassName('leaflet-control-attribution');
+
+map.on('click', function() {
+  att[0].style.display = 'none';
+});
+
+var lc = new L.Control.Locate();
+
+var mapSidebar = new L.control.sidebar('map-sidebar', {
+  closeButton: true,
+  autoPan: false
+});
+
+var mapHelp = L.easyButton('fa-question-circle fa-2x', function() {
+  map.setView([55, -2], 4);
+});
+
+var mapUserLocation = L.easyButton('fa-location-arrow fa-2x', function() {
+  map.locate({
+    setView: true,
+    maxZoom: 10
+  });
+});
+
+var mapInfo = L.easyButton('fa-info-circle fa-2x', function() {
+  att[0].style.display = 'block';
+  console.log(att);
+});
+
+/*button for turning on the pois*/
+var mapPoiToggle = L.easyButton({
+  states: [{
+    stateName: 'add',
+    icon: 'fa-product-hunt fa-2x',
+    title: 'Show Points of Interest',
+    onClick: function(btn, map) {
+      if (!map.hasLayer(pois)) {
+        map.addLayer(pois)
+      }
+      btn.state('remove');
+    }
+  }, {
+    stateName: 'remove',
+    icon: 'fa-minus-circle fa-2x',
+    title: 'Remove Points of Interest',
+    onClick: function(btn, map) {
+      if (map.hasLayer(pois)) {
+        map.removeLayer(pois)
+      }
+      btn.state('add');
+    }
+  }]
+});
+
+var bottomToolbar = L.easyBar([mapPoiToggle, mapHelp, mapUserLocation, mapInfo, ], {
+  id: 'mobile-toolbar',
+  position: 'bottomleft'
+}).addTo(map);
 
 /* Add Sidebar */
 

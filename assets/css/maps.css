@@ -2,9 +2,11 @@
 layout: compress
 ---
 {% include map-plugins/mapzen.css %}
-{% include map-plugins/easy-button.css%}
 {% include map-plugins/Control.Fullscreen.css%}
-{% include map-plugins/leaflet-sidebar.min.css%}
+{% include map-plugins/node_modules/leaflet-sidebar/src/L.Control.Sidebar.css%}
+{% include map-plugins/node_modules/leaflet-easybutton/src/easy-button.css%}
+{% include map-plugins/node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css%}
+
 /*custom map css*/
 .leaflet-bottom .leaflet-right {
   width:100%;
@@ -37,4 +39,55 @@ layout: compress
 .leaflet-container .sidebar-content a {
   color: #7fbf7b;
 }
+
+.leaflet-sidebar .close {
+    font-size: 25pt;
+    z-index: 900;
+}
+/*Easy button tweaks*/
+
+
+/*    @media screen and (min-width: 481px) {
+  .leaflet-bottom.leaflet-left {
+    top: 100px;
+  }
+}*/
+
+@media screen and (max-width: 480px) {
+  .leaflet-bar.easy-button-container.leaflet-control {
+    display: flex;
+    justify-content: space-around;
+    background: white;
+    border-radius: 0;
+    border: none;
+    margin: 0;
+    width: 100%;
+    box-shadow: 0 2px 2px 0 rgba(0, 0, 0, .14), 0 3px 1px -2px rgba(0, 0, 0, .2), 0 1px 5px 0 rgba(0, 0, 0, .12);
+  }
+  .leaflet-bar.easy-button-container.leaflet-control button {
+    border: none;
+    min-width: 80px;
+  }
+  .leaflet-bottom.leaflet-left {
+    width: 100%;
+    bottom: 0;
+  }
+  .leaflet-top.leaflet-left {
+    width: 100%;
+    top: 0;
+  }
+/*  .leaflet-top.leaflet-right {
+    margin-top: 30px;
+  }*/
+  .leaflet-control-attribution {
+    display: none;
+    margin-bottom: 30px!important;
+  }
+  .leaflet-left,
+  .leaflet-right {
+    transition: all 0.1s;
+  }
+}
+
+
 /*end map custom css*/
