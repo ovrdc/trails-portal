@@ -15,7 +15,9 @@ var mapZoom = new L.control.zoom({position: "topright"}).addTo(map);
 /*var fs = new L.control.fullscreen({position: "topright"});
 fs.addTo(map);*/
 
+/**********/
 /*Basemaps*/
+/**********/
 var hills = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
   attribution: 'Tiles &copy; Esri &mdash; Source: Esri',
   maxNativeZoom: 13
@@ -44,8 +46,12 @@ var labels = L.tileLayer('https://{s}.tile.openstreetmap.se/hydda/roads_and_labe
   attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
 });
 var ortho = new L.layerGroup([esri, labels], {});
+/**********/
+/**********/
 
+/**********/
 /*function for poi popup*/
+/**********/
 
 function poiPopup(feature, poi) {
   var latlng = poi._latlng.lat + ',' + poi._latlng.lng;
@@ -53,8 +59,9 @@ function poiPopup(feature, poi) {
   '<a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr=' +
   latlng + '" target="_blank">Directions</a>');
   }
-
+/**********/
 /*function for creating the poi icon*/
+/**********/
 
 function createIcon(feature, latlng) {
   var type = feature.properties.symbol;
@@ -76,6 +83,9 @@ var pois = new L.geoJson(null, {
   onEachFeature: poiPopup
 });
 
+/**********/
+/**********/
+
 function getColor(t) {
   switch(t) {
     case "shared-path": return '#1b7837';
@@ -95,9 +105,9 @@ function getDash(st) {
 
 function getWeight(st) {
   if (st == "Extension") {
-    return 5
+    return 2
   }
-  else return 7
+  else return 3
 }
 
 function trailsStyle(feature) {
@@ -108,37 +118,108 @@ function trailsStyle(feature) {
     dashArray: getDash(feature.properties.subtype)
   }
 }
+/**********/
+/**********/
+
 var trailPopup = "";
-var trails = L.geoJson(null, {
+var trailDetailedPopup = "";
+
+/**********/
+/**********/
+
+function trailPopupFunction(feature, trail) {
+  var p = feature.properties;
+  trailPopup = '<h3>' + p.Name +
+  '</h3><p>' + p.subtitle +
+  '<hr /></p><p><br />Length: ' + Number(p["SUM_LengthMi"]).toFixed(4) + ' mi' +
+  '<br />Popup: ' + p.popup +
+  '<br />Notes: ' + p.Notes +
+  '<br />Type:' + p.maptype + '</p>' + "directions, feature-image, gpx track load on open with elevation profile, nearby cities, points of interest button";
+  trailDetailedPopup = '<h4>' + p.Name + '</h4>';
+  for (var k in p) {
+    var v = String(p[k]);
+    trailDetailedPopup += '<strong>' + k + '</strong><br>' + v + '<br>' + '<hr style="margin:5px 0px;">';
+  };
+/*  trail.bindPopup(trailPopup);*/
+}
+
+var trails = L.geoJson(null).addTo(map);
+
+trails.on('click', function(e) {
+  console.log(e.layer.feature);
+  trailPopupFunction(e.layer.feature, null)
+  mapSidebar.show();
+  mapSidebar.setContent(trailPopup);
+});
+
+map.on('popupopen', function() {
+  $("#moreInfo").click(function() {
+    console.log('click');
+    mapSidebar.show();
+    mapSidebar.setContent(trailPopup)
+  });
+  map.closeTooltip()
+});
+
+var hiking = L.geoJson(null, {
   style: trailsStyle,
   filter: function(feature) {
-    if (feature.properties.Status == "Existing") {
+    if (feature.properties.maptype == "hiking" && feature.properties.Status == "Existing") {
       return true
     }
   },
   onEachFeature: function(feature, trail) {
-    var p = feature.properties;
-    trailPopup = '<h4>' + p.Name +
-    '</h4>Type:' + p.maptype +
-    '<hr /><br />Subtitle: ' + p.subtitle +
-    '<br />Length: ' + Number(p["SUM_LengthMi"]).toFixed(4) + ' mi' +
-    '<br />Popup: ' + p.popup +
-    '<br />Notes: ' + p.Notes +
-    '<button class="btn btn-sm btn-primary-outline" id="moreInfo">More Info</button>';
-    trail.bindPopup(trailPopup);
-    trail.bindTooltip(p.Name, {sticky: true});
+    trail.bindTooltip(feature.properties.Name, {sticky: true});
   }
+});
+
+var biking = L.geoJson(null, {
+  style: trailsStyle,
+  filter: function(feature) {
+    if (feature.properties.maptype == "bikeway" && feature.properties.Status == "Existing") {
+      return true
+    }
+  },
+  onEachFeature: function(feature, trail) {
+    trail.bindTooltip(feature.properties.Name, {sticky: true});
+  }
+});
+
+trails.addLayer(hiking);
+trails.addLayer(biking);
+/**********/
+/**********/
+map.createPane("highlight");
+map.getPane("highlight").style.zIndex=350;
+var highlightStyle = {
+  weight:9,color:"white", pane:"highlight", opacity: 0.8
+};
+var bikeHighlight = new L.geoJson(null, {
+  style:highlightStyle,
+  filter: function(feature) {
+    if (feature.properties.Status == "Existing" && feature.properties.maptype == "bikeways") {
+      return true
+    }
+  },
+}).addTo(map);
+var hikeHighlight = new L.geoJson(null, {
+  style:highlightStyle,
+  filter: function(feature) {
+    if (feature.properties.Status == "Existing" && feature.properties.maptype == "hiking") {
+      return true
+    }
+  },
+}).addTo(map);
+/**********/
+/**********/
+
+var mapSidebar = L.control.sidebar('map-sidebar', {
+  closeButton: true,
+  autoPan: false
 }).addTo(map);
 
-$("#moreInfo").click(function() {
-  console.log('click');
-  mapSidebar.open();
-  mapSidebar.setContent(popup)
-});
-
-map.on('popupopen', function() {
-  map.closeTooltip()
-});
+/**********/
+/**********/
 
 /*make the map more friendly to scrolling*/
 /*map.on('click', function() {
@@ -154,18 +235,10 @@ map.on('mouseout', function() {
   map.scrollWheelZoom.disable();
 });*/
 
-map.createPane("highlight");
-map.getPane("highlight").style.zIndex=350;
-var newtrails = new L.geoJson(null, {
-  style:{weight:9,color:"white", pane:"highlight", opacity: 0.6},
-  filter: function(feature) {
-    if (feature.properties.Status == "Existing") {
-      return true
-    }
-  }
-}).addTo(map);
-
+/**********/
 /* Load map data and add to layers*/
+/**********/
+
 $.getJSON("/trails/data/ovrdc_trails_pois.geojson", function() {
   console.log('done loading poi data')
 })
@@ -183,12 +256,17 @@ $.getJSON("/trails/data/ovrdc_trails_web.geojson", function(data) {
 })
 .done(function(data) {
   console.log(data);
-  trails.addData(data);
-  newtrails.addData(data);
+  hiking.addData(data);
+  biking.addData(data);
+  bikeHighlight.addData(data);
+  hikeHighlight.addData(data);
 })
 .fail(function() {
   console.log('error loading trail data')
 });
+/**********/
+/**********/
+
 map.createPane('parcelPane');
 map.getPane('parcelPane').style.zIndex = 550;
 var parkData = omnivore.topojson("/trails/data/ovrdc_parks_web_topo.json");
@@ -208,8 +286,9 @@ parkData.on('ready', function(data) {
   	vectorTileLayerStyles: {
       sliced: {
         fillColor: "green",
-        color: "transparent",
-        weight: 0,
+        color: "green",
+        weight: 0.1,
+        opacity: 0.5,
         fillOpacity: 0.1,
         fill: true
       }
@@ -217,8 +296,10 @@ parkData.on('ready', function(data) {
   }).addTo(map);
 });
 
-
+/**********/
 /*change basemap to ortho on high zoom*/
+/**********/
+
 map.on('zoomend', function() {
   if (map.getZoom() > 15) {
     map.removeLayer(hillshade);
@@ -234,76 +315,195 @@ map.on('zoomend', function() {
   }
 });
 
+/**********/
+/**********/
+
+/**********/
+/**********/
+
+/**********/
+/**********/
+
+var lc = new L.Control.Locate();
+
+var mapHelp = L.easyButton('fa-question-circle fa-2x', function() {
+  map.setView([55, -2], 4);
+});
+
+var mapUserLocation = L.easyButton({
+  states: [{
+    stateName: 'showLocation',
+    icon: 'fa-location-arrow fa-2x',
+    title: 'Zoom to My Location',
+    onClick: function(btn, map) {
+      map.locate({
+        setView: true,
+        maxZoom: 10
+      });
+      btn.state('followLocation');
+      var el = document.getElementsByClassName('fa-location-arrow');
+      el[0].style.color = "skyblue";
+    },
+  },{
+    stateName: 'hideLocation',
+    icon: 'fa-location-arrow fa-2x',
+    title: 'Stop Following My Location',
+    onClick: function(btn, map) {
+      btn.state('showLocation');
+    },
+  },{
+      stateName: 'followLocation',
+      icon: 'fa-location-arrow fa-2x',
+      title: 'Click to Follow My Location',
+      onClick: function(btn, map) {
+        console.log(btn);
+        map.locate({
+          setView: true,
+          maxZoom: 15,
+          watch: true
+        });
+        btn.state('hideLocation');
+        var el = document.getElementsByClassName('fa-location-arrow');
+        el[0].style.color = "firebrick";
+      },
+    }]
+});
+
+/*
+
+
 var att = document.getElementsByClassName('leaflet-control-attribution');
 
 map.on('click', function() {
   att[0].style.display = 'none';
 });
 
-var lc = new L.Control.Locate();
-
-var mapSidebar = new L.control.sidebar('map-sidebar', {
-  closeButton: true,
-  autoPan: false
-});
-
-var mapHelp = L.easyButton('fa-question-circle fa-2x', function() {
-  map.setView([55, -2], 4);
-});
-
-var mapUserLocation = L.easyButton('fa-location-arrow fa-2x', function() {
-  map.locate({
-    setView: true,
-    maxZoom: 10
-  });
-});
-
-var mapInfo = L.easyButton('fa-info-circle fa-2x', function() {
-  att[0].style.display = 'block';
-  console.log(att);
-});
+var mapInfo = L.easyButton({
+  states: [{
+    stateName: 'add',
+    icon: 'fa-info fa-2x',
+    title: 'Show Attribution',
+    onClick: function(btn, map) {
+      att[0].style.display = 'block';
+      btn.state('remove');
+    }
+  }, {
+    stateName: 'remove',
+    icon: 'fa-info-circle fa-2x',
+    title: 'Hide Attribution',
+    onClick: function(btn, map) {
+      att[0].style.display = 'none';
+      btn.state('add');
+    }
+  }]
+});*/
 
 /*button for turning on the pois*/
 var mapPoiToggle = L.easyButton({
   states: [{
-    stateName: 'add',
-    icon: 'fa-product-hunt fa-2x',
+    stateName: 'showPOI',
+    icon: 'fa-star-o fa-2x',
     title: 'Show Points of Interest',
     onClick: function(btn, map) {
       if (!map.hasLayer(pois)) {
         map.addLayer(pois)
       }
-      btn.state('remove');
+      btn.state('hidePOI');
     }
   }, {
-    stateName: 'remove',
-    icon: 'fa-minus-circle fa-2x',
+    stateName: 'hidePOI',
+    icon: 'fa-star fa-2x',
     title: 'Remove Points of Interest',
     onClick: function(btn, map) {
       if (map.hasLayer(pois)) {
         map.removeLayer(pois)
       }
-      btn.state('add');
+      btn.state('showPOI');
     }
   }]
 });
 
-var bottomToolbar = L.easyBar([mapPoiToggle, mapHelp, mapUserLocation, mapInfo, ], {
+var mapFilterControl = new L.control.layers(null, {
+    "Bikeways": biking,
+    "Hiking Trails": hiking
+  }, {
+    collapsed: false
+  }
+);
+
+var mapFilter = L.easyButton({
+  states: [{
+    stateName: 'showFilter',
+    icon: 'fa-filter fa-2x',
+    title: 'View Map Filters',
+    onClick: function(btn, map) {
+      mapFilterControl.addTo(map);
+      btn.state('removeFilter');
+    }
+  }, {
+    stateName: 'removeFilter',
+    icon: 'fa-filter fa-2x',
+    title: 'Hide Map Filters Bikeways',
+    onClick: function(btn, map) {
+      map.removeControl(mapFilterControl);
+      btn.state('showFilter');
+    }
+  }]
+});
+
+/*var hikeToggle = L.easyButton({
+  states: [{
+    stateName: 'remove',
+    icon: 'fa-tree fa-2x',
+    title: 'Hide Hiking Trails',
+    onClick: function(btn, map) {
+      if (trails.hasLayer(hiking)) {
+        trails.removeLayer(hiking);
+        map.removeLayer(hikeHighlight);
+      }
+      btn.state('add');
+    }
+  }, {
+    stateName: 'add',
+    icon: 'fa-minus fa-2x',
+    title: 'Show Hiking Trails',
+    onClick: function(btn, map) {
+      if (!trails.hasLayer(hiking)) {
+        trails.addLayer(hiking);
+        map.addLayer(hikeHighlight);
+      }
+      btn.state('remove');
+    }
+  }]
+});*/
+
+var bottomToolbar = L.easyBar([mapPoiToggle, mapFilter, mapUserLocation], {
   id: 'mobile-toolbar',
   position: 'bottomleft'
 }).addTo(map);
 
-/* Add Sidebar */
+map.on('zoomend', function() {
+  /**********/
+  /**********/
+  if ((map.getZoom()) < 12) {
+    hiking.setStyle({weight:3});
+    biking.setStyle({weight:3});
+  }
+  if ((map.getZoom()) > 11) {
+    hiking.setStyle({weight:7});
+    biking.setStyle({weight:7});
+  }
+});
+/**********/
+/**********/
 
-/* Populate Sidebar on trail click */
+/* add trail list second sidebar on right*/
 
 /* trail images and detail */
 
 /* Add share button */
 
-/* Add geolocation button */
+/* add search trails function when search clicked in nav*/
 
-/* Add link back to homepage on overview map */
-
-/* Add trail outline when zoomed in for ortho view */
+/* change layer control to select plugin??*/
 </script>

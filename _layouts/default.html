@@ -6,6 +6,7 @@ layout: compress
 {% include 1-head.html %}
 
 <body id="page-top">
+  <div id="blank" style="position:absolute;top:0;left:0;bottom:0;width:100%;z-index:9999;background:white;"><img style="position:absolute;top:50%;left:50%;margin-top:-60px;margin-left:-60px;" src="/assets/img/ring-alt.gif" /></div>
   {% include 2-nav.html %}
 
 
@@ -18,7 +19,7 @@ layout: compress
                           <h4>{% if page.subtitle %}{{page.subtitle}}{%else%}{{site.description}}{%endif%}</h4>
                           <h1>{% if page.title%}{{page.title}}{%elsif site.title%}{{site.title}}{%endif%}</h1>
                           <a href="#content" class="btn btn-outline btn-xl page-scroll" style="margin:5px;width:219px;">{%if page.anchor-text %}{{page.anchor-text}}{%else%}Learn More{%endif%}</a>
-                          <a href="/map/?sidebar=true" target="_blank" class="btn btn-outline btn-xl" style="margin:5px;width:219px;">Explore the Map</a>
+                          <a href="/map/?sidebar=true" class="btn btn-outline btn-xl" style="margin:5px;width:219px;">Explore the Map</a>
                       </div>
                   </div>
               </div>
@@ -64,18 +65,15 @@ layout: compress
       </div>
     </div>
   </section>
-  <section>
-    <div id="overview-map" class="container" style="margin-bottom:50px;">
-        <div class="row">
-            <div class="col-lg-12 text-center">
-                <h2 class="section-heading">Overview Map of Southern Ohio Trails</h2>
-                <hr class="primary">
-                <br />
-                <a href="/map/?sidebar=true" target="_blank" class="btn btn-outline btn-xl btn-inverse">Explore the Map</a>
-            </div>
+  <section id="about" class="download bg-primary text-center">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <h2 class="section-heading">About Southern Ohio Trails</h2>
+          <p>{{site.about}}</p>
         </div>
+      </div>
     </div>
-    <div id="largemap" style="width:100%;height:570px;background:url(/assets/img/homepage-images/map-header_compressed.jpg),linear-gradient(to left, #39423b, #1b7837);background-size:cover;background-position:center;"></div>
   </section>
   <footer>
     <div class="container">

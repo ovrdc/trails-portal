@@ -3,62 +3,43 @@ layout: compress
 search: false
 permalink: /map/
 map: true
+loadtime: 1500
 css: >
   #map {
-    top:0;
+    top:49px;
     position:absolute;
     left:0;
     width:100%;
     bottom:0;
-  }/*
-  .sidebar-header {
-    color: #333;
-    background-color:whitesmoke!important;
   }
-  .sidebar-tabs>li.active,
-  .sidebar-tabs>ul>li.active {
-    color: black!important;
-    background-color:whitesmoke!important;
-  }
-  .sidebar-close {
-    color:black;
-  }
-  .sidebar {
-    z-index:1001!important;
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 60px;
-    border-radius: 4px;
-  }
-  #blank {
-    position:absolute;
-    top:0;
-    left:0;
-    bottom:0;
-    width:100%;
-    z-index:9999;
-    background:white;
-  }
-  @media (max-width:1199px) {
-    .sidebar {
-      width: auto;
-      max-width: 400px;
+
+  @media screen and (min-width: 992px) {
+    .navbar-default .nav>li>a {
+      color: #222!important;
+    }
+    .navbar-default .nav>li>a:hover, .navbar-default .nav>li>a:focus:hover {
+      color: #7fbf7b!important;
+    }
+    .navbar-default .navbar-header .navbar-brand  {
+      color: #7fbf7b!important;
+    }
+    .navbar-default .navbar-header .navbar-brand:hover, .navbar-default .navbar-header .navbar-brand:focus {
+      color: #1b7837!important;
     }
   }
-  .sidebar-footer {
-    position: absolute;
-    bottom: 10px;
+
+  @media screen and (min-width: 768px) {
+  .container {
+      width: 99%!important;
+    }
   }
-  .sidebar.collapsed {
-    transition: width 1s;
-  }*/
 ---
 <html lang="en">
 
 {% include 1-head.html %}
-<body id="page-top">
+<body id="page-top" class="map">
   <div id="blank" style="position:absolute;top:0;left:0;bottom:0;width:100%;z-index:9999;background:white;"><img style="position:absolute;top:50%;left:50%;margin-top:-60px;margin-left:-60px;" src="/assets/img/ring-alt.gif" /></div>
+  {% include 2-nav.html %}
   <div id="map">
     <div id="map-sidebar" class="sidebar collapsed">
       <!-- Nav tabs -->
@@ -102,7 +83,8 @@ css: >
       </div>
     </div>
   </div>
-  {% include 8-scripts.html %} {% include 10-trails-detailed-map.html%}
+  {% include 8-scripts.html %}
+  {% include 10-trails-detailed-map.html%}
   <script>
   var getQuery = function(q) {
     if (q) {

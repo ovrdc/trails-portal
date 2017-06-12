@@ -8,6 +8,10 @@ header-img: map-header-gray.jpg
 baseurl: "" # the subpath of your site, e.g. /blog/ (If you use organization leave empty)
 #url: "http://trails.ovrdc.org" #https://jekynewage.github.io" # the base hostname & protocol for your site
 url: "https://sohiotrails.surge.sh"
+about: >-
+  The Southern Ohio Trails site exists to promote Active Transportation and outdoor exploration in Southern Ohio. It is funded in part by the Ohio Department or Transportation, the Appalachian Regional Commission, the Economic Development Services Agency and OVRDC members.
+
+  The code to this site is public domain, unless otherwise noted, and can be found on GitHub. The site is powered by Jekyll, and uses two Jekyll plugins not available in the default GitHub/Jekyll generator.
 
 google_analytics: ""
 addthis_id:
@@ -84,6 +88,7 @@ retinamagick:
     source: /assets/img/homepage-images
     destination: /assets/img/homepage-images/medium
     scale: "480x320"
+    quality: "10"
 
   large1:
     source: /assets/img/homepage-images
