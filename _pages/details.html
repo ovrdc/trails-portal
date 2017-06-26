@@ -1,0 +1,90 @@
+---
+title: Technical Details of this Site
+subtitle: Learn about the code that powers this site and how to build one yourself.
+permalink: /details/
+css: >-
+  /*checkbox code from https://bootsnipp.com/snippets/featured/animated-radios-amp-checkboxes-nojs*/
+  .checkbox label:after,
+  .radio label:after {
+      content: '';
+      display: table;
+      clear: both;
+  }
+
+  .checkbox .cr,
+  .radio .cr {
+      position: relative;
+      display: inline-block;
+      border: 1px solid #a9a9a9;
+      border-radius: .25em;
+      width: 1.3em;
+      height: 1.3em;
+      float: left;
+      margin-right: .5em;
+  }
+
+  .radio .cr {
+      border-radius: 50%;
+  }
+
+  .checkbox .cr .cr-icon,
+  .radio .cr .cr-icon {
+      position: absolute;
+      font-size: .8em;
+      line-height: 0;
+      top: 50%;
+      left: 20%;
+  }
+
+  .radio .cr .cr-icon {
+      margin-left: 0.04em;
+  }
+
+  .checkbox label input[type="checkbox"],
+  .radio label input[type="radio"] {
+      display: none;
+  }
+
+  .checkbox label input[type="checkbox"] + .cr > .cr-icon,
+  .radio label input[type="radio"] + .cr > .cr-icon {
+      transform: scale(3) rotateZ(-20deg);
+      opacity: 0;
+      transition: all .3s ease-in;
+  }
+
+  .checkbox label input[type="checkbox"]:checked + .cr > .cr-icon,
+  .radio label input[type="radio"]:checked + .cr > .cr-icon {
+      transform: scale(1) rotateZ(0deg);
+      opacity: 1;
+  }
+
+  .checkbox label input[type="checkbox"]:disabled + .cr,
+  .radio label input[type="radio"]:disabled + .cr {
+      opacity: .5;
+  }
+---
+<section class="animated">
+  <div id="content" class="container">
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-3 text-center">
+        <p>The site is powered by Jekyll, with the code hosted and GitHub and the site hosted on surge.sh. It uses two Jekyll plugins not available in the default GitHub/Jekyll generator - jekyll-retinamagick and data-page-generator.</p>
+        <h4>
+          To Do List
+        </h4>
+        <hr />
+      </div>
+      {% for item in site.todolist %}
+      <div class="col-lg-4 col-lg-offset-4"{% if item.priority == "high"%}style="color:firebrick;"{% endif %}>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" value="" {% if item.done == true%} checked{%endif%}>
+            <span class="cr"><i class="cr-icon fa fa-check"></i></span>
+            {{item.name}}
+          </label>
+        </div>
+      </div>
+      {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

@@ -3,14 +3,22 @@ layout: compress
 search: false
 permalink: /map/
 map: true
-loadtime: 1500
-css: >
+css: >-
   #map {
     top:49px;
     position:absolute;
     left:0;
     width:100%;
     bottom:0;
+  }
+
+  #mainNav {
+    box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    border: none;
+  }
+
+  .navbar-collapse.collapse.in {
+    overflow:hidden;
   }
 
   @media screen and (min-width: 992px) {
@@ -41,51 +49,37 @@ css: >
   <div id="blank" style="position:absolute;top:0;left:0;bottom:0;width:100%;z-index:9999;background:white;"><img style="position:absolute;top:50%;left:50%;margin-top:-60px;margin-left:-60px;" src="/assets/img/ring-alt.gif" /></div>
   {% include 2-nav.html %}
   <div id="map">
-    <div id="map-sidebar" class="sidebar collapsed">
-      <!-- Nav tabs -->
-      <div class="sidebar-tabs">
-        <ul role="tablist">
-          <li><a href="#home" role="tab"><i class="fa fa-bars"></i></a></li>
-          <li><a href="#profile" role="tab"><i class="fa fa-user"></i></a></li>
-          <li class="disabled"><a href="#messages" role="tab"><i class="fa fa-envelope"></i></a></li>
-          <li><a href="https://github.com/Turbo87/sidebar-v2" role="tab" target="_blank"><i class="fa fa-github"></i></a></li>
-        </ul>
-
-        <ul role="tablist">
-          <li><a href="#settings" role="tab"><i class="fa fa-info-circle"></i></a></li>
-        </ul>
+    <div id="mapLeftSidebar"></div>
+    <div id="mapRightSidebar">
+      <div class='map-trails-list-heading'>
+        <h3>Bikeways</h3>
       </div>
-
-      <!-- Tab panes -->
-      <div class="sidebar-content">
-        <div class="sidebar-pane" id="home">
-          <h2 class="sidebar-header">Southern Ohio Trails
-            <span class="sidebar-close"><i class="fa fa-caret-left fa-2x"></i></span>
-          </h2>
-
-          <p>A responsive sidebar for mapping libraries like <a href="http://leafletjs.com/">Leaflet</a> or <a href="http://openlayers.org/">OpenLayers</a>.</p>
-          <div class="sidebar-footer">
-            <a href="/">Return to the Southern Ohio Trails Homepage</a>
-          </div>
-        </div>
-
-        <div class="sidebar-pane" id="profile">
-          <h2 class="sidebar-header">Profile<span class="sidebar-close"><i class="fa fa-caret-left fa-2x"></i></span></h2>
-        </div>
-
-        <div class="sidebar-pane" id="messages">
-          <h2 class="sidebar-header">Messages<span class="sidebar-close"><i class="fa fa-caret-left fa-2x"></i></span></h2>
-        </div>
-
-        <div class="sidebar-pane" id="settings">
-          <h2 class="sidebar-header">About this Map<span class="sidebar-close"><i class="fa fa-caret-left fa-2x"></i></span></h2>
-        </div>
+      <div id='bike-list' class='trails-list'></div>
+      <div class='map-trails-list-heading'>
+        <h3>Hiking & Backpacking Trails</h3>
       </div>
+      <div id='hike-list' class='trails-list'></div>
     </div>
+    {% include 10.5-map-help-modal.html %}
   </div>
+  <div id="map-show-button"></div>
   {% include 8-scripts.html %}
-  {% include 10-trails-detailed-map.html%}
+  <script>{% include 10-trails-detailed-map.js%}</script>
   <script>
+
+  /*show map regardless of mobile or not*/
+  if (mapDivWidth < 769) {
+    document.getElementById("map-show-button").style.display = "none";
+    document.getElementById("map").style.display = "block";
+    buildMap();
+  }
+  map.on('fullscreenchange', function () {
+      if (map.isFullscreen()) {
+        document.getElementById("map").style.top = "0";
+      } else {
+        document.getElementById("map").style.top = "49px";
+      }
+  });
   var getQuery = function(q) {
     if (q) {
       var params = {},
@@ -114,5 +108,4 @@ css: >
 
   </script>
 </body>
-
 </html>

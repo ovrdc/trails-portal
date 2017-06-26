@@ -6,7 +6,7 @@
         options: {
             iconSize: [ 35, 45 ],
             iconAnchor: [ 17, 42 ],
-            popupAnchor: [ 1, -32 ],
+            popupAnchor: [ 4,-8 ],
             shadowAnchor: [ 10, 12 ],
             shadowSize: [ 36, 16 ],
             className: "",
@@ -65,6 +65,16 @@
 
                 if(options.shape == "penta") {
                     svg = '<svg style="fill:'+options.markerColor+';stroke:'+options.svgBorderColor+';fill-opacity:'+options.svgOpacity+';"   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 71.550368 96.362438" height="100%" width="100%" version="1.1" xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"><g transform="translate(-367.08 -289.9)"><path d="m367.08 322.5 17.236-32.604h36.151l18.164 32.25-35.665 64.112z"/></g></svg>';
+                }
+                if (options.shape == "circle") {
+                  svg = '<svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><circle cx="100" cy="100" r="90" style="fill:' + options.markerColor + ';stroke:' + options.svgBorderColor + ';stroke-width:8px;"/></svg>'
+                }
+                if (options.shape == "roundedSquare2") {
+                  svg = '<?xml version="1.0" encoding="utf-8"?><svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve" style="fill:' + options.markerColor + ';stroke:' + options.svgBorderColor + ';stroke-width:10px;"> <metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata><g><g><path d="M828.7,10H171.4C82.3,10,10,82.2,10,171.3v657.3C10,917.8,82.3,990,171.4,990h657.3c89.1,0,161.3-72.2,161.3-161.3V171.3C990,82.2,917.8,10,828.7,10z"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></g></svg>'
+                }
+                if (options.shape == "roundedSquare") {
+                  svg = '<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" style="stroke:#fff;stroke-width:10px;fill:' +
+                  options.markerColor + ';"><rect x="10" y="10" width="100" height="100" rx="15" ry="15"/></svg>'
                 }
                 if (options.prefix == "maki") {
                   return svg+"<img src='/assets/vendor/maki-icons/icons/" + options.icon + "-15.svg' />";

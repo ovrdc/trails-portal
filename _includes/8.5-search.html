@@ -3,7 +3,7 @@
     searchInput: document.getElementById('search-input'),
     resultsContainer: document.getElementById('results-container'),
     json: '/trails.json',
-    searchResultTemplate: '<li><a href="{url}">{trail}</a><br />{subtitle}</li>',
+    searchResultTemplate: '<li><a href="{url}">{trail}</a><br />{description}</li>',
     fuzzy: true
   });
   $("#search-input").on('keyup', function(e) {

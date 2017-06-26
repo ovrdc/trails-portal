@@ -12,7 +12,7 @@ layout: compress
     "url": "/trails/{{trail.Name | slugify}}/",
     "cities": "{{trail.cities}}",
     "counties": "{{trail.counties}}",
-    "subtitle":"{% if trail.subtitle %}{{trail.subtitle}}{%else%} {%endif%}"
+    "description":"{% if trail.Description %}{{trail.Description}}{%else%} {%endif%}"
   },
   {% endif %}
   {%endfor%}

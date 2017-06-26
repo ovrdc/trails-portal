@@ -1,7 +1,6 @@
 <!-- Custom Fonts -->
 <noscript id="deferred-styles">
   <link href="https://fonts.googleapis.com/css?family=Lato|Muli|Catamaran" rel="stylesheet" />
-  <link href="/assets/css/main.css" rel="stylesheet" />
 </noscript>
 <script>
   var loadDeferredStyles = function() {
@@ -15,13 +14,6 @@
       webkitRequestAnimationFrame || msRequestAnimationFrame;
   if (raf) raf(function() { window.setTimeout(loadDeferredStyles, 0); });
   else window.addEventListener('load', loadDeferredStyles);
-  setTimeout(function() {
-    document.getElementById('blank').style.display = 'none';
-    /*if (query.sidebar == 'true') {
-      console.log(query.sidebar);
-      sidebar.open('home');
-    }*/
-  }, {% if page.loadtime %}{{page.loadtime}}{% else%}1000{%endif%});
 </script>
 
 <!--Main Javascript and jQuery see _includes/js-->
@@ -30,6 +22,6 @@
 <link href="/assets/vendor/extra-markers/css/leaflet.extra-markers.min.css" rel="stylesheet" />
 <link href="/assets/css/maps.css" rel="stylesheet" />
 <script type='text/javascript' src="{{site.baseurl}}/assets/js/maps.js"></script>
-<script type='text/javascript' src="/assets/vendor/extra-markers/src/assets/js/leaflet.extra-markers.js"></script>
+<script type='text/javascript' src="/assets/vendor/extra-markers/src/assets/js/leaflet.extra-markers-custom.js"></script>
 {% endif %}
 {% if page.search == false %}{% else %}{% include 8.5-search.html %}{% endif %}

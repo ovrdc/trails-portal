@@ -5,7 +5,7 @@
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
                 <span class="sr-only">Toggle navigation</span><i class="fa fa-bars fa-lg"></i>
             </button>
-            <a class="navbar-brand page-scroll" href="{% if page.homepage == true %}#page-top{%else%}#{%endif%}">{{site.title}}</a>
+            <a class="navbar-brand page-scroll" href="{% if page.homepage == "true" %}#page-top{%else%}/{%endif%}">{{site.title}}</a>
         </div>
 
         <!-- Collect the nav links, forms, and other content for toggling -->
@@ -18,16 +18,19 @@
                     <a class="page-scroll" href="/hiking">Hiking</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="/mountain-biking">Mountain Biking</a>
+                    <a class="page-scroll" href="">MTB</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="/map/?sidebar=true">Map</a>
+                    <a class="page-scroll" href="{% if page.permalink == "/map/" %}{%else%}/map{%endif%}">Map</a>
+                </li>
+                <li>
+                    <a class="text-muted" href="/resources">Resources</a>
                 </li>
                 <!--li>
                     <a class="page-scroll btn btn-outline btn-sm-nav" href="{{site.url}}/events">Events</a>
                 </li-->
                 <li>
-                    <a class="page-scroll" href="#search-input"><i class="fa fa-search fa-lg"></i></a>
+                    <a class="page-scroll" href="#search"><i class="fa fa-search fa-lg"></i></a>
                 </li>
                 <li>
                   <a class="page-scroll" href="{% if page.permalink == "/map/" %}/#about{% else %}#about{% endif%}"><i class="fa fa-info-circle fa-lg"></i></a>

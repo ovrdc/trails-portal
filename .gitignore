@@ -1,3 +1,5 @@
 .minimagick-cache/
 .sass-cache/
 _site/
+CNAME
+_includes/map-plugins/node_modules/

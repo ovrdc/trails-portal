@@ -2,108 +2,23 @@
 layout: compress
 ---
 <html lang="en">
-
 {% include 1-head.html %}
 
 <body id="page-top">
-  <div id="blank" style="position:absolute;top:0;left:0;bottom:0;width:100%;z-index:9999;background:white;"><img style="position:absolute;top:50%;left:50%;margin-top:-60px;margin-left:-60px;" src="/assets/img/ring-alt.gif" /></div>
+  <!--div id="blank" style="position:absolute;top:0;left:0;bottom:0;width:100%;z-index:9999;background:white;"><img style="position:absolute;top:50%;left:50%;margin-top:-60px;margin-left:-60px;" src="/assets/img/ring-alt.gif" /></div-->
   {% include 2-nav.html %}
-
-
-  {% if page.homepage == true %}<header>{% else %}<header class="page">{% endif %}
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-12">
-                  <div class="header-content animated fadeIn">
-                      <div class="header-content-inner text-center" style="position: relative;">
-                          <h4>{% if page.subtitle %}{{page.subtitle}}{%else%}{{site.description}}{%endif%}</h4>
-                          <h1>{% if page.title%}{{page.title}}{%elsif site.title%}{{site.title}}{%endif%}</h1>
-                          <a href="#content" class="btn btn-outline btn-xl page-scroll" style="margin:5px;width:219px;">{%if page.anchor-text %}{{page.anchor-text}}{%else%}Learn More{%endif%}</a>
-                          <a href="/map/?sidebar=true" class="btn btn-outline btn-xl" style="margin:5px;width:219px;">Explore the Map</a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </header>
+  {% include 3-header.html %}
 
   {{content}}
 
-  <section id="portfolio" class="download bg-primary text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <h2 class="section-heading">Views from the Trails</h2>
-          <p>A glimpse into the wonderful scenery of Southern Ohio</p>
-          <hr>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <section class="no-padding" id="portfolio">
-    <div class="container-fluid">
-      <div class="row no-gutter">
-        {%for img in site.data.trail-images limit: 6%}
-        <div class="col-lg-4 col-sm-6">
-          <div href="#" class="portfolio-box">
-            <img src="/trails/images/medium/{{img.img}}" class="img-responsive" alt="">
-            <div class="portfolio-box-caption">
-              <div class="portfolio-box-caption-content">
-                <div class="project-category text-faded">
-                  {{img.name}}
-                </div>
-                <div class="project-name">
-                  {{img.caption}}
-                </div>
-                <br />
-                <a class="btn btn-outline btn-sm-img" href="/trails/{{img.name | slugify}}/">View the Trail</a>
-              </div>
-            </div>
-          </div>
-        </div>{%endfor%}
-      </div>
-    </div>
-  </section>
-  <section id="about" class="download bg-primary text-center">
-    <div class="container">
-      <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-          <h2 class="section-heading">About Southern Ohio Trails</h2>
-          <p>{{site.about}}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  <footer>
-    <div class="container">
-      <div class="row">
-        {% if page.homepage or page.type %}{%else%}<div class="col-lg-8 col-sm-12 col-lg-offset-2" style="margin-top: -50px;margin-bottom: 50px;">
-          <input id="search-input" type="text" class="form-control" placeholder="Search by Trail Name or City">
-          <ul id="results-container"></ul>
-        </div>{%endif%}
-      </div>
-      <a href="#page-top" class="page-scroll">Return to Top</a>
-      <hr />
-      <br />
-      <p>&copy; 2016 theme by <a rel="nofollow" target="blank" href="https://startbootstrap.com/template-overviews/new-age/">Start Bootstrap</a> and Built with <a target="_blank" rel="nofollow" href="https://jekyllrb.com/">Jekyll</a> by
-        <a target="_blank" rel="nofollow"
-            href="https://it.linkedin.com/in/antoniotrento">Antonio Trento</a> hosted on <a target="_blank" rel="nofollow" href="https://github.com/jekynewage/jekynewage.github.io">Github</a>. All Rights Reserved.</p>
-      <ul class="list-inline">
-        <li>
-          <a href="#">Privacy</a>
-        </li>
-        <li>
-          <a href="#">Terms</a>
-        </li>
-        <li>
-          <a href="#">FAQ</a>
-        </li>
-      </ul>
-    </div>
-  </footer>
+  {% include 5-gallery.html %}
+  {% include 6-about.html %}
+  {% include 7-footer.html %}
+  {% if page.layout == 'trails' or page.layout == 'hiking'%}
   {% include 8-scripts.html %}
-  {% if page.layout == 'trails' or page.layout == 'hiking' %}{% include 10-trails-detailed-map.html %}{% endif %}
+  <script>{% include 10-trails-detailed-map.js %}</script>
+  {% else %}
+  {% include 8-scripts.html %}
+  {% endif %}
 </body>
-
 </html>

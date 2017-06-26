@@ -1,0 +1,26 @@
+OBJECTID,Latitude,Longitude,symbol,type,dateadded,email,source,subtitle,name,detail
+1,39.356901308550626,-83.053031586074539,parking,parking,4/20/2017 0:00:00,mmeyer@ovrdc.org,ortho,Small Parking Lot,Parking,Small Parking Lot
+2,39.349291053321799,-82.996336717426047,parking,parking,4/20/2017 0:00:00,,ortho,Parking Lot off SR 104,Parking,Parking Lot off SR 104
+3,39.338593737121755,-82.978930663310507,parking,parking,4/20/2017 0:00:00,,ortho,Parking Lot off Riverside,Parking,Parking Lot off Riverside
+4,39.341728736936446,-82.962113177034325,parking,parking,4/20/2017 0:00:00,,ortho,Parking Lot off Poplar,Parking,Parking Lot off Poplar
+5,38.741096859604667,-83.203496929980574,star,Park,,,,Shawnee State Park Lodge,Park,"Set next to a lake, this casual hotel is surrounded by the forested hills of Shawnee State Park.Wood-paneled rooms have minifridges, satellite TV and private balconies. Rustic 2-bedroom cottages have living rooms with gas log fireplaces, dining areas, an"
+6,38.741598960370190,-83.197317120233052,parking,Parking,,,,Parking Lot,Parking,Parking lot next to road and across from Turkey Creek Lake
+7,38.737849889573184,-83.200235370440993,parking,Parking,,,,Parking Lot and Access to Beach Area,Parking,Parking lot with access to lake beach and swimming area.  Restroom facilities here.
+8,38.796306250348763,-83.234395979832286,star,POI,,,,Ben's Happy Trails Horseman,POI,Guided horseback riding
+9,38.727974170070922,-83.178262709543432,campsite,Camping,,,,Shawnee State Park Campground,Camping,"Camping, canoe, kayak and paddle boat rental.  Beach area for swimming.  Restroom facilities."
+10,38.725982120095942,-83.171782490142476,picnic-site,Shelter,,,,Mackletree Bridge Shelter,Shelter,Shelter and restrooms available.  Entrance across road to Look Out Trail.  Boat and kayak access to Roosevelt lake.
+11,38.861080910343219,-83.191738129618045,star,POI,,,,Otway Covered Bridge,POI,Picnic shelter and restroom facilities.
+12,38.772220140085942,-83.170924190378457,star,POI,,,,Copperhead Fire Tower,POI,Fire Tower
+13,38.726367139973952,-83.153543469426737,star,POI,,,,Camp Oyo,POI,Boy scout camp
+14,38.718691420246827,-83.048057560521812,star,Park,,,,Earl Thomas Conley Riverside Park,Park,"Picnic shelters, splash pad, playground, disc golf, restroom facilities, tennis courts, cross country course, and mountain bike course."
+15,38.718959290077933,-83.050943610299427,star,POI,,,,Entrance to Raven Rock Trail,POI,Hike up to the top of Raven Rock.  No dogs.  Permit required.
+16,38.850804479746230,-83.201265340297056,star,Park,,,,Gladys Riley Golden Star Lily Preserve,Park,Arc of Appalachia preserve featuring 1.0 mile Yellow Buckeye Trail (difficult) and 1.25 mile White Walnut Trail (moderate). Dogs not permitted on trails
+17,38.732259389659561,-83.187789919883244,star,Park,,,,Shawnee State Park Nature Center,Park,State Park Nature Center provides interpretative education and allows public to touch or hold local wildlife
+18,39.340664121838181,-82.969670851985200,parking-garage,park,6/23/2017 0:00:00,,google,Strawser Park,Strawser Park,"Picnic tables, restrooms, playground"
+19,39.539600683306759,-83.445843866266387,star, ,,,PCRT Google MyMap,,Eyeman Park,"Water, Restrooms, Picnic, Parking"
+20,39.535438777904176,-83.426988073096851,star, ,,,PCRT Google MyMap,,Washington CH Chrisman Park,"Water, Restrooms, Picnic, Parking"
+21,39.436189411205383,-83.222146141094584,parking,parking,,,PCRT Google MyMap,,Austin-Frankfort Area Parking,Paved parking area.  Use caution and watch for bicycles-pedestrians when entering exiting parking area.
+22,39.399672798789915,-83.183941025146680,parking-garage,parking,,,PCRT Google MyMap,,Brad Lighte Park,"Parking, water hydrant, picnic shelter. Restrooms in food service locations in Frankfort. Access off main st just north of bridge."
+23,39.361114972680873,-83.085671147927499,star, ,,,PCRT Google MyMap,,Hopewell Mound Group,"Restrooms (limited hours), parking, water (seasonal) and picnic tables."
+24,39.523887587395215,-83.385455145591123,parking-garage,trailhead,,,PCRT Google MyMap,,Rest Stop Sheltered Kiosk,Trail side bench shelter.  View of Shaw wetland.
+25,39.410504856523410,-83.201932166972199,star,park,,,PCRT Google MyMap,,Crozier Park Gazebo,Memorial Park

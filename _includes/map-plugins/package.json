@@ -1,0 +1,26 @@
+{
+  "name": "map-plugins",
+  "version": "0.0.1",
+  "description": "A set of leaflet plugins useful for many projects.",
+  "main": "none",
+  "dependencies": {
+    "leaflet": "^1.0.3",
+    "leaflet-easybutton": "^2.2.0",
+    "leaflet-fullscreen": "^1.0.2",
+    "leaflet-hash": "^0.2.1",
+    "leaflet-sidebar": "^0.1.9",
+    "leaflet-sleep": "^0.5.1",
+    "leaflet.locatecontrol": "^0.61.0",
+    "mapzen.js": "^0.7.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "test"
+  },
+  "keywords": [
+    "leaflet",
+    "ovrdc"
+  ],
+  "author": "Malcolm Meyer OVRDC",
+  "license": "MIT"
+}

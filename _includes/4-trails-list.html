@@ -2,17 +2,24 @@
   <div class="row">
     <div class="col-lg-12 text-center">
       <h2 class="section-heading">Explore the Trails</h2>
+      {% if page.type == "hiking" %}
     </div>
+    <div id="search" class="col-lg-6 col-lg-offset-3 text-center">
+      <h3 style="padding-bottom:30px;">Southern Ohio has hundres of miles of hiking and backpacking trails. The trails featured here represent the best of what our region has to offer for the hiking outdoor enthusiast. Many of these trails are part of a larger trail system and each trail has links to their repsective parks on the indiviudal trail page.</h3>
+      {% endif %}
+    </div>
+  </div>
+  <div class="row">
     <div class="col-lg-3 text-center"></div>
     <div class="col-lg-6 text-center">
       <input id="search-input" type="text" class="form-control" placeholder="Search Trails by Trail Name or City">
       <ul id="results-container" class=""></ul>
     </div>
     <div class="col-lg-3 text-center"></div>
-  </div>
-  <div class="col-lg-12 text-center">
-    <hr class="primary">
-    <br />
+    <div class="col-lg-12 text-center">
+      <hr class="primary">
+      <br />
+    </div>
   </div>
 </section>
 <div id="showlist"class="container visible-sm visible-xs">
@@ -27,6 +34,7 @@
         {% for trail in sorted_trails %}
         {% if trail.maptype == page.type and trail.Status == "Existing" %}
         {% if trail.subtype == "Extension" %}
+        {% elsif trail.subtype == "Hiking Trail" %}
         {% else %}
           <div class="col-lg-3 col-md-3 col-sm-3">
             <img src="/trails/images/small/{{trail.img}}" class="img-thumbnail trail-list" alt="Responsive image">
@@ -36,8 +44,8 @@
               <h3 class="section-heading trail-list">
                 <a href="/trails/{{trail.Name |slugify}}">{{trail.Name}}</a>
               </h3>
-              <p>{{trail.subtitle}}<br>
-              <span class="text-muted">Length: {{trail.length}} miles<br />
+              <h4>{{trail.Description}}</h4>
+              <p><span class="text-muted">Length: {{trail.SUM_LENGTH | round: 0}} miles<br />
               Surface: {{trail.surface}}<br />
               Counties: {{trail.counties}}<br />
               Directions: <br></span>
@@ -47,6 +55,9 @@
         {%endif%}
         {%endfor%}
         </div>
+        <div><p>
+          <em class="text-muted">*Trail lengths are approximate.</em>
+        </p></div>
       </div>
       {% include 4.5-trails.sidebar.html %}
     </div>

@@ -1,9 +1,42 @@
+# To Do List
+todolist:
+  - name: Add labels along trails in the map
+  - name: Fix search link on the large map
+  - name: Switch to another theme, possibly NOW UI Kit or Material Kit
+  - name: Add trail background image on header
+    done: true
+  - name: Add list sidebar to large map page
+  - name: Add related trails to trails details page
+  - name: Legend on map
+    done: true
+  - name: add all pois
+    priority: high
+## Resouces - referred to as links
+links:
+  - name: BackpackOhio
+    description: BackpackOhio offers information on overnight hikes in the Buckeye State.
+    url: http://www.backpackohio.com/
+  - name: RideWithGPS
+    description: Cycling GPS tracking mobile app and website, built on the freemium model, with publicly available GPX downloads.
+    url: https://ridewithgps.com/
+  - name: Strava
+    description: Recreation activity tracking platform built on the freemium model with an eye towards social sharing and competition.
+    url: https://www.strava.com/
+  - name: Ohio Bikeways
+    url: http://www.bikeways.net
+  - name: Miami Valley Trails
+  - name: MORPC Trail Map
+  - name: Mountain Bike Trails MTB Project
+  - name: Athens Bicycle
+  - name: CyclePath
+  - name: ...
+
 # Site settings
 title: Southern Ohio Trails
 logo:
 email: mmeyer@ovrdc.org
 description: Explore Southern Ohio's Amazing Bikeways, Hiking, Bridle & and Mountain Bike Trails
-about: Explore Southern Ohio's Amazing Bikeways, Hiking & Bridle Trails, and Mountain Bike Trails
+about: Explore Southern Ohio's Amazing Bikeways, Hiking, Backpacking & Mountain Bike Trails
 header-img: map-header-gray.jpg
 baseurl: "" # the subpath of your site, e.g. /blog/ (If you use organization leave empty)
 #url: "http://trails.ovrdc.org" #https://jekynewage.github.io" # the base hostname & protocol for your site
@@ -11,7 +44,9 @@ url: "https://sohiotrails.surge.sh"
 about: >-
   The Southern Ohio Trails site exists to promote Active Transportation and outdoor exploration in Southern Ohio. It is funded in part by the Ohio Department or Transportation, the Appalachian Regional Commission, the Economic Development Services Agency and OVRDC members.
 
-  The code to this site is public domain, unless otherwise noted, and can be found on GitHub. The site is powered by Jekyll, and uses two Jekyll plugins not available in the default GitHub/Jekyll generator.
+  The OVRDC portion of the code for this site is in public domain and can be found on <a href="https://github.com/ovrdc/trails-portal" target="_blank">GitHub</a>.
+
+  For more information, please use the contact form on the <a href="http://www.ovrdc.org/contact" target="_blank">OVRDC website</a> and use the subject 'Trail Map', or file an issue on GitHub.
 
 google_analytics: ""
 addthis_id:
@@ -23,12 +58,13 @@ social:
     url:
 
 # Build settings
+environment: local
 markdown: kramdown
 highlighter: rouge
 #paginate: 5
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 include: ["_pages"]
-gems: [jekyll-paginate, jekyll-feed, jekyll-retinamagick]
+gems: [jekyll-feed, jekyll-retinamagick]
 #gems: [jekyll-paginate, jekyll-feed]
 sass:
   style: compressed
@@ -39,7 +75,7 @@ compress_html:
   comments: []
   endings: []
   ignore:
-    envs: ["PRODUCTION", "local", "dev"]
+    envs: ["development"]
   blanklines: false
   startings: [html, head, body]
 
@@ -103,7 +139,7 @@ retinamagick:
   medium2:
     source: /_trails/images
     destination: /trails/images/medium
-    scale: "480x320"
+    scale: "960x640"
 
   large2:
     source: /_trails/images

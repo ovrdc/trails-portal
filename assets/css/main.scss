@@ -4,7 +4,7 @@
 @charset "utf-8";
 
 {% include css/bootstrap.min.css %}
-{% include css/animate.min.css %}
+
 {% include css/font-awesome.min.css %}
 
 // Example Defaults
@@ -49,7 +49,6 @@ $head-secondary: #1b7837 ;
 $theme-primary: #7fbf7b ;
 $theme-secondary: #1b7837 ;
 $theme-dark: #222;
-
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
@@ -130,9 +129,31 @@ ul.active {
 .btn-sm-img {
   font-size: 11px;
 }
+.btn-xl {
+  margin: 0 5px;
+}
 .portfolio-box .btn-sm-img:hover {
   color: #333;
   background-color: white!important;
+}
+footer .list-inline {
+  font-size: 12px;
+}
+.img-responsive {
+  margin: 0 auto;
+}
+.btn-inverse {
+  color: #333;
+}
+.service-box {
+  margin-bottom: 80px;
+}
+footer {
+  background-color: transparent;
+  color: #333;
+}
+.section-heading.trail-list {
+  margin-top: 0;
 }
 @media (min-width: 1400px) {
   .container {
@@ -154,22 +175,6 @@ ul.active {
   header .header-content {
     height: 50vh;
   }
-}
-.img-responsive {
-  margin: 0 auto;
-}
-.btn-inverse {
-  color: #333;
-}
-.service-box {
-  margin-bottom: 80px;
-}
-footer {
-  background-color: transparent;
-  color: #333;
-}
-.section-heading.trail-list {
-  margin-top: 0;
 }
 @media (max-width:768px) {
   .img-thumbnail.trail-list {

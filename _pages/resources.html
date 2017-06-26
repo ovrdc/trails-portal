@@ -1,0 +1,19 @@
+---
+title: Hiking & Cycling Resources
+subtitle: Sites and apps to help you explore Ohio and get you out on the trail!
+permalink: /resources/
+---
+<section class="animated">
+  <div id="content" class="container">
+    <div class="row">
+      {% for link in site.links %}
+      <div class="col-lg-6">
+        <a href="{{link.url}}" target="_blank"><h3>{{link.name}}</h3></a>
+        {{link.description}}<br />
+        <a href="{{link.url}}" target="_blank" class="btn btn-outline btn-sm-nav"><i class="fa fa-external-link" aria-hidden="true"></i> Link</a>
+        <hr />
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
