@@ -17,15 +17,38 @@
       <div class="col-lg-3 col-md-3">
         <div class="service-box">
           <h3 class="section-heading">{{page.Name}}</h3>
-          <span>{{page.Description}}</span>
-          <div class="text-muted">
-            <hr /><br />
-            <span>Length: {{page.SUM_LENGTH | round: 0}} miles</span><br />
-            <span>Surface: {{page.surface}}</span><br />
-            <span>Counties: {% for county in page.counties %}{{county}}{% unless forloop.last %}, {% endunless %}{% endfor %}</span><br /><br />
-            <em>
-              For directions see the point of interest locations on the map - click the star icon. Points marked with a "P" are valid parking areas for the trail.
-            </em><br />
+          <p>{{page.Description}}</p>
+          {% for description in site.data.trail-descriptions %}{% if description.name == page.Name %}
+          <div class="panel-group">
+            <div class="panel panel-default" style="border-radius: 0;">
+              <div class="panel-heading" data-toggle="collapse" data-target="#readmore" style="padding: 5px 10px;cursor:pointer;">
+                <h4 class="panel-title text-center" style="cursor:pointer;">Read More</h4>
+              </div>
+              <div id="readmore" class="panel-collapse collapse">
+                <div class="panel-body">{{description.description}}</div>
+              </div>
+            </div>
+          </div>
+          {%endif%}{% endfor%}
+          <img src="/trails/images/medium/{{page.img}}" class="img-responsive img-thumbnail" alt="{{page.Name}}" style="margin-bottom:20px;">
+          <div class="trail-details">
+            <table class="table table-bordered text-center table-condensed trail-details" style="max-width:650px;">
+              <tr>
+                <th>Length</th><th>{% assign length = page.SUM_LENGTH | plus: 0%}{% if length < 2%}1 mile{% else%}{{page.SUM_LENGTH | round: 0}} miles{% endif%}</th>
+              </tr>
+              <tr>
+                <th>Surface</th><th>{{page.surface}}</th>
+              </tr>
+              <tr>
+                <th>Counties</th><th>{{page.counties}}</th>
+              </tr>
+              <tr>
+                <td>Map Key</td><td>#{{page.mapid}}</td>
+              </tr>
+              <th colspan=2 class="text-center">Trail Head{% if page.th2loc%}s{%endif%}</th>
+              <tr><td colspan=2><a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr={{page.th1loc}}" target="_blank">{{page.th1name}}</a></td></tr>
+              {% if page.th2loc%}<tr><td colspan=2><a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr={{page.th2loc}}" target="_blank">{{page.th2name}}</a></td></tr>{%endif%}
+            </table>
           </div>
           <hr /><br />
           <p><h4>More Information & Resources</h4>
@@ -39,12 +62,13 @@
             <a href="https://docs.google.com/forms/d/e/1FAIpQLSfsS-H-YQUvRj-PUMOaZUMPoY4xwvWrRrwFwh92d60gzJDF3w/viewform"  target="_blank" class="btn btn-primary btn-sm">Add Information Form</a>
           </p-->
           <p>
-            <a href="https://www.ovrdc.org/apps/2017/poi-form.html" target="_blank" class="btn btn-primary btn-sm">Comment & POI Form</a>
+            <!--a href="https://www.ovrdc.org/apps/2017/poi-form.html" target="_blank" class="btn btn-primary btn-sm">Comment & POI Form</a-->
           </p>
         </div>
       </div>
       <div class="col-lg-7 col-md-7">
         <div id="map">
+            <div id="blank" style="position:absolute;top:0;left:0;bottom:0;width:100%;z-index:9999;background:white;"><img style="position:absolute;top:50%;left:50%;margin-top:-60px;margin-left:-60px;" src="/assets/img/ring-alt.gif" /></div>
           <div id="mapLeftSidebar"></div>
           <div id="mapRightSidebar">
             <div class='map-trails-list-heading'>
@@ -60,7 +84,7 @@
         </div>
       </div>
         {% assign sorted_trails = site.data.ovrdc_trails | sort:"Name" %}
-        <div id="sidebar" class="col-xs-6 col-sm-2 col-md-2 sidebar-offcanvas" style="border-left:solid thin lightgray;margin-top:20px;background:white;">
+        <div id="sidebar" class="col-xs-6 col-sm-2 col-md-2 sidebar-offcanvas" style="border-left:solid thin lightgray;background:white;">
           <ul style="list-style:none;">
             {% if page.maptype == "bikeway" %}
               <h4 class="text-muted">Bikeways</h4>
@@ -68,7 +92,7 @@
               {% if trail.maptype == "bikeway" and trail.Status == "Existing" %}
               {% if trail.subtype == "Extension" %}
               {% elsif trail.subtype == "Hiking Trail" %}
-              {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}}</a></li>
+              {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
               {% endif %}
               {%endif%}
               {%endfor%}
@@ -79,7 +103,7 @@
               {% if trail.maptype == 'hiking' and trail.Status == "Existing" %}
               {% if trail.subtype == "Extension" %}
               {% elsif trail.subtype == "Hiking Trail" %}
-              {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}}</a></li>
+              {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
               {% endif %}
               {%endif%}
               {%endfor%}
@@ -89,7 +113,7 @@
               {% if trail.maptype == 'mountain' and trail.Status == "Existing" %}
               {% if trail.subtype == "Extension" %}
               {% elsif trail.subtype == "Hiking Trail" %}
-              {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}}</a></li>
+              {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
               {% endif %}
               {%endif%}
               {%endfor%}
@@ -101,7 +125,7 @@
             {% if trail.maptype == "mountain" and trail.Status == "Existing" %}
             {% if trail.subtype == "Extension" %}
             {% elsif trail.subtype == "Hiking Trail" %}
-            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}}</a></li>
+            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
             {% endif %}
             {%endif%}
             {%endfor%}
@@ -112,7 +136,7 @@
             {% if trail.maptype == 'bikeway' and trail.Status == "Existing" %}
             {% if trail.subtype == "Extension" %}
             {% elsif trail.subtype == "Hiking Trail" %}
-            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}}</a></li>
+            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
             {% endif %}
             {%endif%}
             {%endfor%}
@@ -122,7 +146,7 @@
             {% if trail.maptype == 'hiking' and trail.Status == "Existing" %}
             {% if trail.subtype == "Extension" %}
             {% elsif trail.subtype == "Hiking Trail" %}
-            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}}</a></li>
+            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
             {% endif %}
             {%endif%}
             {%endfor%}
@@ -134,7 +158,7 @@
             {% if trail.maptype == "hiking" and trail.Status == "Existing" %}
             {% if trail.subtype == "Extension" %}
             {% elsif trail.subtype == "Hiking Trail" %}
-            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}}</a></li>
+            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
             {% endif %}
             {%endif%}
             {%endfor%}
@@ -145,7 +169,7 @@
             {% if trail.maptype == 'bikeway' and trail.Status == "Existing" %}
             {% if trail.subtype == "Extension" %}
             {% elsif trail.subtype == "Hiking Trail" %}
-            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}}</a></li>
+            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
             {% endif %}
             {%endif%}
             {%endfor%}
@@ -155,7 +179,7 @@
             {% if trail.maptype == 'mountain' and trail.Status == "Existing" %}
             {% if trail.subtype == "Extension" %}
             {% elsif trail.subtype == "Hiking Trail" %}
-            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}}</a></li>
+            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
             {% endif %}
             {%endif%}
             {%endfor%}

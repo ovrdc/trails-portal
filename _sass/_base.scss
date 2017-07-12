@@ -1,15 +1,15 @@
 .heading-font {
-  font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-  font-weight: 200;
+  font-family: $font-primary, 'Helvetica', 'Arial', 'sans-serif';
+  font-weight: 500;
   letter-spacing: 1px;
 }
 
 .body-font {
-  font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: $font-secondary, 'Helvetica', 'Arial', 'sans-serif';
 }
 
 .alt-font {
-  font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: $font-secondary, 'Helvetica', 'Arial', 'sans-serif';
   text-transform: uppercase;
   letter-spacing: 2px;
 }
@@ -22,7 +22,7 @@ html {
 body {
   height: 100%;
   width: 100%;
-  font-family: 'Muli', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: $font-secondary, 'Helvetica', 'Arial', 'sans-serif';
 }
 
 a {
@@ -46,14 +46,14 @@ hr {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-  font-weight: 200;
+  font-family: $font-primary, 'Helvetica', 'Arial', 'sans-serif';
+  font-weight: 500;
   letter-spacing: 1px;
 }
 
 p {
   font-size: 18px;
-  line-height: 1.5;
+  line-height: $p-line-height;
   margin-bottom: 20px;
 }
 
@@ -63,13 +63,13 @@ p {
   -webkit-transition: all 0.35s;
   -moz-transition: all 0.35s;
   transition: all 0.35s;
-  font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-  font-weight: 200;
+  font-family: $font-primary, 'Helvetica', 'Arial', 'sans-serif';
+  font-weight: 500;
   letter-spacing: 1px;
   .navbar-header {
     .navbar-brand {
-      font-family: 'Catamaran', 'Helvetica', 'Arial', 'sans-serif';
-      font-weight: 200;
+      font-family: $font-primary, 'Helvetica', 'Arial', 'sans-serif';
+      font-weight: 500;
       letter-spacing: 1px;
       color: $theme-primary;
       &:hover, &:focus {
@@ -84,11 +84,12 @@ p {
   }
   .nav > li {
     > a {
-      font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+      font-family: $font-primary, 'Helvetica', 'Arial', 'sans-serif';
       text-transform: uppercase;
       letter-spacing: 2px;
       font-size: 11px;
       color: #222222;
+      font-weight:500;
       &:focus {
         color: #222222;
       }
@@ -474,7 +475,7 @@ footer {
 }
 
 .btn {
-  font-family: 'Lato', 'Helvetica', 'Arial', 'sans-serif';
+  font-family: $font-secondary, 'Helvetica', 'Arial', 'sans-serif';
   text-transform: uppercase;
   letter-spacing: 2px;
   border-radius: 300px;
@@ -592,7 +593,7 @@ body {
     line-height: 1.1;
     display: block;
     font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    font-weight: 300;
+    font-weight: 500;
     margin: 10px 0 0;
   }
   .post-heading {
@@ -607,7 +608,7 @@ body {
       font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
       font-size: 24px;
       margin: 10px 0 30px;
-      font-weight: 600;
+      font-weight: 500;
     }
     .meta {
       font-family: 'Lora', 'Times New Roman', serif;

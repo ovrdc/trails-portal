@@ -7,7 +7,7 @@
                         <h4>{% if page.subtitle %}{{page.subtitle}}{%else%}{{site.description}}{%endif%}</h4>
                         <h1>{% if page.title%}{{page.title}}{%elsif site.title%}{{site.title}}{%endif%}</h1>
                         <a href="#content" class="btn btn-outline btn-xl page-scroll" style="margin-bottom:10px;width:219px;">{%if page.anchor-text %}{{page.anchor-text}}{%else%}Learn More{%endif%}</a>
-                        <a href="/map/" class="btn btn-outline btn-xl" style="margin-bottom:10px;width:219px;">Explore the Map</a>
+                        {% if page.permalink == "/mountain-biking/" %}{% else%}<a href="/map/" class="btn btn-outline btn-xl" style="margin-bottom:10px;width:219px;">Explore the Map</a>{% endif%}
                     </div>
                 </div>
             </div>

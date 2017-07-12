@@ -4,7 +4,7 @@
   "description": "A set of leaflet plugins useful for many projects.",
   "main": "none",
   "dependencies": {
-    "leaflet": "^1.0.3",
+    "leaflet": "1.0.3",
     "leaflet-easybutton": "^2.2.0",
     "leaflet-fullscreen": "^1.0.2",
     "leaflet-hash": "^0.2.1",

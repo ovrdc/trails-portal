@@ -66,24 +66,22 @@ css: >-
 <section class="animated">
   <div id="content" class="container">
     <div class="row">
-      <div class="col-lg-6 col-lg-offset-3 text-center">
-        <p>The site is powered by Jekyll, with the code hosted and GitHub and the site hosted on surge.sh. It uses two Jekyll plugins not available in the default GitHub/Jekyll generator - jekyll-retinamagick and data-page-generator.</p>
-        <h4>
-          To Do List
-        </h4>
-        <hr />
+      <div class="col-lg-6">
+        <p>The site is powered by Jekyll, with the code hosted and <a href="https://github.com/ovrdc/trails-portal" target="_blank">GitHub</a> and the site hosted on <a href="https://www.netlify.com" target="_blank">Netlify</a>. The site is built from a CSV file and it relies on two Jekyll plugins not available in the default GitHub/Jekyll generator - jekyll-retinamagick and data-page-generator. The CSV file is the attribute table of a Polyline file, so essentially the entire site is built from a shapefile.</p>
       </div>
-      {% for item in site.todolist %}
-      <div class="col-lg-4 col-lg-offset-4"{% if item.priority == "high"%}style="color:firebrick;"{% endif %}>
-        <div class="checkbox">
+      {% assign sorted_items = site.data.todo | sort: "done" %}
+      <div class="col-lg-6">
+      <h4>To Do List</h4>
+      {% for item in sorted_items %}
+        <div class="checkbox" {% if item.priority == "high"%}style="color:firebrick;"{% endif %}>
           <label>
             <input type="checkbox" value="" {% if item.done == true%} checked{%endif%}>
             <span class="cr"><i class="cr-icon fa fa-check"></i></span>
             {{item.name}}
           </label>
         </div>
-      </div>
       {% endfor %}
+      </div>
       </div>
     </div>
   </div>

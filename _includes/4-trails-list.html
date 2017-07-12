@@ -1,12 +1,10 @@
-<section id="content" class="container">
+<section class="container">
   <div class="row">
     <div class="col-lg-12 text-center">
-      <h2 class="section-heading">Explore the Trails</h2>
-      {% if page.type == "hiking" %}
+      <h2  id="content" class="section-heading">Explore the Trails</h2>
     </div>
     <div id="search" class="col-lg-6 col-lg-offset-3 text-center">
-      <h3 style="padding-bottom:30px;">Southern Ohio has hundres of miles of hiking and backpacking trails. The trails featured here represent the best of what our region has to offer for the hiking outdoor enthusiast. Many of these trails are part of a larger trail system and each trail has links to their repsective parks on the indiviudal trail page.</h3>
-      {% endif %}
+      {% if page.description%}<h3 style="padding-bottom:30px;">{{page.description}}</h3>{%endif%}
     </div>
   </div>
   <div class="row">
@@ -36,19 +34,45 @@
         {% if trail.subtype == "Extension" %}
         {% elsif trail.subtype == "Hiking Trail" %}
         {% else %}
-          <div class="col-lg-3 col-md-3 col-sm-3">
-            <img src="/trails/images/small/{{trail.img}}" class="img-thumbnail trail-list" alt="Responsive image">
+          <div class="col-lg-12">
           </div>
-          <div class="col-lg-7 col-md-7 col-sm-9">
+          <div class="col-lg-4 col-md-4 col-sm-3">
+            <img src="/trails/images/medium/{{trail.img}}" class="img-thumbnail trail-list" alt="Responsive image">
+          </div>
+          <div class="col-lg-6 col-md-6 col-sm-9">
             <blockquote>
               <h3 class="section-heading trail-list">
                 <a href="/trails/{{trail.Name |slugify}}">{{trail.Name}}</a>
               </h3>
               <h4>{{trail.Description}}</h4>
-              <p><span class="text-muted">Length: {{trail.SUM_LENGTH | round: 0}} miles<br />
-              Surface: {{trail.surface}}<br />
-              Counties: {{trail.counties}}<br />
-              Directions: <br></span>
+              {% for description in site.data.trail-descriptions %}{% if description.name == trail.Name %}
+              <div class="panel-group">
+                <div class="panel panel-default" style="border-radius: 0;">
+                  <div class="panel-heading" data-toggle="collapse" data-target="#readmore" style="padding: 5px 10px;cursor:pointer;">
+                    <h4 class="panel-title text-center" style="cursor:pointer;">Read More</h4>
+                  </div>
+                  <div id="readmore" class="panel-collapse collapse">
+                    <div class="panel-body">{{description.description}}</div>
+                  </div>
+                </div>
+              </div>
+              {%endif%}{% endfor%}
+              <div class="trail-details">
+                <table class="table table-bordered text-center table-condensed trail-details" style="max-width:503px;">
+                  <tr>
+                    <th>Length</th><th>{% assign length = trail.SUM_LENGTH | plus: 0%}{% if length < 2%}1 mile{% else%}{{trail.SUM_LENGTH | round: 0}} miles{% endif%}</th>
+                  </tr>
+                  <tr>
+                    <th>Surface</th><th>{{trail.surface}}</th>
+                  </tr>
+                  <tr>
+                    <th>Counties</th><th>{{trail.counties}}</th>
+                  </tr>
+                  <th colspan=2 class="text-center">Trail Head{% if trail.th2loc%}s{%endif%}</th>
+                  <tr><td colspan=2><a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr={{trail.th1loc}}" target="_blank">{{trail.th1name}}</a></td></tr>
+                  {% if trail.th2loc%}<tr><td colspan=2><a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr={{trail.th2loc}}" target="_blank">{{trail.th2name}}</a></td></tr>{%endif%}
+                </table>
+              </div>
             </blockquote>
           </div>
         {%endif%}

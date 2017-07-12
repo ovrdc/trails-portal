@@ -1,0 +1,27 @@
+- name: BackpackOhio
+  description: BackpackOhio offers information on overnight hikes in the Buckeye State.
+  url: http://www.backpackohio.com/
+- name: RideWithGPS
+  description: Cycling GPS tracking mobile app and website, built on the freemium model, with publicly available GPX downloads. They have a great feature called Ride Reports. If you create a report for one of the trails listed here we will link to it on the trails page.
+  url: https://ridewithgps.com/
+- name: Strava
+  description: Recreation activity tracking platform built on the freemium model with an eye towards social sharing and competition.
+  url: https://www.strava.com/
+- name: Ohio Bikeways
+  description: A website dedicated to archiving all Ohio multi-use bike trails including rail-trails, towpaths and the connecting bike lanes and road routes that link them.
+  url: http://www.ohiobikeways.net
+- name: Miami Valley Trails
+  url:
+  description: A website dedicated to the bikeways of southwestern Ohio. A project by Miami Valley Regional Planning Commission.
+- name: MORPC Trail Map
+  description: The Columbus Metro Bike Map was created by the Mid-Ohio Regional Planning Commission in 2016 with input from the bicycling community to help cyclists determine which roads may be best suited for their level of riding in the Greater Franklin County area.
+  url: https://apps.morpc.org/bikemap/
+- name: Mountain Bike Trails (MTB) Project
+  url: https://www.mtbproject.com/
+  description: A project the the REI Co-op, the MTB Project collects and hosts mountain bike data for North America. They have detailed maps, descriptions and 3D walkthroughs of the trails. There are affiliate projects for trail running and hiking trails as well. There is also a mobile app to explore the trails natively on your mobile device.
+- name: Athens Bicycle
+  url: http://www.athensbicycle.com/
+  description: Bicycle shop in Athen, Ohio with links to several maps for mountain biking in the Athens area.
+- name: Cycle Path
+  url: http://athenscyclepath.com/
+  description: Bicycle shop in Athens, Ohio with links to a vareity of mountain and road biking maps for the Athens area. They are the creators of the iconic Athens Bicycle Map freely available throughout Athens.

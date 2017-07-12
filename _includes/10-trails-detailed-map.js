@@ -1,6 +1,6 @@
 /*L.mapbox.accessToken = 'pk.eyJ1Ijoib3ZyZGMiLCJhIjoiRUtXeFFzZyJ9.ufnW36oCZo96m_L9QsAkYg';*/
 /*set all initial global variables*/
-var hillshade, trails, hiking, biking, mapSidebar, mapTrailsListSidebar, userLocation, userLocationSetting, userLocationCircle, userLocatiouserLocationCircle, topo;
+var hillshade, trails, hiking, biking, mapSidebar, mapTrailsListSidebar, topo;
 
 /*Initialize Map*/
 
@@ -55,9 +55,28 @@ else {
 
 function buildMap() {
 
+/*************************/
+/*Break up map into discrete functions*/
+/**************************/
+/*  function buildPois() {
+
+  }
+
+  function buildParks() {
+
+  }
+
+  function buildTrails() {
+
+  }
+
+  function buildSidebars() {
+
+  }*/
+
   /*add click handler to deal with multiple features*/
   /*link from here - https://stackoverflow.com/questions/38599872/get-all-features-of-all-layers-clicked-in-leaflet*/
-  function clickHandler(e) {
+/*  function clickHandler(e) {
     var clickBounds = L.latLngBounds(e.latlng, e.latlng);
 
     var intersectingFeatures = [];
@@ -77,7 +96,7 @@ function buildMap() {
         }
       }
     }
-    // if at least one feature found, show it
+
     if (intersectingFeatures.length) {
       var html = "Multiple features found: " + intersectingFeatures.length + "<br/>" + intersectingFeatures.map(function(o) {
         return o.properties.type
@@ -87,7 +106,7 @@ function buildMap() {
         offset: L.point(0, -24)
       });
     }
-  }
+  }*/
 
   /*map.on("click", clickHandler);*/
   /*end click handler*/
@@ -98,10 +117,19 @@ function buildMap() {
   /**********/
   /*Basemaps*/
   /**********/
+  var tk = 'pk.eyJ1Ijoib3ZyZGMiLCJhIjoiY2o0aWt4bW5mMDZkcDMzcXc3OHU1enVnaSJ9.hLremzXGr-fVJJEPgQM0EQ';
+  var mapbox_outdoors = L.tileLayer('https://api.mapbox.com/styles/v1/ovrdc/cj4il5rph35lf2rmhhbuu3lo2/tiles/256/{z}/{x}/{y}?access_token=' + tk, {
+    attribution: '&copy; <a href="https://mapbox.com">Mapbox</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
+    maxNativeZoom: 18,
+    maxZoom: 20,
+    opacity: 0.8
+  });
+
   var hills = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Shaded_Relief/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Tiles &copy; Esri &mdash; Source: Esri',
     maxNativeZoom: 13
   });
+
   var stamen_hills = L.tileLayer('https://stamen-tiles-{s}.a.ssl.fastly.net/terrain-background/{z}/{x}/{y}.{ext}', {
   	attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
   	subdomains: 'abcd',
@@ -114,12 +142,13 @@ function buildMap() {
     attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     opacity: 0.7
   });
-  var hillshadeHydda = new L.layerGroup([hills, base]).addTo(map);
+
   var esri = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
     attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community',
     maxNativeZoom: 18,
     maxZoom: 20
   });
+
   var labels = L.tileLayer('https://{s}.tile.openstreetmap.se/hydda/roads_and_labels/{z}/{x}/{y}.png', {
     maxNativeZoom: 18,
     maxZoom: 20,
@@ -127,7 +156,6 @@ function buildMap() {
     attribution: 'Tiles courtesy of <a href="http://openstreetmap.se/" target="_blank">OpenStreetMap Sweden</a> &mdash; Map data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
   });
 
-  var ortho = new L.layerGroup([esri, labels], {});
 
   var OpenTopoMap = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
 	  maxZoom: 20,
@@ -143,8 +171,11 @@ function buildMap() {
     opacity: 0.6
   });
 
-  hillshade = hillshadeHydda;
-  topo = OpenTopoMap;
+  var ortho = new L.layerGroup([esri, labels], {});
+  var hillshadeHydda = new L.layerGroup([hills, base]);
+
+  hillshade = mapbox_outdoors;
+  topo = mapbox_outdoors;
   hillshade.addTo(map);
   /**********/
   /**********/
@@ -183,10 +214,10 @@ function buildMap() {
     },
     onEachFeature: function(feature, layer) {
       if (feature.properties.website == "#") {
-        layer.bindTooltip("Outside the Region", {sticky: true});
+/*        layer.bindTooltip("Outside the Region", {sticky: true});*/
       }else{
         layer.bindPopup("<a href='" + feature.properties.website + "' target='_blank'>" + feature.properties.NAME + "</a>");
-        layer.bindTooltip(feature.properties.NAME + " | Click for Link", {sticky: true});
+      /*  layer.bindTooltip(feature.properties.NAME + " | Click for Link", {sticky: true});*/
       }
     }
   }).addTo(map);
@@ -206,15 +237,23 @@ function buildMap() {
   }
   /**********/
   /*function for creating the poi icon*/
+  /* POI Icons with customized Mapbox Maki Icons*/
   /**********/
 
   function createIcon(feature, latlng) {
-    var type = feature.properties.symbol;
-    /* POI Icons with customized Mapbox Maki Icons*/
+    var symbol = feature.properties.symbol;
+    var colors = {
+      "star":"orange",
+      "parking": "royalblue",
+      "parking-garage": "royalblue",
+      "picnic-site": "darkgreen",
+      "park-alt1": "darkgreen",
+      "campsite": "saddlebrown"
+    };
 
     var icon = new L.ExtraMarkers.icon({
-      icon: type,
-      markerColor: '#333',
+      icon: symbol,
+      markerColor: colors[symbol],
       svgBorderColor: '#fff',
       prefix: 'maki',
       shape: 'roundedSquare',
@@ -289,9 +328,24 @@ function buildMap() {
     var p = feature.properties;
     trailPopup = '<h3>' + p.Name +
     '</h3><p>' + p.Description +
-    '<hr /></p><img src="/trails/images/medium/' + p.img +'" style="width:100%;"</img>' +
-    '<br /><br />Approximate Length: ' + Number(p["SUM_LENGTH"]).toFixed(0) + ' mi'+
-    '<br />Need to add: Directions, gpx track load on open with elevation profile, nearby cities, points of interest button';
+    '<hr /></p><img src="/trails/images/medium/' + p.img +'" style="width:100%;"</img><hr>' +
+    '<br />Approximate Length: ' + Number(p["SUM_LENGTH"]).toFixed(2) + ' mi' +
+    '<br />Surface: ' + p.surface;
+    trailPopup += '<h4>Directions to Trail Heads</h4> \
+    <p><a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr=' + p.th1loc + '" target="_blank">' + p.th1name + '</a></p>';
+    if (p.th2loc) {
+      trailPopup += '<p><a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr=' + p.th2loc + '" target="_blank">' + p.th2name + '</a></p>'
+    }
+    trailPopup += '<em>Fore more parking see the POIs on the trail map.</em>';
+    if (p.website)
+    {trailPopup += '<br><a href="' + p.website + '" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Trail \
+    Website</a><span>&nbsp;</span>'}
+    if (p["ohio_org"]){trailPopup += '<a href="' + p["ohio_org"]+ '" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Ohio: Find it Here!</a><span>&nbsp;</span>'}
+    if (p.parklink){trailPopup +='<a href="' + p.parklink + '" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Park Link</a><span>&nbsp;</span>'}
+    if (p.facebook){trailPopup += '<a href="' + p.facebook + '" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Facebook Page</a><span>&nbsp;</span>'}
+    if (p.gpx != "no data"){trailPopup += '<a href="{{site.url}}/trails/data/' + p.gpx +'" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-download"></i>&nbsp;GPX Data</a>'}
+
+    /*add trail head directions*/
 
     trailDetailedPopup = '<h4>' + p.Name + '</h4>';
     for (var k in p) {
@@ -327,10 +381,24 @@ function buildMap() {
       }
     },
     onEachFeature: function(feature, trail) {
-      trail.bindTooltip(feature.properties.Name, {sticky: true});
+      if (trail.feature.properties.subtype != 'Extension' && trail.feature.properties.name != 'Buckeye Trail') {
+        trail.bindTooltip(feature.properties.mapid, {permanent: true, className: 'trailTooltip hiking', interactive: true});
+      }
+      if (trail.feature.properties.name == 'Buckeye Trail') {
+        trail.bindTooltip(feature.properties.mapid, {permanent: true, className: 'trailTooltip buckeye', interactive: true});
+      }
       if (feature.properties.Name == "Buckeye Trail") {
         trail.setStyle({color: "steelblue", opacity: 0.6})
       }
+/*      trail.setText(feature.properties.Name, {
+        offset: 20,
+        below: true,
+        repeat: false,
+        attributes: {
+          textLength: "300",
+          lengthAdjust:"spacing"
+        }
+      });*/
     }
   });
 
@@ -342,7 +410,9 @@ function buildMap() {
       }
     },
     onEachFeature: function(feature, trail) {
-      trail.bindTooltip(feature.properties.Name, {sticky: true});
+      if (trail.feature.properties.subtype != 'Extension') {
+        trail.bindTooltip(feature.properties.mapid, {permanent: true, className: 'trailTooltip biking', interactive: true});
+      }
     }
   });
 
@@ -415,7 +485,7 @@ function buildMap() {
         var link = listing.appendChild(document.createElement('a'));
         link.href = '#';
         link.className = 'title';
-        link.innerHTML = prop.Name;
+        link.innerHTML = '<h4>' + prop.Name + '&nbsp(' + prop.mapid + ')</h5>';
 
         /*var listing = listings.appendChild(document.createElement('div'));
         listing.className = 'item';
@@ -433,7 +503,9 @@ function buildMap() {
         details.innerHTML = prop.city;*/
         link.onclick = function() {
           setActive(listing);
-
+          if ($("#map").width() < 1600) {
+            mapTrailsListSidebar.hide();
+          }
           // When a menu item is clicked, animate the map to center
           // its associated locale and open its popup.
           map.flyToBounds(trail.getBounds());
@@ -471,8 +543,9 @@ function buildMap() {
 
   var trailData = {};
 
-  var omniTrailData = omnivore.topojson("/trails/ovrdc_trails_master_dissolve.json");
+  var omniTrailData = omnivore.topojson("/trails/ovrdc_trails_master_dissolve1.json");
   omniTrailData.on('ready', function() {
+    console.log('trail data ready');
     trailData = omniTrailData.toGeoJSON();
     hiking.addData(trailData);
     biking.addData(trailData);
@@ -487,7 +560,14 @@ function buildMap() {
   map.createPane('parcelPane');
   map.getPane('parcelPane').style.zIndex = 300;
   var parkData = omnivore.topojson("/trails/ovrdc_parks_web.topojson");
+  var dataLoading = true;
   parkData.on('ready', function(data) {
+    console.log('park data ready');
+    if (dataLoading == true) {
+      document.getElementById('blank').style.display = 'none';
+      dataLoading = false;
+      {% if page.permalink == "/map/"%}$("#mapHelpModal").modal("show");{% endif%}
+    }
     var parksGeojson = parkData.toGeoJSON();
     var parks = L.vectorGrid.slicer(parksGeojson, {
       pane: "parcelPane",
@@ -508,7 +588,7 @@ function buildMap() {
               color: "darkgreen",
               weight: 2,
               opacity: 0.7,
-              fillOpacity: 0.3,
+              fillOpacity: 0.2,
               fill: true
             }
           }
@@ -626,54 +706,97 @@ function buildMap() {
     }]
   });
 
+  /*******************/
+  /*Location Settings*/
+  /*******************/
+
   var lc = new L.Control.Locate();
 
-  userLocationCircle = new L.circleMarker(null, {
-    color: 'red',
-    fillColor: 'red',
-    radius: '10'
-  });
+  /*find users location on load and fill the userlocation variable with the latlng for later use*/
+  /*map.locate({
+    setview: false
+  });*/
 
-  userLocationCircleFollow = new L.circleMarker(null, {
+  var userLocation, userLocationSetting, userLocationCircle, userLocationAccuracy, setUserLocation;
+
+  userLocationSetting = 0;
+
+  userLocationCircle = new L.circleMarker(null, {
     color: 'blue',
     fillColor: 'blue',
-    radius: 8
+    radius: 8,
+    opacity: 0.2,
+    fillOpacity: 0.8
   });
-
-  var setUserLocation;
 
   function setLocation() {
     setUserLocation = setInterval(function(){
+      getLocation();
       userLocationCircle.setLatLng(userLocation);
       console.log(1);
     }, 2000);
   }
 
-  function clearLocation() {
-    clearInterval(setUserLocation);
-  }
-
-  /*find users location on load and fill the userlocation variable with the latlng for later use*/
-  map.locate({
-    setview: false
-  });
-
-  map.on('locationfound', function(e) {
+  /*map.on('locationfound', function(e) {
+    console.log("setting: " + userLocationSetting);
     userLocation = e.latlng;
     console.log(userLocation);
     if (userLocationSetting == 1) {
-      userLocationCircleFollow.setLatLng(userLocation);
+      userLocationCircle.setLatLng(userLocation);
     }
     if (userLocationSetting == 2) {
-      map.removeLayer(userLocationCircleFollow);
-      userLocationCircle.setLatLng(userLocation);
+      map.removeLayer(userLocationCircle);
       setLocation();
+      userLocationCircleFollow.setLatLng(userLocation);
     }
-  });
+  });*/
 
-  map.on('locationerror', function() {
-    alert('Location not found. Locate controls will not work.')
-  });
+/*  map.on('locationerror', function(e) {
+    alert('Location not found. Locate controls will not work.');
+    console.log(e);
+  });*/
+
+  function setPosition(position) {
+    userLocation = {"lat": position.coords.latitude, "lng": position.coords.longitude};
+    userLocationAccuracy = position.accuracy;
+    console.log(userLocation);
+    console.log(position);
+    if (userLocationSetting == 1) {
+      userLocationCircle.setLatLng(userLocation).addTo(map);
+      userLocationCircle.setStyle({color:"blue", fillColor: "blue", "radius": 8});
+    }
+    map.flyTo(userLocation, 14);
+  }
+
+  function showError(error) {
+    switch(error.code) {
+      case error.PERMISSION_DENIED:
+        alert("User denied the request for Geolocation.");
+        break;
+      case error.POSITION_UNAVAILABLE:
+        alert("Location information is unavailable.");
+        break;
+      case error.TIMEOUT:
+        alert("The request to get user location timed out.");
+        break;
+      case error.UNKNOWN_ERROR:
+        alert("An unknown error occurred.");
+        break;
+    }
+  }
+
+  function getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(setPosition, showError);
+      if (userLocationSetting == 1) {
+      }
+      if (userLocationSetting == 2) {
+        userLocationCircle.setLatLng(userLocation);
+      }
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
 
   var mapUserLocation = L.easyButton({
     states: [{
@@ -682,11 +805,8 @@ function buildMap() {
       title: 'Zoom to My Location',
       onClick: function(btn, map) {
         userLocationSetting = 1;
-        map.locate({
-          setView: true,
-          maxZoom: 14
-        });
-        userLocationCircleFollow.setLatLng(userLocation).addTo(map);
+        console.log('show location');
+        getLocation();
         btn.state('followLocation');
         var el = document.getElementsByClassName('fa-location-arrow');
         el[0].style.color = "#7fbf7b";
@@ -697,10 +817,11 @@ function buildMap() {
       icon: 'fa-location-arrow fa-2x',
       title: 'Stop Following My Location',
       onClick: function(btn, map) {
-        map.removeLayer(userLocationCircle);
-        clearLocation();
-        btn.state('showLocation');
         userLocationSetting = 0;
+        console.log('stop location');
+        map.removeLayer(userLocationCircle);
+        clearInterval(setUserLocation);
+        btn.state('showLocation');
       },
     },{
         stateName: 'followLocation',
@@ -709,12 +830,9 @@ function buildMap() {
         onClick: function(btn, map) {
           /*console.log(btn);*/
           userLocationSetting = 2;
-          map.locate({
-            setView: true,
-            maxZoom: 14,
-            watch: true
-          });
-          userLocationCircle.setLatLng(userLocation).addTo(map);
+          userLocationCircle.setStyle({color:"red", fillColor: "red", "radius": 10});
+          console.log('follow location');
+          setLocation();
           btn.state('hideLocation');
           var el = document.getElementsByClassName('fa-location-arrow');
           el[0].style.color = "firebrick";
@@ -761,7 +879,7 @@ function buildMap() {
       bikeHighlight.setStyle({weight:13});
       hikeHighlight.setStyle({weight:13});
     }
-    if (currentZoom > 12) {
+/*    if (currentZoom > 12) {
       if (map.hasLayer(hillshade)) {
         map.removeLayer(hillshade);
         thunderlandscape.addTo(map);
@@ -770,28 +888,21 @@ function buildMap() {
     if (currentZoom < 13) {
       map.removeLayer(thunderlandscape);
       hillshade.addTo(map);
-    }
-    if (currentZoom > 15) {
-      map.removeLayer(thunderlandscape);
+    }*/
+    if (currentZoom > 17) {
+      map.removeLayer(hillshade);
       esri.addTo(map);
       labels.addTo(map);
     }
-    if (currentZoom < 16) {
+    if (currentZoom < 18) {
       if (map.hasLayer(esri)) {
         map.removeLayer(esri);
         map.removeLayer(labels);
-        topo.addTo(map);
+        hillshade.addTo(map);
       }
     }
   });
 
-  /**********/
-  /*change basemap to ortho on high zoom*/
-  /**********/
-
-  map.on('zoomend', function() {
-
-  });
   /**********/
   /**********/
 
@@ -806,7 +917,7 @@ function buildMap() {
   mapLegend.onAdd = function(map) {
     var div = L.DomUtil.create('div', 'map-legend'),
     types = ["Bikeways", "Hiking Trails", "Buckeye Trail", "Connectors", "Extensions"],
-    colors = ["green", "brown", "steelblue", "green", "brown"],
+    colors = ["green", "#936c39", "steelblue", "green", "#936c39"],
     symbols = ["minus", "minus", "minus", "ellipsis-h", "ellipsis-h"];
     for (var i=0; i < 3; i++) {
       div.innerHTML += '<i class="fa fa-' + symbols[i] + ' fa-lg" style="color:' + colors[i] + ';"></i><span>' + types[i] + '</span>'
@@ -814,4 +925,34 @@ function buildMap() {
     return div;
   };
   mapLegend.addTo(map);
+  /*remove spinner on tile load only on first load - tiles are last to load so using these instead of the other data*/
+  /*var tilesLoading = true;
+  base.on('load', function() {
+    if (tilesLoading == true) {
+      document.getElementById('blank').style.display = 'none';
+      tilesLoading = false;
+      console.log('tiles loaded');
+    }
+  });
+  esri.on('load', function() {
+    if (tilesLoading == true) {
+      document.getElementById('blank').style.display = 'none';
+      tilesLoading = false;
+      console.log('tiles loaded');
+    }
+  });
+  OpenTopoMap.on('load', function() {
+    if (tilesLoading == true) {
+      document.getElementById('blank').style.display = 'none';
+      tilesLoading = false;
+      console.log('tiles loaded');
+    }
+  });*/
 }
+/********************/
+/*end build map function*/
+/**********************/
+/*if (query.sidebar == 'true') {
+  console.log(query.sidebar);
+  sidebar.open('home');
+}*/

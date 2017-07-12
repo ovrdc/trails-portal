@@ -16,8 +16,9 @@
       {%for trail in site.data.ovrdc_trails | limit: 6%}
 
       <div class="col-lg-4 col-sm-6">
+        <!--div href="#" class="portfolio-box" style="background:url(/trails/images/medium/{{trail.img}});background-size:cover;background-position:center;"-->
         <div href="#" class="portfolio-box">
-          <img src="/trails/images/large/{{trail.img}}" class="img-responsive" alt="" style="min-width:33%;overflow:hidden;">
+          <img src="/trails/images/medium/{{trail.img}}" class="img-responsive" alt="{{trail.Name}}" style="min-width:33%;overflow:hidden;">
           <div class="portfolio-box-caption">
             <div class="portfolio-box-caption-content">
               <div class="project-category text-faded">
