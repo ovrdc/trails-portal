@@ -47,7 +47,7 @@
 $head-primary: #1b7837 ;
 $head-secondary: #1b7837 ;
 $theme-primary: #7fbf7b ;
-$theme-secondary: #1b7837 ;
+$theme-secondary: #1A3319 ;/*#001707 1b7837*/
 $theme-dark: #222;
 $font-primary: 'Catamaran';
 $font-secondary: 'Muli';
@@ -59,6 +59,21 @@ $p-line-height: 2rem;
   "base"
 ;
 /*custom*/
+/*custom carousel*/
+.carousel {
+  max-width: 640px;
+  margin-bottom:20px;
+}
+.carousel-control.left,
+.carousel-control.right {
+  background-image:none;
+}
+.carousel-control:focus,
+.carousel-control:hover {
+  opacity: 1;
+}
+/*end carousel*/
+/*custom table*/
 .trail-details td,
 .trail-details th {
   width:50%;
@@ -69,6 +84,7 @@ $p-line-height: 2rem;
 .table-condensed>tbody>tr>td, .table-condensed>tbody>tr>th, .table-condensed>tfoot>tr>td, .table-condensed>tfoot>tr>th, .table-condensed>thead>tr>td, .table-condensed>thead>tr>th {
   padding: 2px;
 }
+/*end table*/
 #blank {
   position:absolute;
   top:0;
@@ -83,6 +99,7 @@ header {
   background-size: cover;
   background-position: center;
 }
+
 #showlist {
   margin-top: -40px;
   margin-bottom: 20px;
@@ -91,6 +108,7 @@ header {
   z-index:10;
   border-radius:0;
 }
+
 #results-container {
   background: white;
   border-radius: 5px;
@@ -111,12 +129,14 @@ ul.active {
   list-style: none;
   padding: 10px 0;
 }
+
 #trailmap {
   height: 530px;
   width: 100%;
   border: solid thin lightgray;
   margin-top:20px;
 }
+
 .navbar-default .navbar-header .navbar-toggle {
   padding:8px;
 }
@@ -147,15 +167,13 @@ ul.active {
   margin: 0 5px;
 }
 /*removed since got retinam magic working to scale and crop images*/
+
 /*.portfolio-box {
   min-height:360px;
 }*/
 .portfolio-box .btn-sm-img:hover {
   color: #333;
   background-color: white!important;
-}
-footer .list-inline {
-  font-size: 12px;
 }
 .img-responsive {
   margin: 0 auto;
@@ -165,6 +183,9 @@ footer .list-inline {
 }
 .service-box {
   margin-bottom: 80px;
+}
+footer .list-inline {
+  font-size: 12px;
 }
 footer {
   background-color: transparent;
@@ -206,7 +227,7 @@ footer {
  #sidebar ul {
    padding-left: 10px;
  }
-@media screen and (max-width: 992px) {
+@media screen and (max-width: 1199px) {
   .row-offcanvas {
     position: relative;
     -webkit-transition: all .25s ease-out;

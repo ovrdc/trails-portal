@@ -734,7 +734,7 @@ function buildMap() {
       getLocation();
       userLocationCircle.setLatLng(userLocation);
       console.log(1);
-    }, 2000);
+    }, 10000);
   }
 
   /*map.on('locationfound', function(e) {
@@ -765,7 +765,7 @@ function buildMap() {
       userLocationCircle.setLatLng(userLocation).addTo(map);
       userLocationCircle.setStyle({color:"blue", fillColor: "blue", "radius": 8});
     }
-    map.flyTo(userLocation, 14);
+    map.flyTo(userLocation, map.getZoom());
   }
 
   function showError(error) {
@@ -906,12 +906,6 @@ function buildMap() {
   /**********/
   /**********/
 
-  /* trail images and detail */
-
-  /* Add share button */
-
-  /*add location follow circle marker*/
-
   var mapLegend = L.control({position: "bottomright"});
 
   mapLegend.onAdd = function(map) {
@@ -925,6 +919,13 @@ function buildMap() {
     return div;
   };
   mapLegend.addTo(map);
+
+  /* trail images and detail */
+
+  /* Add share button */
+
+  /*add location follow circle marker*/
+
   /*remove spinner on tile load only on first load - tiles are last to load so using these instead of the other data*/
   /*var tilesLoading = true;
   base.on('load', function() {

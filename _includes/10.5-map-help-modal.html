@@ -5,24 +5,36 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" id="hideModal2">&times;</button>
-        <h2 class="text-center">Southern Ohio Trails Interactive Map</h2>
+        <h3 class="text-center">Southern Ohio Trails Interactive Map</h3>
       </div>
       <div class="modal-body">
         <p>
-          This map displays all the bikeways, hiking trails and parks archived at Southern Ohio Trails. To find more information about a trail, click on the trail or map key number. Points of interest can be added using the <i class="fa fa-star-o fa-lg"></i> Star icon, and a trail list can be found using the <i class="fa fa-th-list fa-lg"></i> List button. All points of interest have links to Google Maps directions from your current location.
+          This map displays bikeways, hiking trails and parks archived at Southern Ohio Trails. To find more information about a trail, click on the trail or map key number. Points of interest can be added using the <i class="fa fa-star-o fa-lg"></i> Star icon, and a trail list can be found using the <i class="fa fa-th-list fa-lg"></i> List button. All points of interest have links to Google Maps directions from your current location.
         </p>
+        <div class="panel-group">
+          <div class="panel panel-default">
+            <div class="panel-heading" data-toggle="collapse" href="#collapse2" style="padding: 5px 10px;cursor:pointer;">
+              <h4 class="panel-title">
+                <a><h4 style="text-align:center">Map Controls & POI Legend</h4></a>
+              </h4>
+            </div>
+            <div id="collapse2" class="panel-collapse collapse">
+              <div class="list-group">
+                <span class="list-group-item"><i class="fa fa-star-o fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Toggle Points of Interest</span>
+                <span class="list-group-item"><i class="fa fa-th-list fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Toggle Trail List</span>
+                <span class="list-group-item"><i class="fa fa-filter fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Toggle Trail Filter</span>
+                <span class="list-group-item"><i class="fa fa-location-arrow fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Zoom To/Follow GPS Location</span>
+                <span class="list-group-item"><i class="fa fa-question-circle fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Help</span>
+              </div>
+              <div class="panel-footer"></div>
+            </div>
+          </div>
+        </div>
+        <br>
         <em>
           This portal does not intend to be an exhautive list of all public trails in southern Ohio. Additionally, trail locations are for visualization purposes only. Please use the links provided for up to date location information for each trail.
         </em>
-          <br /><br />
-        <div class="list-group">
-          <span class="list-group-item" style="text-align:center"><h4>Map Controls & POI Legend</h4></span>
-          <span class="list-group-item"><i class="fa fa-star-o fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Toggle Points of Interest</span>
-          <span class="list-group-item"><i class="fa fa-th-list fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Toggle Trail List</span>
-          <span class="list-group-item"><i class="fa fa-filter fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Toggle Trail Filter</span>
-          <span class="list-group-item"><i class="fa fa-location-arrow fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Zoom To/Follow GPS Location</span>
-          <span class="list-group-item"><i class="fa fa-question-circle fa-lg fa-fw" aria-hidden="true"></i>&nbsp; Help</span>
-        </div>      </div>
+      </div>
       <div class="modal-footer">
         <button id="hideModal" type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>

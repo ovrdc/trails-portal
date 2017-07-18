@@ -15,9 +15,7 @@ about: >-
   <br><br>
   For more information, please use the contact form on the <a href="http://www.ovrdc.org/contact" target="_blank">OVRDC website</a> and use the subject 'Trail Map', or file an issue on GitHub.
 
-google_analytics: ""
 addthis_id:
-disqus_account:
 permalink: pretty
 # Social networks usernames (many more available: flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.) see all icon at fontawesome.io
 social:
@@ -31,7 +29,7 @@ highlighter: rouge
 #paginate: 5
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 include: ["_pages"]
-gems: [jekyll-feed, jekyll-retinamagick]
+gems: [jekyll-feed,jekyll-retinamagick]
 #gems: [jekyll-paginate, jekyll-feed]
 sass:
   style: compressed
@@ -53,7 +51,6 @@ page_gen:
     template: 'trails'
     name: 'Name'
     dir: 'trails'
-
 
 #Jekyll Collections & Defaults
 collections:

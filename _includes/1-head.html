@@ -23,26 +23,11 @@
     <!-- Go to www.addthis.com/dashboard to customize your tools -->
     <script type="text/javascript" src="/assets/s7.addthis.com/js/300/addthis_widget.js#pubid={{ site.addthis_id }}"></script>
     {% endif %}
-
-    {% if site.google_analytics != "" %}
-    <script type="text/javascript">
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', '{{ site.google_analytics }}']);
-              _gaq.push(['_trackPageview']);
-      (function () {
-          var ga = document.createElement('script');
-          ga.type = 'text/javascript';
-          ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0];
-          s.parentNode.insertBefore(ga, s);
-      })();
-    </script>
-    {% endif %}
+    <!--google-analytics-->
     <link href="/assets/css/main.css" rel="stylesheet" />
     <style>
     {% if page.homepage == true %}{% else %}
-    @media (min-width: 768px) {header{min-height: 33%;} header .header-content {height: 33vh;}}
+    @media (min-width: 768px) {header{min-height: 33%;} header .header-content {height: 40vh;}}
     {% endif %}
     </style>
     <style>
