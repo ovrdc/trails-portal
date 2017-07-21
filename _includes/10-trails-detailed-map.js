@@ -607,8 +607,13 @@ function buildMap() {
     }).addTo(map);
     parks.on('click', function(e) {
       var properties = e.layer.properties;
+      if (properties.url) {
+        var parkPopup = "<a href='" + properties.url + "' target='_blank'>" + properties.NAME + "</a>";
+      }else{
+        var parkPopup = properties.NAME;
+      }
       L.popup()
-        .setContent(properties.NAME)
+        .setContent(parkPopup)
         .setLatLng(e.latlng)
         .openOn(map);
     });

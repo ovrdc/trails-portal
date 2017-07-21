@@ -87,7 +87,7 @@
             </table>
           </div>
           <hr /><br />
-          <a href="" class="btn btn-outline btn-sm-nav" style="width:100%;">Print Map</a>
+          {% if page.printmap %}<a href="/trails/print-maps/{{page.printmap}}" class="btn btn-outline btn-sm-nav" style="width:100%;">Print Map</a>{% endif %}
           <p><h4>More Information & Resources</h4>
             {% if page.website %}<a href="{{page.website}}" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Trail Website</a><span>&nbsp;</span>{%endif%}
             {% if page.ohio_org %}<a href="{{page.ohio_org}}" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Ohio: Find it Here!</a><span>&nbsp;</span>{% endif %}
@@ -120,46 +120,12 @@
           {% include 10.5-map-help-modal.html %}
         </div>
       </div>
-        {% assign sorted_trails = site.data.ovrdc_trails | sort:"Name" %}
-        <div id="sidebar" class="col-lg-2 col-md-6 col-sm-6 col-xs-6 sidebar-offcanvas" style="border-left:solid thin lightgray;background:white;">
-          <ul style="list-style:none;">
-            {% if page.maptype == "bikeway" %}
-              <h4 class="text-muted">Bikeways</h4>
-              {% for trail in sorted_trails %}
-              {% if trail.maptype == "bikeway" and trail.Status == "Existing" %}
-              {% if trail.subtype == "Extension" %}
-              {% elsif trail.subtype == "Hiking Trail" %}
-              {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
-              {% endif %}
-              {%endif%}
-              {%endfor%}
-              <h4 class="text-muted">
-                Hiking Trails
-              </h4>
-              {% for trail in sorted_trails %}
-              {% if trail.maptype == 'hiking' and trail.Status == "Existing" %}
-              {% if trail.subtype == "Extension" %}
-              {% elsif trail.subtype == "Hiking Trail" %}
-              {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
-              {% endif %}
-              {%endif%}
-              {%endfor%}
-              <h4 class="text-muted">Mountain Bike Trails
-              </h4>
-              {% for trail in sorted_trails %}
-              {% if trail.maptype == 'mountain' and trail.Status == "Existing" %}
-              {% if trail.subtype == "Extension" %}
-              {% elsif trail.subtype == "Hiking Trail" %}
-              {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
-              {% endif %}
-              {%endif%}
-              {%endfor%}
-            {% endif %}
-            {% if page.maptype == "mountain" %}<h4 class="text-muted">
-              Mountain Bike Trails
-            </h4>
+      {% assign sorted_trails = site.data.ovrdc_trails | sort:"Name" %}
+      <div id="sidebar" class="col-lg-2 col-md-6 col-sm-6 col-xs-6 sidebar-offcanvas" style="border-left:solid thin lightgray;background:white;">
+        <ul style="list-style:none;">
+            <h4 class="text-muted">Bikeways</h4>
             {% for trail in sorted_trails %}
-            {% if trail.maptype == "mountain" and trail.Status == "Existing" %}
+            {% if trail.maptype == "bikeway" and trail.Status == "Existing" %}
             {% if trail.subtype == "Extension" %}
             {% elsif trail.subtype == "Hiking Trail" %}
             {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
@@ -167,17 +133,7 @@
             {%endif%}
             {%endfor%}
             <h4 class="text-muted">
-              Bikeways
-            </h4>
-            {% for trail in sorted_trails %}
-            {% if trail.maptype == 'bikeway' and trail.Status == "Existing" %}
-            {% if trail.subtype == "Extension" %}
-            {% elsif trail.subtype == "Hiking Trail" %}
-            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
-            {% endif %}
-            {%endif%}
-            {%endfor%}
-            <h4 class="text-muted">Hiking Trails
+              Hiking Trails
             </h4>
             {% for trail in sorted_trails %}
             {% if trail.maptype == 'hiking' and trail.Status == "Existing" %}
@@ -187,42 +143,8 @@
             {% endif %}
             {%endif%}
             {%endfor%}
-            {% endif %}
-            {% if page.maptype == "hiking" %}<h4 class="text-muted">
-              Hiking Trails
-            </h4>
-            {% for trail in sorted_trails %}
-            {% if trail.maptype == "hiking" and trail.Status == "Existing" %}
-            {% if trail.subtype == "Extension" %}
-            {% elsif trail.subtype == "Hiking Trail" %}
-            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
-            {% endif %}
-            {%endif%}
-            {%endfor%}
-            <h4 class="text-muted">
-              Bikeways
-            </h4>
-            {% for trail in sorted_trails %}
-            {% if trail.maptype == 'bikeway' and trail.Status == "Existing" %}
-            {% if trail.subtype == "Extension" %}
-            {% elsif trail.subtype == "Hiking Trail" %}
-            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
-            {% endif %}
-            {%endif%}
-            {%endfor%}
-            <h4 class="text-muted">Mountain Bike Trails
-            </h4>
-            {% for trail in sorted_trails %}
-            {% if trail.maptype == 'mountain' and trail.Status == "Existing" %}
-            {% if trail.subtype == "Extension" %}
-            {% elsif trail.subtype == "Hiking Trail" %}
-            {% else %}<li><a href="/trails/{{trail.Name | slugify}}/#content">{{trail.Name}} ({{trail.mapid}})</a></li>
-            {% endif %}
-            {%endif%}
-            {%endfor%}
-            {% endif %}
-          </ul>
-        </div>
+        </ul>
+      </div>
     </div>
   </div>
 </section>
