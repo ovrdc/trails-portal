@@ -1,5 +1,7 @@
 - name: Add links to state parks
+  done: true
 - name: Lightbox to image gallery - https://mdbootstrap.com/javascript/lightbox/
+  done: true
 - name: add legend for pois
 - name: images for pois
 - name: Add local parks and trails
@@ -8,6 +10,7 @@
 - name: Add Buckeye Hills trails
 - name: Add Hocking state park and trails - get from OSM
 - name: Fix search link on the large map
+  done: true
 - name: Switch to another theme, possibly NOW UI Kit or Material Kit
 - name: Add trail background image on header
   done: true

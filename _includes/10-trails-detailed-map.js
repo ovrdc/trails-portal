@@ -116,8 +116,10 @@ function buildMap() {
   /**********/
   /*Basemaps*/
   /**********/
-  var tk = 'pk.eyJ1Ijoib3ZyZGMiLCJhIjoiY2o0aWt4bW5mMDZkcDMzcXc3OHU1enVnaSJ9.hLremzXGr-fVJJEPgQM0EQ';
-  var mapbox_outdoors = L.tileLayer('https://api.mapbox.com/styles/v1/ovrdc/cj4il5rph35lf2rmhhbuu3lo2/tiles/256/{z}/{x}/{y}?access_token=' + tk, {
+
+  var mapboxToken = '{{site.data.tokens[0].token}}';
+  var thunderToken = '{{site.data.tokens[1].token}}';
+  var mapbox_outdoors = L.tileLayer('https://api.mapbox.com/styles/v1/ovrdc/cj4il5rph35lf2rmhhbuu3lo2/tiles/256/{z}/{x}/{y}?access_token=' + mapboxToken, {
     attribution: '&copy; <a href="https://mapbox.com">Mapbox</a>, &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     maxNativeZoom: 18,
     maxZoom: 20,
@@ -164,7 +166,7 @@ function buildMap() {
     attribution: 'Map data: &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
   });
 
-  var thunderlandscape = new L.tileLayer('https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=7c352c8ff1244dd8b732e349e0b0fe8d', {
+  var thunderlandscape = new L.tileLayer('https://{s}.tile.thunderforest.com/outdoors/{z}/{x}/{y}.png?apikey=' + thunderToken, {
     attribution: '&copy; <a href="http://www.thunderforest.com">Thunderforest</a>, Data &copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
     maxZoom: 22,
     opacity: 0.6
@@ -672,6 +674,7 @@ function buildMap() {
         }
       }
     }).addTo(map);
+
     parks.on('click', function(e) {
       var properties = e.layer.properties;
       if (properties.url) {
@@ -684,6 +687,7 @@ function buildMap() {
         .setLatLng(e.latlng)
         .openOn(map);
     });
+
   });
 
   /**********/
