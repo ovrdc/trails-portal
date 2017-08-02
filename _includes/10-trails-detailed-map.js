@@ -346,7 +346,6 @@ function buildMap() {
   }
   function trailPopupFunction(feature, trail) {
     var p = feature.properties;
-    var url = convertToSlug(p.Name);
     if (p.slideshow) {
       var slides = [];
       var slideImages = (p.slideshow).split(", ");
@@ -355,7 +354,12 @@ function buildMap() {
       }
       console.log(slides);
     }
-    trailPopup = '<a href="/trails/'+ url +'/#content"><h3>' + p.Name + '</h3></a><p>' + p.Description + '<hr /></p>';
+    if (p.subtype == "shared-path" || p.subtype == "Backpacking Trail") {
+      var url = convertToSlug(p.Name);
+      trailPopup = '<a href="/trails/'+ url +'/#content"><h3>' + p.Name + '</h3></a><p>' + p.Description + '<hr /></p>';
+    }else{
+      trailPopup = '<h3>' + p.Name + '</h3><p>' + p.Description + '<hr /></p>';
+    }
     if (slides) {
       trailPopup += '<div id="mapCarousel" class="carousel slide" data-ride="carousel"> \
         <ol class="carousel-indicators"> \
