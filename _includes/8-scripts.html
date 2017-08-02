@@ -24,4 +24,23 @@
 <script type='text/javascript' src="{{site.baseurl}}/assets/js/maps.js"></script>
 <script type='text/javascript' src="/assets/vendor/extra-markers/src/assets/js/leaflet.extra-markers-custom.js"></script>
 {% endif %}
-{% if page.search == false %}{% else %}{% include 8.5-search.html %}{% endif %}
+
+{% if page.search == false %}
+{% else %}
+{% include 8.5-search.html %}
+{% endif %}
+
+{% if page.layout == 'trails' or page.layout == 'hiking'%}
+{% if page.slideshow %}
+{% assign slideshow = {{page.slideshow}} | split: ", " %}
+{% endif %}
+<script>
+/*$('.item.active').on('click', function() {
+  console.log('clicked image');
+  $.SimpleLightbox.open({
+      items: ['/trails/images/medium/{{page.img}}'{% for slide in slideshow %},'/trails/images/medium/{{slide}}'{%endfor%}]
+  });
+});*/
+$('.carousel-inner .item a').simpleLightbox();
+</script>
+{% endif %}

@@ -11,7 +11,7 @@ url: "https://www.sohiotrails.org"
 about: >-
   The Southern Ohio Trails site exists to promote Active Transportation and outdoor exploration in Southern Ohio. It is funded in part by the Ohio Department or Transportation, the Appalachian Regional Commission, the Economic Development Services Agency and OVRDC members.
   <br><br>
-  The OVRDC portion of the code for this site is in public domain and can be found on <a href="https://github.com/ovrdc/trails-portal" target="_blank">GitHub</a>.
+  The OVRDC portion of the code for this site is in the public domain and can be found on <a href="https://github.com/ovrdc/trails-portal" target="_blank">GitHub</a>.
   <br><br>
   For more information, please use the contact form on the <a href="http://www.ovrdc.org/contact" target="_blank">OVRDC website</a> and use the subject 'Trail Map', or file an issue on GitHub.
 
@@ -29,7 +29,7 @@ highlighter: rouge
 #paginate: 5
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 include: ["_pages"]
-gems: [jekyll-feed,jekyll-retinamagick]
+plugins: [jekyll-feed,jekyll-retinamagick]
 #gems: [jekyll-paginate, jekyll-feed]
 sass:
   style: compressed
@@ -100,9 +100,8 @@ retinamagick:
     source: /assets/img/homepage-images
     destination: /assets/img/homepage-images/large
     scale: "1920x1280^"
-    crop: "1920x1280-0x0"
     interlace: "Plane"
-    quality: 50
+    quality: 80
 
   small2:
     source: /_trails/images
@@ -125,9 +124,8 @@ retinamagick:
     source: /_trails/images
     destination: /trails/images/large
     scale: "1920x1280^"
-    crop: "1920x1280-0x0"
     interlace: "Plane"
-    quality: 50
+    quality: 80
 
 
 #sample images provided by pixbay

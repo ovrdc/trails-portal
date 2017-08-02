@@ -10,3 +10,4 @@ layout: compress
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
+{% include map-plugins/node_modules/simple-lightbox/dist/simpleLightbox.min.js %}

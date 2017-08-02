@@ -30,7 +30,7 @@
                     <a class="page-scroll btn btn-outline btn-sm-nav" href="{{site.url}}/events">Events</a>
                 </li-->
                 <li>
-                    <a class="page-scroll" href="#search"><i class="fa fa-search fa-lg"></i></a>
+                    <a class="page-scroll" href="#search">{% if page.permalink == "/map/" %}{%else%}<i class="fa fa-search fa-lg"></i>{% endif %}</a>
                 </li>
                 <li>
                   <a class="page-scroll" href="{% if page.permalink == "/map/" %}/#about{% else %}#about{% endif%}"><i class="fa fa-info-circle fa-lg"></i></a>

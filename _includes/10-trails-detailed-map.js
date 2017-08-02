@@ -1,7 +1,6 @@
 /*L.mapbox.accessToken = 'pk.eyJ1Ijoib3ZyZGMiLCJhIjoiRUtXeFFzZyJ9.ufnW36oCZo96m_L9QsAkYg';*/
 /*set all initial global variables*/
 var hillshade, trails, hiking, biking, mapSidebar, mapTrailsListSidebar, topo;
-
 /*Initialize Map*/
 
 {% if page.centery %}/*{{page.centery}}*/{% endif %}
@@ -230,10 +229,17 @@ function buildMap() {
 
   function poiPopup(feature, poi) {
     var latlng = poi._latlng.lat + ',' + poi._latlng.lng;
-    poi.bindPopup('<h4>' + poi.feature.properties.name + '</h4>' +
-    '<h5>' + poi.feature.properties.detail + '</h5>' +
-    '<a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr=' +
-    latlng + '" target="_blank">Directions</a>');
+    if (poi.feature.properties.description) {
+      poi.bindPopup('<img src="/trails/images/naturalohio/no_shawnee.jpg" style="width:100%;"></img> \
+      <h4><a href="' + poi.feature.properties.description + '" target="_blank">' + poi.feature.properties.Name + '</a></h4> \
+      <em>Image provided by Natural Ohio. To see more images of waterfalls, parks and overlooks in and around Ohio, follow <a href="https://www.instagram.com/naturalohio/?hl=en" target="_blank">@naturalohio</a> \ on instagram or visit their website at <a href="http://www.naturalohioadventures.com" target="_blank">www.naturalohioadventures.com</a>.</em>');
+    };
+    if (poi.feature.properties.detail) {
+      poi.bindPopup('<h4>' + poi.feature.properties.name + '</h4>' +
+      '<h5>' + poi.feature.properties.detail + '</h5>' +
+      '<a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr=' +
+      latlng + '" target="_blank">Directions</a>');
+    }
   }
   /**********/
   /*function for creating the poi icon*/
@@ -241,14 +247,19 @@ function buildMap() {
   /**********/
 
   function createIcon(feature, latlng) {
-    var symbol = feature.properties.symbol;
+    if (feature.properties.symbol) {
+      var symbol = feature.properties.symbol;
+    }else{
+      var symbol = "attraction";
+    };
     var colors = {
       "star":"orange",
       "parking": "royalblue",
       "parking-garage": "royalblue",
       "picnic-site": "darkgreen",
       "park-alt1": "darkgreen",
-      "campsite": "saddlebrown"
+      "campsite": "saddlebrown",
+      "attraction": "mediumvioletred"
     };
 
     var icon = new L.ExtraMarkers.icon({
@@ -323,13 +334,56 @@ function buildMap() {
 
   /**********/
   /**********/
-
+  function convertToSlug(Text)
+  {
+      return Text
+          .toLowerCase()
+          .replace(/ /g,'-')
+          .replace(/[^\w-]+/g,'')
+          ;
+  }
   function trailPopupFunction(feature, trail) {
     var p = feature.properties;
-    trailPopup = '<h3>' + p.Name +
-    '</h3><p>' + p.Description +
-    '<hr /></p><img src="/trails/images/medium/' + p.img +'" style="width:100%;"</img><hr>' +
-    '<br />Approximate Length: ' + Number(p["SUM_LENGTH"]).toFixed(2) + ' mi' +
+    var url = convertToSlug(p.Name);
+    if (p.slideshow) {
+      var slides = [];
+      var slideImages = (p.slideshow).split(", ");
+      for (var i=0; i < slideImages.length; i++) {
+        slides.push(slideImages[i]);
+      }
+      console.log(slides);
+    }
+    trailPopup = '<a href="/trails/'+ url +'/#content"><h3>' + p.Name + '</h3></a><p>' + p.Description + '<hr /></p>';
+    if (slides) {
+      trailPopup += '<div id="mapCarousel" class="carousel slide" data-ride="carousel"> \
+        <ol class="carousel-indicators"> \
+          <li data-target="#mapCarousel" data-slide-to="0" class="active"></li>';
+          for (i = 0; i < slides.length; i++) {
+             trailPopup += '<li data-target="#mapCarousel" data-slide-to="' + i + '"></li>'
+          }
+        trailPopup += '</ol> \
+        <div class="carousel-inner"> \
+          <div class="item active"> \
+            <img src="/trails/images/medium/' + p.img + '" class="img-responsive img-thumbnail" alt="feature image"> \
+          </div>';
+          for (i = 0; i < slides.length; i++) {
+            trailPopup += '<div class="map-sidebar item">\
+            <img src="/trails/images/medium/' + slides[i] + '" class="img-responsive img-thumbnail" alt="image"></div>'
+          }
+        trailPopup += '</div> \
+        <a class="left carousel-control" href="#mapCarousel" data-slide="prev"> \
+          <span class="glyphicon glyphicon-chevron-left"></span> \
+          <span class="sr-only">Previous</span> \
+        </a> \
+        <a class="right carousel-control" href="#mapCarousel" data-slide="next"> \
+          <span class="glyphicon glyphicon-chevron-right"></span> \
+          <span class="sr-only">Next</span> \
+        </a> \
+      </div>'
+    }else{
+      trailPopup += '<img src="/trails/images/medium/' + p.img +'" style="width:100%;"</img><hr>';
+    }
+    trailPopup += '<br />Approximate Length: ' + Number(p["SUM_LENGTH"]).toFixed(2) + ' mi' +
     '<br />Surface: ' + p.surface;
     trailPopup += '<h4>Directions to Trail Heads</h4> \
     <p><a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr=' + p.th1loc + '" target="_blank">' + p.th1name + '</a></p>';
@@ -337,13 +391,22 @@ function buildMap() {
       trailPopup += '<p><a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr=' + p.th2loc + '" target="_blank">' + p.th2name + '</a></p>'
     }
     trailPopup += '<em>Fore more parking see the POIs on the trail map.</em>';
-    if (p.website)
-    {trailPopup += '<br><a href="' + p.website + '" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Trail \
-    Website</a><span>&nbsp;</span>'}
-    if (p["ohio_org"]){trailPopup += '<a href="' + p["ohio_org"]+ '" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Ohio: Find it Here!</a><span>&nbsp;</span>'}
-    if (p.parklink){trailPopup +='<a href="' + p.parklink + '" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Park Link</a><span>&nbsp;</span>'}
-    if (p.facebook){trailPopup += '<a href="' + p.facebook + '" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Facebook Page</a><span>&nbsp;</span>'}
-    if (p.gpx != "no data"){trailPopup += '<a href="{{site.url}}/trails/data/' + p.gpx +'" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-download"></i>&nbsp;GPX Data</a>'}
+    if (p.website) {
+      trailPopup += '<br><a href="' + p.website + '" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Trail \
+    Website</a><span>&nbsp;</span>'
+    }
+    if (p["ohio_org"]) {
+      trailPopup += '<a href="' + p["ohio_org"]+ '" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Ohio: Find it Here!</a><span>&nbsp;</span>'
+    }
+    if (p.parklink) {
+      trailPopup +='<a href="' + p.parklink + '" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Park Link</a><span>&nbsp;</span>'
+    }
+    if (p.facebook) {
+      trailPopup += '<a href="' + p.facebook + '" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Facebook Page</a><span>&nbsp;</span>'
+    }
+    if (p.gpx != "no data") {
+      trailPopup += '<a href="{{site.url}}/trails/data/' + p.gpx +'" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-download"></i>&nbsp;GPX Data</a>'
+    }
 
     /*add trail head directions*/
 
@@ -368,7 +431,11 @@ function buildMap() {
     $("#moreInfo").click(function() {
       console.log('click');
       mapSidebar.show();
-      mapSidebar.setContent(trailPopup)
+      if (carousel = 0) {
+        $('.carousel-inner .map-sidebar a').simpleLightbox();
+        carousel = 1;
+      }
+      mapSidebar.setContent(trailPopup);
     });
     map.closeTooltip()
   });
@@ -954,6 +1021,9 @@ function buildMap() {
       console.log('tiles loaded');
     }
   });*/
+
+  /*natual ohio points of interest*/
+/*  omnivore.geojson('/trails/naturalohio_subset.geojson', null, pois);*/
 }
 /********************/
 /*end build map function*/

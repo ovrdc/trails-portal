@@ -30,6 +30,7 @@
             </div>
           </div>
           {%endif%}{% endfor%}
+          <!-- Bootstrap built-in carousel-->
           {% if page.slideshow %}
           {% assign slideshow = {{page.slideshow}} | split: ", " %}
           <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -41,15 +42,15 @@
               {% endfor %}
             </ol>
 
-            <!-- Wrapper for slides -->
+            <!-- Wrapper for slides, using simpleLightbox for showing gallery on click see _includes/8-scripts.html file -->
             <div class="carousel-inner">
 
               <div class="item active">
-                <img src="/trails/images/medium/{{page.img}}" class="img-responsive img-thumbnail" alt="feature image">
+                <a href="/trails/images/{{page.img}}"><img src="/trails/images/medium/{{page.img}}" class="img-responsive img-thumbnail" alt="feature image"></a>
               </div>
               {% for slide in slideshow %}
               <div class="item">
-                <img src="/trails/images/medium/{{slide}}"  class="img-responsive img-thumbnail" alt="image">
+                <a href="/trails/images/{{slide}}"><img src="/trails/images/medium/{{slide}}"  class="img-responsive img-thumbnail" alt="image"></a>
               </div>
               {% endfor %}
             </div>
@@ -64,6 +65,7 @@
               <span class="sr-only">Next</span>
             </a>
           </div>
+          <!--end carousel-->
           {% else %}
           <img src="/trails/images/medium/{{page.img}}" class="img-responsive img-thumbnail" alt="{{page.Name}}" style="margin-bottom:20px;">
           {% endif %}
@@ -92,7 +94,7 @@
             {% if page.website %}<a href="{{page.website}}" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Trail Website</a><span>&nbsp;</span>{%endif%}
             {% if page.ohio_org %}<a href="{{page.ohio_org}}" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Ohio: Find it Here!</a><span>&nbsp;</span>{% endif %}
             {% if page.parklink %}<a href="{{page.parklink}}" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Park Link</a><span>&nbsp;</span>{% endif %}
-            {% if page.facebook %}<a href="{{page.ohio_org}}" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Facebook Page</a><span>&nbsp;</span>{% endif %}
+            {% if page.facebook %}<a href="{{page.facebook}}" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Facebook Page</a><span>&nbsp;</span>{% endif %}
             {% if page.gpx != "no data" %}<a href="{{site.url}}/trails/data/{{page.gpx}}" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-download"></i>&nbsp;GPX Data</a>{%endif%}
           </p>
           <!--p>

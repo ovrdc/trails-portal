@@ -11,7 +11,8 @@
     "leaflet-sidebar": "^0.1.9",
     "leaflet-sleep": "^0.5.1",
     "leaflet.locatecontrol": "^0.61.0",
-    "mapzen.js": "^0.7.3"
+    "mapzen.js": "^0.7.3",
+    "simple-lightbox": "^1.2.9"
   },
   "devDependencies": {},
   "scripts": {
