@@ -1,11 +1,11 @@
 ---
 layout: compress
 ---
-{% include map-plugins/node_modules/leaflet/dist/leaflet.css%}
-{% include map-plugins/node_modules/leaflet-sidebar/src/L.Control.Sidebar.css%}
-{% include map-plugins/node_modules/leaflet-easybutton/src/easy-button.css%}
-{% include map-plugins/node_modules/leaflet.locatecontrol/dist/L.Control.Locate.min.css%}
-{% include map-plugins/node_modules/leaflet-fullscreen/dist/leaflet.fullscreen.css%}
+{% include map-plugins/leaflet.css%}
+{% include map-plugins/L.Control.Sidebar.css%}
+{% include map-plugins/easy-button.css%}
+{% include map-plugins/L.Control.Locate.min.css%}
+{% include map-plugins/leaflet.fullscreen.css%}
 
 /*custom map css*/
 .trailTooltip {
