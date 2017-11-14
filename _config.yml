@@ -27,7 +27,7 @@ environment: local
 markdown: kramdown
 highlighter: rouge
 #paginate: 5
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md", "Gemfile"]
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md", "Gemfile", "Gemfile.lock"]
 include: ["_pages"]
 #plugins: [jekyll-feed, jekyll-retinamagick]
 #gems: [jekyll-paginate, jekyll-feed]
