@@ -1,4 +1,4 @@
-<nav id="mainNav" class="navbar navbar-default navbar-fixed-top animated fadeIn">
+<nav id="mainNav" class="navbar navbar-default navbar-fixed-top animated fadeIn{% if page.layout == 'trails' or page.layout == 'hiking'%} affix{% endif %}">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header">
@@ -12,28 +12,28 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
               <li>
-                  <a class="page-scroll" href="/bikeways">Bikeways</a>
+                  <a class="page-scroll nav-center" href="/bikeways">Bikeways</a>
               </li>
                 <li>
-                    <a class="page-scroll" href="/hiking">Hiking</a>
+                    <a class="page-scroll nav-center" href="/hiking">Hiking</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="/mountain-biking">MTB</a>
+                    <a class="page-scroll nav-center" href="/mountain-biking">MTB</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="{% if page.permalink == "/map/" %}{%else%}/map{%endif%}">Map</a>
+                    <a class="page-scroll nav-center" href="{% if page.permalink == "/map/" %}{%else%}/map{%endif%}">Map</a>
                 </li>
                 <li>
-                    <a class="text-muted" href="/resources">Resources</a>
+                    <a class="text-muted nav-center" href="/resources">Resources</a>
                 </li>
                 <!--li>
-                    <a class="page-scroll btn btn-outline btn-sm-nav" href="{{site.url}}/events">Events</a>
+                    <a class="page-scroll nav-center btn btn-outline btn-sm-nav" href="{{site.url}}/events">Events</a>
                 </li-->
+                {% if page.permalink == "/map/" %}{%else%}<li>
+                    <a class="{% if page.layout == 'hiking' or page.layout == 'trails'%}{%else%}page-scroll {% endif %}nav-center" href="#search"><i class="fa fa-search fa-lg"></i></a>
+                </li>{% endif %}
                 <li>
-                    <a class="page-scroll" href="#search">{% if page.permalink == "/map/" %}{%else%}<i class="fa fa-search fa-lg"></i>{% endif %}</a>
-                </li>
-                <li>
-                  <a class="page-scroll" href="{% if page.permalink == "/map/" %}/#about{% else %}#about{% endif%}"><i class="fa fa-info-circle fa-lg"></i></a>
+                  <a class="page-scroll nav-center" href="{% if page.permalink == "/map/" %}/#about{% else %}#about{% endif%}"><i class="fa fa-info-circle fa-lg"></i></a>
                 </li>
             </ul>
         </div>

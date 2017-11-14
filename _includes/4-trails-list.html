@@ -1,12 +1,12 @@
-<section class="container">
-  <div class="row">
+<section class="container"  id="search" style="height: auto;padding: 50px;">
+  <!--div class="row">
     <div class="col-lg-12 text-center">
       <h2  id="content" class="section-heading">Explore the Trails</h2>
     </div>
     <div id="search" class="col-lg-6 col-lg-offset-3 text-center">
       {% if page.description%}<h3 style="padding-bottom:30px;">{{page.description}}</h3>{%endif%}
     </div>
-  </div>
+  </div-->
   <div class="row">
     <div class="col-lg-3 text-center"></div>
     <div class="col-lg-6 text-center">
@@ -20,13 +20,13 @@
     </div>
   </div>
 </section>
-<div id="showlist"class="container visible-sm visible-xs">
+<div id="showlist"class="container visible-md visible-sm visible-xs">
   <button type="button" class="btn btn-outline btn-xs" data-toggle="offcanvas">{{page.title}} List</button>
 </div>
 <div class="animated">
   <div class="container">
     <div class="row row-offcanvas row-offcanvas-right">
-      <div class="col-lg-9 col-md-9 col-sm-12">
+      <div class="col-lg-9 col-md-12 col-sm-12">
         {% assign sorted_trails = site.data.ovrdc_trails | sort:"Name" %}
         <div class="row">
         {% for trail in sorted_trails %}
@@ -37,7 +37,9 @@
           <div class="col-lg-12">
           </div>
           <div class="col-lg-4 col-md-4 col-sm-3">
-            <img src="/trails/images/medium/{{trail.img}}" class="img-thumbnail trail-list" alt="Responsive image">
+            <div class="item">
+              <a href="/trails/images/{{trail.img}}"  title="<a href='/trails/{{trail.Name |slugify}}'>{{trail.Name}}</a>"><img src="/trails/images/medium/{{trail.img}}" class="img-thumbnail trail-list" alt="{{trail.Name}}"></a>
+            </div>
           </div>
           <div class="col-lg-6 col-md-6 col-sm-9">
             <blockquote>

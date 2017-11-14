@@ -41,6 +41,51 @@
       items: ['/trails/images/medium/{{page.img}}'{% for slide in slideshow %},'/trails/images/medium/{{slide}}'{%endfor%}]
   });
 });*/
-$('.carousel-inner .item a').simpleLightbox();
+/*$('.carousel-inner .item a').simpleLightbox();*/
+$('.item a').simpleLightbox({
+  showCaptions: true,
+  captionsType: 'attr',
+  captionsData: 'title'
+});
+$('.map-sidebar-gallery a').simpleLightbox({
+  showCaptions: true,
+  captionsType: 'attr',
+  captionsData: 'title'
+});
+</script>
+{% endif %}
+{% if page.layout == 'trails' or page.layout == 'hiking' %}{% else %}
+<script>
+/* Offset for Main Navigation*/
+$('#mainNav').affix({
+    offset: {
+        top: 50
+    }
+});
+</script>
+{% endif %}
+{% if page.list == true %}
+<script>
+var gallery = $('.item a').simpleLightbox({
+  showCaptions: true,
+  captionsType: 'attr',
+  captionsData: 'title'
+});
+
+var gallery2 = $('.map-sidebar.item a').simpleLightbox({
+  showCaptions: true,
+  captionsType: 'attr',
+  captionsData: 'title'
+});
+
+gallery.on('show.simplelightbox', function(e) {
+  console.log(e);
+});
+gallery.on('close.simplelightbox', function(e) {
+  console.log(e);
+});
+gallery.on('change.simplelightbox', function(e) {
+  console.log(e);
+});
 </script>
 {% endif %}

@@ -1,6 +1,9 @@
 /*L.mapbox.accessToken = 'pk.eyJ1Ijoib3ZyZGMiLCJhIjoiRUtXeFFzZyJ9.ufnW36oCZo96m_L9QsAkYg';*/
 /*set all initial global variables*/
-var hillshade, trails, hiking, biking, mapSidebar, mapTrailsListSidebar, topo;
+var hillshade, trails, hiking, biking, mapSidebar, mapTrailsListSidebar, topo, currentTrail, poisClick;
+poisClick = false;
+var carousel = 0;
+
 /*Initialize Map*/
 
 {% if page.centery %}/*{{page.centery}}*/{% endif %}
@@ -45,7 +48,7 @@ showMap.addEventListener('click', function() {
 });
 
 if (mapDivWidth > 768) {
-  buildMap()
+  buildMap();
 }
 else {
   document.getElementById("map").style.display = "none"
@@ -181,6 +184,45 @@ function buildMap() {
   /**********/
   /**********/
 
+  /*Add USBRS as first overlay to go underneath rest of layers*/
+
+  var activeStateRoutes = new L.geoJSON(null, {
+    style: function (feature) {
+      if (feature.properties.DESIGNATION == 'US_P' || feature.properties.DESIGNATION == 'SR_P') {
+        return {
+          color: 'goldenrod',
+          weight: 3,
+          dashArray: [5,5],
+          opacity: 0.5
+        }
+      }else{
+        return {
+          color: "firebrick",
+          weight: 3,
+          opacity: 0.5
+        }
+      }
+    },
+    onEachFeature: function (feature, layer) {
+      var p = layer.feature.properties;
+      if (p.DESIGNATION == "US_P" || p.DESIGNATION == "US_D") {
+        var route = "National";
+      }else{
+        var route = "State";
+      }
+      if (p.DESIGNATION == "US_P" || p.DESIGNATION == "SR_P") {
+        var status = "Proposed"
+      }else{
+        var status = "Designated"
+      }
+      var popupTxt = "<h5>United States Bicycle Route System</h5>";
+      popupTxt += status + "&nbsp;" + route + "&nbsp;Bike Route " + p.ROUTE_LABEL;
+      layer.bindPopup(popupTxt);
+    }
+  }).addTo(map);
+
+  var activeStateRoutesData = omnivore.topojson("/trails/data/active_bike_routes_dissolved_topo.json", null, activeStateRoutes);
+
   /*Add outside counties first and build popup */
 
   var outsideCounties = new L.geoJSON(null, {
@@ -200,7 +242,7 @@ function buildMap() {
           weight: 1,
           color: "gray",
           opacity: 0.9,
-          fillOpacity: 0.2
+          fillOpacity: 0.6
         }
       }
       if (feature.properties.NAME == "Miami Valley Trails | MVRPC") {
@@ -209,7 +251,7 @@ function buildMap() {
           weight: 1,
           color: "gray",
           opacity: 0.9,
-          fillOpacity: 0.2
+          fillOpacity: 0.6
         }
       }
     },
@@ -354,27 +396,28 @@ function buildMap() {
       }
       console.log(slides);
     }
-    if (p.subtype == "shared-path" || p.subtype == "Backpacking Trail") {
+    if (p.subtype == "shared-path" || p.subtype == "Backpacking Trail" || p.subtype == "roadway") {
       var url = convertToSlug(p.Name);
-      trailPopup = '<a href="/trails/'+ url +'/#content"><h3>' + p.Name + '</h3></a><p>' + p.Description + '<hr /></p>';
+      trailPopup = '<a href="/trails/'+ url +'/#content"><h3 style="color:333;">' + p.Name + '</h3></a><p>' + p.Description + '<hr /></p>';
     }else{
-      trailPopup = '<h3>' + p.Name + '</h3><p>' + p.Description + '<hr /></p>';
+      trailPopup = '<h3 style="color:333;">' + p.Name + '</h3><p>' + p.Description + '<hr /></p>';
     }
     if (slides) {
       trailPopup += '<div id="mapCarousel" class="carousel slide" data-ride="carousel"> \
         <ol class="carousel-indicators"> \
           <li data-target="#mapCarousel" data-slide-to="0" class="active"></li>';
           for (i = 0; i < slides.length; i++) {
-             trailPopup += '<li data-target="#mapCarousel" data-slide-to="' + i + '"></li>'
+             trailPopup += '<li data-target="#mapCarousel" data-slide-to="' + (i+1) + '"></li>'
           }
         trailPopup += '</ol> \
         <div class="carousel-inner"> \
-          <div class="item active"> \
-            <img src="/trails/images/medium/' + p.img + '" class="img-responsive img-thumbnail" alt="feature image"> \
+          <div class="map-sidebar-gallery item active"> \
+            <a href="/trails/images/' + p.img + '"><img src="/trails/images/medium/' + p.img + '" class="img-responsive img-thumbnail" alt="feature image"></a> \
           </div>';
           for (i = 0; i < slides.length; i++) {
-            trailPopup += '<div class="map-sidebar item">\
-            <img src="/trails/images/medium/' + slides[i] + '" class="img-responsive img-thumbnail" alt="image"></div>'
+            trailPopup += '<div class="map-sidebar-gallery item">\
+              <a href="/trails/images/' + slides[i] + '"><img src="/trails/images/medium/' + slides[i] + '" class="img-responsive img-thumbnail" alt="image"></a> \
+            </div>'
           }
         trailPopup += '</div> \
         <a class="left carousel-control" href="#mapCarousel" data-slide="prev"> \
@@ -387,7 +430,7 @@ function buildMap() {
         </a> \
       </div>'
     }else{
-      trailPopup += '<img src="/trails/images/medium/' + p.img +'" style="width:100%;"</img><hr>';
+      trailPopup += '<div class="map-sidebar-gallery"><img src="/trails/images/medium/' + p.img +'" style="width:100%;"</img></div><hr>';
     }
     trailPopup += '<br />Approximate Length: ' + Number(p["SUM_LENGTH"]).toFixed(2) + ' mi' +
     '<br />Surface: ' + p.surface;
@@ -396,7 +439,12 @@ function buildMap() {
     if (p.th2loc) {
       trailPopup += '<p><a href="https://www.google.com/maps/dir/?saddr=My+Location&daddr=' + p.th2loc + '" target="_blank">' + p.th2name + '</a></p>'
     }
-    trailPopup += '<em>Fore more parking see the POIs on the trail map.</em>';
+    trailPopup += '<em>Fore more parking see the POIs on the trail map.</em><hr>';
+
+    if (p.printmap) {
+      trailPopup += '<a href="/trails/print-maps/' + p.printmap + '" class="btn btn-outline btn-sm-nav" style="width:100%;">Print Map</a>'
+    }
+    trailPopup += '<p><h4>More Information & Resources</h4>';
     if (p.website) {
       trailPopup += '<br><a href="' + p.website + '" class="btn btn-outline btn-sm-nav" target="_blank"><i class="fa fa-external-link">&nbsp;</i>Trail \
     Website</a><span>&nbsp;</span>'
@@ -430,21 +478,29 @@ function buildMap() {
     /*console.log(e.layer.feature);*/
     trailPopupFunction(e.layer.feature, null)
     mapSidebar.show();
-    mapSidebar.setContent(trailPopup);
+    if (currentTrail != e.layer.feature.properties.mapid) {
+      mapSidebar.setContent(trailPopup);
+      setTimeout(function() {
+        console.log('shown2');
+        $('.map-sidebar-gallery a').simpleLightbox({
+          showCaptions: true,
+          captionsType: 'attr',
+          captionsData: 'title'
+        });
+        carousel = 1;
+      }, 500);
+    }
+    currentTrail = e.layer.feature.properties.mapid;
   });
 
-  map.on('popupopen', function() {
+/*  map.on('popupopen', function() {
     $("#moreInfo").click(function() {
       console.log('click');
       mapSidebar.show();
-      if (carousel = 0) {
-        $('.carousel-inner .map-sidebar a').simpleLightbox();
-        carousel = 1;
-      }
       mapSidebar.setContent(trailPopup);
     });
-    map.closeTooltip()
-  });
+    map.closeTooltip();
+  });*/
 
   hiking = L.geoJson(null, {
     style: trailsStyle,
@@ -454,24 +510,13 @@ function buildMap() {
       }
     },
     onEachFeature: function(feature, trail) {
-      if (trail.feature.properties.subtype != 'Extension' && trail.feature.properties.name != 'Buckeye Trail') {
+      if (trail.feature.properties.subtype != 'Extension' && trail.feature.properties.Name != 'Buckeye Trail') {
         trail.bindTooltip(feature.properties.mapid, {permanent: true, className: 'trailTooltip hiking', interactive: true});
       }
-      if (trail.feature.properties.name == 'Buckeye Trail') {
+      if (trail.feature.properties.Name == 'Buckeye Trail') {
         trail.bindTooltip(feature.properties.mapid, {permanent: true, className: 'trailTooltip buckeye', interactive: true});
+        trail.setStyle({color: "steelblue", opacity: 0.6});
       }
-      if (feature.properties.Name == "Buckeye Trail") {
-        trail.setStyle({color: "steelblue", opacity: 0.6})
-      }
-/*      trail.setText(feature.properties.Name, {
-        offset: 20,
-        below: true,
-        repeat: false,
-        attributes: {
-          textLength: "300",
-          lengthAdjust:"spacing"
-        }
-      });*/
     }
   });
 
@@ -492,6 +537,7 @@ function buildMap() {
   trails.addLayer(hiking);
   trails.addLayer(biking);
   /**********/
+  /* Create highlight styles*/
   /**********/
   map.createPane("highlight");
   map.getPane("highlight").style.zIndex=350;
@@ -543,9 +589,17 @@ function buildMap() {
     el.className += ' active';
   }
 
+  /*create sidebar list and open current trail on pageload*/
+
   function populateTrailsList(trails, type) {
     /*console.log(trails);*/
     trails.eachLayer(function(trail) {
+      if (trail.feature.properties.mapid == {% if page.mapid %}{{page.mapid}}{% else %}0{%endif%}) {
+        trailPopupFunction(trail.feature, null);
+        mapSidebar.setContent(trailPopup);
+        mapSidebar.show();
+        currentTrail = trail.feature.properties.mapid;
+      }
       var prop = trail.feature.properties;
       if (prop.subtype != "Extension") {
         if (type == 'bike') {
@@ -584,7 +638,19 @@ function buildMap() {
           map.flyToBounds(trail.getBounds());
           trailPopupFunction(trail.feature, null)
           mapSidebar.show();
-          mapSidebar.setContent(trailPopup);
+          if (trail.feature.properties.mapid != currentTrail) {
+            mapSidebar.setContent(trailPopup);
+            setTimeout(function() {
+              console.log('shown2');
+              $('.map-sidebar-gallery a').simpleLightbox({
+                showCaptions: true,
+                captionsType: 'attr',
+                captionsData: 'title'
+              });
+              carousel = 1;
+            }, 500);
+          }
+          currentTrail = trail.feature.properties.mapid;
           return false;
         };
       }
@@ -630,20 +696,22 @@ function buildMap() {
   /**********/
   /**********/
 
-  map.createPane('parcelPane');
-  map.getPane('parcelPane').style.zIndex = 300;
+  map.createPane('parkPane');
+  map.getPane('parkPane').style.zIndex = 300;
   var parkData = omnivore.topojson("/trails/ovrdc_parks_web.topojson");
   var dataLoading = true;
   parkData.on('ready', function(data) {
     console.log('park data ready');
     if (dataLoading == true) {
-      document.getElementById('blank').style.display = 'none';
-      dataLoading = false;
+      setTimeout(function() {
+        document.getElementById('blank').style.display = 'none';
+        dataLoading = false;
+      }, 500);
       {% if page.permalink == "/map/"%}$("#mapHelpModal").modal("show");{% endif%}
     }
     var parksGeojson = parkData.toGeoJSON();
     var parks = L.vectorGrid.slicer(parksGeojson, {
-      pane: "parcelPane",
+      pane: "parkPane",
       minZoom: 8,
       maxNativeZoom: 14,
       maxZoom: 22,
@@ -698,9 +766,6 @@ function buildMap() {
   /**********/
 
   /**********/
-  /**********/
-
-  /**********/
   /*Easy Buttons*/
   /**********/
 
@@ -711,20 +776,22 @@ function buildMap() {
       icon: 'fa-star-o fa-2x',
       title: 'Show Points of Interest',
       onClick: function(btn, map) {
-        if (!map.hasLayer(pois)) {
-          map.addLayer(pois)
+        if (!map.hasLayer(pois) && map.getZoom() < 14) {
+          map.addLayer(pois);
+          poisClick = true;
+          btn.state('hidePOI');
         }
-        btn.state('hidePOI');
       }
     }, {
       stateName: 'hidePOI',
       icon: 'fa-star fa-2x',
       title: 'Remove Points of Interest',
       onClick: function(btn, map) {
-        if (map.hasLayer(pois)) {
-          map.removeLayer(pois)
+        if (map.hasLayer(pois) && map.getZoom() < 14) {
+          map.removeLayer(pois);
+          poisClick = false;
+          btn.state('showPOI');
         }
-        btn.state('showPOI');
       }
     }]
   });
@@ -747,8 +814,9 @@ function buildMap() {
           el[0].style.color = '#7fbf7b';
         }
       }
-    }]
-  });
+    }],
+    position: 'topright'
+  }).addTo(map);
 
   mapTrailsListSidebar.on('hidden', function() {
     var el = document.getElementsByClassName('fa fa-th-list');
@@ -929,16 +997,8 @@ function buildMap() {
     /*$("#mapHelpModal").hide().removeClass("show");*/
     $("#mapHelpModal").modal("hide");
   });
-  $("#hideModal2").click(function() {
-  /*  $("#mapHelpModal").hide().removeClass("show");*/
-    $("#mapHelpModal").modal("hide");
-  });
 
-  var mapHelp = L.easyButton('fa-question-circle fa-2x', function() {
-    $("#mapHelpModal").modal('show');
-  });
-
-  var bottomToolbar = L.easyBar([mapPoiToggle, mapListToggle, mapFilter, mapUserLocation, mapHelp], {
+  var bottomToolbar = L.easyBar([mapPoiToggle, mapFilter, mapUserLocation, mapHelp], {
     id: 'mobile-toolbar',
     position: 'bottomleft'
   }).addTo(map);
@@ -947,28 +1007,30 @@ function buildMap() {
     /**********/
     /**********/
     var currentZoom = map.getZoom();
-    if (currentZoom < 11) {
+    if (currentZoom < 12) {
       hiking.setStyle({weight:3});
       biking.setStyle({weight:3});
       bikeHighlight.setStyle({weight:5});
       hikeHighlight.setStyle({weight:5});
     }
-    if (currentZoom > 12) {
+    if (currentZoom > 11) {
       hiking.setStyle({weight:7});
       biking.setStyle({weight:9});
       bikeHighlight.setStyle({weight:13});
       hikeHighlight.setStyle({weight:13});
     }
-/*    if (currentZoom > 12) {
-      if (map.hasLayer(hillshade)) {
-        map.removeLayer(hillshade);
-        thunderlandscape.addTo(map);
+    if (currentZoom > 13) {
+      if (!map.hasLayer(pois)) {
+        map.addLayer(pois);
+        mapPoiToggle.disable();
       }
     }
-    if (currentZoom < 13) {
-      map.removeLayer(thunderlandscape);
-      hillshade.addTo(map);
-    }*/
+    if (currentZoom < 14) {
+      if (map.hasLayer(pois) && poisClick === false) {
+        map.removeLayer(pois);
+        mapPoiToggle.enable();
+      }
+    }
     if (currentZoom > 17) {
       map.removeLayer(hillshade);
       esri.addTo(map);
@@ -990,11 +1052,14 @@ function buildMap() {
 
   mapLegend.onAdd = function(map) {
     var div = L.DomUtil.create('div', 'map-legend'),
-    types = ["Bikeways", "Hiking Trails", "Buckeye Trail", "Connectors", "Extensions"],
-    colors = ["green", "#936c39", "steelblue", "green", "#936c39"],
-    symbols = ["minus", "minus", "minus", "ellipsis-h", "ellipsis-h"];
-    for (var i=0; i < 3; i++) {
-      div.innerHTML += '<i class="fa fa-' + symbols[i] + ' fa-lg" style="color:' + colors[i] + ';"></i><span>' + types[i] + '</span>'
+    types = ["Bikeways", "Hiking Trails", "Buckeye Trail", "Proposed Bike Route", "Designated Bike Route", "Connectors", "Extensions"],
+    colors = ["green", "#936c39", "steelblue", "goldenrod", "firebrick", "green", "#936c39"],
+    symbols = ["minus", "minus", "minus", "ellipsis-h", "minus", "ellipsis-h"];
+    for (var i=0; i < 5; i++) {
+      if (i > 0) {
+        var b = "<br>";
+      }else{b=""}
+      div.innerHTML += b + '<i class="fa fa-' + symbols[i] + ' fa-lg" style="color:' + colors[i] + ';"></i><span>' + types[i] + '</span>'
     }
     return div;
   };
@@ -1006,37 +1071,29 @@ function buildMap() {
 
   /*add location follow circle marker*/
 
-  /*remove spinner on tile load only on first load - tiles are last to load so using these instead of the other data*/
-  /*var tilesLoading = true;
-  base.on('load', function() {
-    if (tilesLoading == true) {
-      document.getElementById('blank').style.display = 'none';
-      tilesLoading = false;
-      console.log('tiles loaded');
-    }
-  });
-  esri.on('load', function() {
-    if (tilesLoading == true) {
-      document.getElementById('blank').style.display = 'none';
-      tilesLoading = false;
-      console.log('tiles loaded');
-    }
-  });
-  OpenTopoMap.on('load', function() {
-    if (tilesLoading == true) {
-      document.getElementById('blank').style.display = 'none';
-      tilesLoading = false;
-      console.log('tiles loaded');
-    }
-  });*/
-
   /*natual ohio points of interest*/
 /*  omnivore.geojson('/trails/naturalohio_subset.geojson', null, pois);*/
+
+  mapSidebar.on('shown', function() {
+    console.log('shown');
+    setTimeout(function() {
+      console.log('shown2');
+      $('.map-sidebar-gallery a').simpleLightbox({
+        showCaptions: true,
+        captionsType: 'attr',
+        captionsData: 'title'
+      });
+      carousel = 1;
+    }, 500);
+    if (carousel == 0) {
+      console.log('shown1');
+
+    }
+  });
+
+  /*Trail Name from csv file - {{page.Name}}*/
+  /*Trail map id from csv file - {{page.mapid}}*/
 }
 /********************/
 /*end build map function*/
 /**********************/
-/*if (query.sidebar == 'true') {
-  console.log(query.sidebar);
-  sidebar.open('home');
-}*/

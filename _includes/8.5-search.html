@@ -14,11 +14,11 @@
     }
   });
   {% if page.homepage != true %}
-  $("#search-icon").click(function(e) {
+  /*$("#search-icon").click(function(e) {
     e.preventDefault();
     $("#search-input").fadeToggle();
     return false;
-  });
+  });*/
   {% endif %}
   {% if page.type or page.maptype %}
   /*Off canvas list menu*/
@@ -58,4 +58,7 @@
     ]
   };
 })*/
+$("#page-top").on('click', function() {
+  $("#results-container").fadeOut();
+});
 </script>

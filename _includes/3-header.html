@@ -4,10 +4,11 @@
             <div class="col-lg-12">
                 <div class="header-content animated fadeIn">
                     <div class="header-content-inner text-center" style="position: relative;">
-                        <h4>{% if page.subtitle %}{{page.subtitle}}{%else%}{{site.description}}{%endif%}</h4>
+                        {% if page.homepage == true %}<h4>{% if page.subtitle %}{{page.subtitle}}{%else%}{{site.description}}{%endif%}</h4>{% endif %}
                         <h1>{% if page.title%}{{page.title}}{%elsif site.title%}{{site.title}}{%endif%}</h1>
-                        <a href="#content" class="btn btn-outline btn-xl page-scroll" style="margin-bottom:10px;width:219px;">{%if page.anchor-text %}{{page.anchor-text}}{%else%}Learn More{%endif%}</a>
-                        {% if page.permalink == "/mountain-biking/" %}{% else%}<a href="/map/" class="btn btn-outline btn-xl" style="margin-bottom:10px;width:219px;">Explore the Map</a>{% endif%}
+                        {% if page.homepage == true %}<a href="#content" class="btn btn-outline btn-xl page-scroll" style="margin-bottom:10px;width:219px;">{%if page.anchor-text %}{{page.anchor-text}}{%else%}Trails List{%endif%}</a>
+                        {% if page.permalink == "/mountain-biking/" %}{% else%}<a href="/map/" class="btn btn-outline btn-xl" style="margin-bottom:10px;width:219px;">Explore the Map</a>{% endif%}{% endif %}
+                        {% if page.list == true%}<a href="/map/" class="btn btn-outline btn-sm" style="margin-bottom:10px;width:219px;">Explore the Map</a>{% endif %}
                     </div>
                 </div>
             </div>

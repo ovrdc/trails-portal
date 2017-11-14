@@ -14,7 +14,7 @@
       {% endif %}
     </h4>
     <div class="row row-offcanvas row-offcanvas-right">
-      <div class="col-lg-3 col-md-4 col-sm-4">
+      <div id="trail-detail-mobile" class="col-lg-3 col-md-4 col-sm-4">
         <div class="service-box">
           <h3 class="section-heading">{{page.Name}}</h3>
           <p>{{page.Description}}</p>
@@ -67,7 +67,9 @@
           </div>
           <!--end carousel-->
           {% else %}
-          <img src="/trails/images/medium/{{page.img}}" class="img-responsive img-thumbnail" alt="{{page.Name}}" style="margin-bottom:20px;">
+          <div class="item">
+            <a href="/trails/images/{{page.img}}"><img src="/trails/images/medium/{{page.img}}" class="img-responsive img-thumbnail" alt="{{page.Name}}" style="margin-bottom:20px;"></a>
+          </div>
           {% endif %}
           <div class="trail-details">
             <table class="table table-bordered text-center table-condensed trail-details" style="max-width:650px;">
@@ -105,7 +107,7 @@
           </p>
         </div>
       </div>
-      <div class="col-lg-7 col-md-8 col-sm-8">
+      <div class="col-lg-10 col-md-12 col-sm-12">
         <div id="map-show-button" style="display:none;">
           <button class="btn btn-success" style="width:100%;">Interactive Map</button>
         </div>

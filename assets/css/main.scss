@@ -96,12 +96,30 @@ $p-line-height: 2rem;
   z-index:9999;
   background:white;
 }
+/*header*/
 header {
-  background: url(/assets/img/homepage-images/map-header-gray_compressed.jpg),linear-gradient(to left, #39423b, #1b7837);
+  background: url(/assets/img/homepage-images/header-new-2.jpg),linear-gradient(to left, #39423b, #1b7837);
   background-size: cover;
   background-position: center;
+  min-height: 100%;
 }
-
+header .header-content {
+  padding: 100px 0 50px;
+  height: 100vh;
+}
+header .header-content .header-content-inner {
+  top: 50%;
+  transform: translateY(-50%);
+}
+.page {
+  min-height: 260px;
+  height: 260px;
+}
+.page .header-content {
+    height: 260px;
+}
+/*end header*/
+/*sidebar list*/
 #showlist {
   margin-top: -40px;
   margin-bottom: 20px;
@@ -110,7 +128,7 @@ header {
   z-index:10;
   border-radius:0;
 }
-
+/*end sidebar container*/
 #results-container {
   background: white;
   border-radius: 5px;
@@ -210,15 +228,7 @@ footer {
   .navbar-default.affix .btn-sm-nav:hover {
     color:white!important;
   }
-  header {
-    min-height: 100%;
-  }
-  header .header-content {
-    height: 100vh;
-  }
-}
-@media (max-width:768px) {
-  .img-thumbnail.trail-list {
+  #trail-detail-mobile {
     display: none;
   }
 }
@@ -287,10 +297,34 @@ footer {
     top: 0;
     width: 60%; /* 6 columns */
   }
+  .img-thumbnail.trail-list {
+    display: none;
+  }
+  /*mobile nav tweaks*/
+  .nav-center {
+    text-align: center;
+    border-bottom: solid thin #e7e7e7;
+  }
+  .navbar-nav {
+    margin: 0;
+  }
+  .navbar-fixed-top .navbar-collapse {
+    max-height: 100%;
+  }
+  .navbar-collapse.collapse.in {
+    margin: 0 -30px;
+  }
+  .navbar-default .nav>li>a:hover,
+  .navbar-default .nav>li>a:focus:hover {
+    background-color: #eeefee;
+  }
 }
 /*change bootstrap navbar media query*/
 @media (max-width: 992px) {
   .navbar-default .nav>li>a {
     letter-spacing: 0px;
   }
+}
+.slbCaption a:hover, .slbCaption a:focus {
+  color:white;
 }

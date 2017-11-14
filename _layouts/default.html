@@ -7,8 +7,8 @@ layout: compress
 <body id="page-top">
   <!--div id="blank" style="position:absolute;top:0;left:0;bottom:0;width:100%;z-index:9999;background:white;"><img style="position:absolute;top:50%;left:50%;margin-top:-60px;margin-left:-60px;" src="/assets/img/ring-alt.gif" /></div-->
   {% include 2-nav.html %}
-  {% include 3-header.html %}
-
+  {% if page.layout == 'hiking' or page.layout == 'trails' %}<!--{% include 3-header.html %}-->{% else %}
+  {% include 3-header.html %}{% endif %}
   {{content}}
 
   {% include 5-gallery.html %}

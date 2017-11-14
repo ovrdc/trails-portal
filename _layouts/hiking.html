@@ -1,6 +1,34 @@
 ---
 layout: default
-css: "#map{height:640px;width:100%;border:thin solid #d3d3d3;}"
+css: >-
+  #map {
+    height: 640px;
+    height:calc(80vh);
+    width:100%;
+    border:thin solid #d3d3d3;
+  }
+  .navbar-default {
+    background-color:white;
+    border-color: rgba(34,34,34,0.1);
+  }
+
+  .navbar-default .nav>li>a {
+    color: #222;
+  }
+
+  .navbar-default.affix .nav>li>a:hover,
+  .navbar-default.affix .nav>li>a:focus:hover {
+    color: #7fbf7b;
+  }
+
+  .navbar-default.affix .navbar-header .navbar-brand {
+    color: #222222;
+  }
+
+  .navbar-default.affix .navbar-header .navbar-brand:hover,
+  .navbar-default.affix .navbar-header .navbar-brand:focus {
+    color: #7fbf7b;
+  }
 map: true
 ---
 {% include 4-trails-detailed.html %}
