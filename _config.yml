@@ -27,7 +27,7 @@ environment: local
 markdown: kramdown
 highlighter: rouge
 #paginate: 5
-exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md", "Gemfile"]
 include: ["_pages"]
 #plugins: [jekyll-feed, jekyll-retinamagick]
 #gems: [jekyll-paginate, jekyll-feed]
@@ -36,13 +36,7 @@ sass:
 
 #compress settings
 compress_html:
-  clippings: all
-  comments: []
-  endings: []
-  ignore:
-    envs: ["development"]
-  blanklines: false
-  startings: [html, head, body]
+  blanklines: true
 
 #data page generation settings
 page_gen-dirs: true # uncomment, if you prefer to generate named folders
