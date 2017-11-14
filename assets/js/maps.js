@@ -9,6 +9,6 @@
 {% include map-plugins/Leaflet.VectorGrid.bundled.js %}
 {% include map-plugins/Leaflet.Sleep.js %}
 {% include map-plugins/L.Control.Sidebar.js%}
-{% include map-plugins/easy-button.js.%}
+{% include map-plugins/easy-button.js%}
 {% include map-plugins/L.Control.Locate.min.js%}
 {% include map-plugins/Leaflet.fullscreen.min.js%}
