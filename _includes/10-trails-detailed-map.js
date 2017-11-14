@@ -119,7 +119,7 @@ function buildMap() {
   /**********/
   /*Basemaps*/
   /**********/
-
+  /*	{% for token in site.data.tokens %}token.name, token.token{%endfor%}*/
   var mapboxToken = '{{site.data.tokens[0].token}}';
   var thunderToken = '{{site.data.tokens[1].token}}';
   var mapbox_outdoors = L.tileLayer('https://api.mapbox.com/styles/v1/ovrdc/cj4il5rph35lf2rmhhbuu3lo2/tiles/256/{z}/{x}/{y}?access_token=' + mapboxToken, {
