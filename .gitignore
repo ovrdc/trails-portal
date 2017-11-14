@@ -4,3 +4,4 @@ _site/
 CNAME
 _includes/map-plugins/node_modules/
 _data/tokens.yml
+robots.txt
