@@ -1,5 +1,9 @@
 publish_mode: editorial_workflow
 media_folder: "_trails/images" # Media files will be stored here
+backend:
+  name: github
+  repo: ovrdc/trails-portal
+  branch: master
 collections:
   - name: "blog" # Used in routes
     label: "Blog" # Used in the UI
