@@ -37,5 +37,8 @@
   {% if page.permalink == "/mapzen/" %}
   <link rel="stylesheet" href="https://mapzen.com/js/mapzen.css">
   {% endif %}
+  {% if page.layout == "post" %}
+  <link href="/assets/css/default-highlight.css" rel="stylesheet" />
+  {% endif %}
   <!--{{page.layout}}-->
 </head>

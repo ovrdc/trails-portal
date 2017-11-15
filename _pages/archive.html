@@ -1,0 +1,11 @@
+---
+layout: page
+title: Trail News Archived Posts
+permalink: /archive/
+---
+{% for post in site.posts%}
+<h2>
+  <a href="{{post.url}}">{{post.title}}</a><br />
+  <em>{{post.date | date: "%B %-d, %Y"}} by {{post.author}}</em>
+</h2>
+{% endfor %}

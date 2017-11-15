@@ -1,7 +1,8 @@
 ---
-layout: default
-title: OVRDC Launches the Southern Ohio Trails Portal
+title: Markdown Cheatsheet for Blog Posts
 subtitle: Subtitle
+author: Malcolm Meyer
+img: header-new.jpg
 ---
 # Header 1 #
 ## Header 2 ##
@@ -12,18 +13,18 @@ subtitle: Subtitle
 ## Markdown plus h2 with a custom ID ##         {#id-goes-here}
 [Link back to H2](#id-goes-here)
 
-This is a paragraph, which is text surrounded by whitespace. Paragraphs can be on one 
+This is a paragraph, which is text surrounded by whitespace. Paragraphs can be on one
 line (or many), and can drone on for hours.  
 
-Here is a Markdown link to [Warped](http://warpedvisions.org), and a literal . 
+Here is a Markdown link to [Warped](http://warpedvisions.org), and a literal .
 Now some SimpleLinks, like one to [google] (automagically links to are-you-
-feeling-lucky), a [wiki: test] link to a Wikipedia page, and a link to 
+feeling-lucky), a [wiki: test] link to a Wikipedia page, and a link to
 [foldoc: CPU]s at foldoc.  
 
-Now some inline markup like _italics_,  **bold**, and `code()`. Note that underscores in 
+Now some inline markup like _italics_,  **bold**, and `code()`. Note that underscores in
 words are ignored in Markdown Extra.
 
-![picture alt](/images/photo.jpeg "Title is optional")     
+![picture alt](/trails/images/medium/adena-trail-01.jpg "Title is optional")     
 
 > Blockquotes are like quoted text in email replies
 >> And, they can be nested
@@ -41,13 +42,23 @@ And now some code:
     // Code is just text indented a bit
     which(is_easy) to_remember();
 
-~~~
+~~~javascript
 
 // Markdown extra adds un-indented code blocks too
 
 if (this_is_more_code == true && !indented) {
     // tild wrapped code blocks, also not indented
 }
+$(document).ready(function() {
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+$(document).ready(function() {
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
 
 ~~~
 
@@ -65,8 +76,8 @@ for things like poems
 
 
 <div class="custom-class" markdown="1">
-This is a div wrapping some Markdown plus.  Without the DIV attribute, it ignores the 
-block. 
+This is a div wrapping some Markdown plus.  Without the DIV attribute, it ignores the
+block.
 </div>
 
 ## Markdown plus tables ##

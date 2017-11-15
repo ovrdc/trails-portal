@@ -18,6 +18,16 @@
 
 <!--Main Javascript and jQuery see _includes/js-->
 <script type='text/javascript' src="{{site.baseurl}}/assets/js/main.js"></script>
+{% if page.layout == "post" %}
+<!--script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+<script>
+$(document).ready(function() {
+  $('pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+});
+</script-->
+{% endif %}
 {% if page.map == true %}
 <link href="/assets/vendor/extra-markers/css/leaflet.extra-markers.min.css" rel="stylesheet" />
 <link href="/assets/css/maps.css" rel="stylesheet" />

@@ -1,0 +1,14 @@
+<!--div class="col-lg-3 post-list">
+  <h3>Recent News</h3>
+  <h2>
+  {% for post in site.posts offset:1 %}
+  <img src="/trails/images/small/{% if post.img %}{{post.img}}{% else %}adena-trail-01.jpg{% endif %}" />
+  <p>
+    <a href="{{post.url}}">{{post.title}}</a><br />
+    <em>{{post.date | date: "%B %-d, %Y"}} | {{post.author}}</em>
+  </p>
+  {% endfor %}
+</div-->
+
+<!--img src="/trails/images/small/{% if post.img %}{{post.img}}{% else %}adena-trail-01.jpg{% endif %}" /-->
+<!--h3 style="background:linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.4)),url(/trails/images/medium/{% if post.img %}{{post.img}}{% else %}adena-trail-01.jpg{% endif %});background-position:center;"-->

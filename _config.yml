@@ -16,7 +16,8 @@ about: >-
   For more information, please use the contact form on the <a href="http://www.ovrdc.org/contact" target="_blank">OVRDC website</a> and use the subject 'Trail Map', or file an issue on GitHub.
 
 addthis_id:
-permalink: pretty
+# permalink: pretty
+permalink:
 # Social networks usernames (many more available: flickr, dribbble, pinterest, instagram, tumblr, linkedin, etc.) see all icon at fontawesome.io
 social:
   - title: flikr
@@ -69,6 +70,12 @@ defaults:
       type: pages
     values:
       layout: default
+  - scope:
+      path: "_posts"
+      type: "posts"
+    values:
+      layout: post
+      permalink: /blog/:year/:title/
 
 #retina_magick settings:
 #original images should be 1920x1280 to maintain ratios crop not current working
@@ -80,7 +87,7 @@ retinamagick:
     interlace: "Plane"
     crop: "320x214-0x0"
     interlace: "Plane"
-    quality: 50
+    quality: 90
 
   medium1:
     source: /assets/img/homepage-images
@@ -88,14 +95,14 @@ retinamagick:
     scale: "480x320^"
     crop: "480x320-0x0"
     interlace: "Plane"
-    quality: 50
+    quality: 70
 
   large1:
     source: /assets/img/homepage-images
     destination: /assets/img/homepage-images/large
     scale: "1920x1280^"
     interlace: "Plane"
-    quality: 80
+    quality: 70
 
   small2:
     source: /_trails/images
@@ -103,8 +110,7 @@ retinamagick:
     scale: "320x214^"
     crop: "320x214-0x0"
     interlace: "Plane"
-    quality: 50
-
+    quality: 90
 
   medium2:
     source: /_trails/images
@@ -112,14 +118,22 @@ retinamagick:
     scale: "640x426^"
     crop: "640x426-0x0"
     interlace: "Plane"
-    quality: 50
+    quality: 70
+
+  medium-large:
+    source: /_trails/images
+    destination: /trails/images/medium-large
+    scale: "640x426^"
+    crop: "740x495-0x0"
+    interlace: "Plane"
+    quality: 70
 
   large2:
     source: /_trails/images
     destination: /trails/images/large
     scale: "1920x1280^"
     interlace: "Plane"
-    quality: 80
+    quality: 70
 
 
 #sample images provided by pixbay

@@ -1,0 +1,64 @@
+---
+layout: page
+title: Trail News
+subtitle:
+permalink: /blog/
+css: >-
+  .post-list a {
+    color:#333;
+  }
+  .post-list a:hover, .post-list a:focus {
+    color:#7fbf7b;
+  }
+  .post-list--img {
+    border: 1px solid rgba(0,0,0,.15);
+    height:175px;
+  }
+  .post-list {
+    min-height: 320px;
+  }
+  @media (min-width: 992px) {
+    .post-list.featured {
+      height: 400px;
+    }
+    .post-list.featured .post-list--img {
+      border: 1px solid rgba(0,0,0,.15);
+      height:240px;
+    }
+    .post-list.featured h3 {
+      font-size: 4rem;
+    }
+  }
+  @media (min-width: 768px) and (max-width:991px) {
+    .col-sm-6 {
+      height: 320px;
+    }
+  }
+---
+{% for post in site.posts limit:2%}
+<div class="col-sm-6 col-md-6 post-list featured">
+  <a href="{{post.url}}">
+    <div class="post-list--img" style="background:url(/trails/images/medium-large/{% if post.img %}{{post.img}}{% else %}adena-trail-01.jpg{% endif %});background-position:center;background-repeat: no-repeat;"></div>
+    <h3>{{post.title}}
+      <br />
+      <em>{{post.date | date: "%B %-d, %Y"}} by {{post.author}}</em>
+    </h3>
+  </a>
+</div>
+{% endfor %}
+{% for post in site.posts limit:18 offset:2%}
+<div class="col-sm-6 col-md-4 post-list">
+  <div class="post-list--img" style="background:url(/trails/images/medium/{% if post.img %}{{post.img}}{% else %}adena-trail-01.jpg{% endif %});background-position:center;background-repeat: no-repeat;"></div>
+  <h3>
+    <a href="{{post.url}}">
+      {{post.title}}
+    <br />
+    <em>{{post.date | date: "%B %-d, %Y"}} by {{post.author}}</em>
+    </a>
+  </h3>
+</div>
+{% endfor %}
+<div class="col-lg-12">
+  <hr>
+  <h3><a href="/archive">News Archive</a></h3>
+</div>

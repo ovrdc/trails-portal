@@ -50,9 +50,11 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
   letter-spacing: 1px;
 }
-
+h3 {
+  font-size: $h3-size;
+}
 p {
-  font-size: 18px;
+  font-size: $p-font-size;
   line-height: $p-line-height;
   margin-bottom: 20px;
 }
