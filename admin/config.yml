@@ -15,5 +15,4 @@ collections:
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
       - {label: "Featured Image", name: "img", widget: "image"}
-      - {label: "Trail", name: "trail", widget: "string"} #convert to dropdown of trails
       - {label: "Body", name: "body", widget: "markdown"}
