@@ -6,7 +6,11 @@ img: nk_hwrportsmouth.jpg
 author: Nick Kroncke
 org: OVRDC
 ---
-On August 24, 2017 Nick Kroncke with [Ohio Valley Regional Development Commission (OVRDC)](www.ovrdc.org) hosted the organizations first "How We Roll" ride with members of [Portsmouth Connex](https://connexmoves.org/). These educational bike rides are geared towards all levels of riders who want to learn more about bicycle riding safety, technique and Ohio law as it relates to bikes and roadways. This ride was held on a beautiful evening with four engaged individuals who truly wanted to learn more about riding and what the law says are their rights on the roadway. These rides differ from a group ride in that the ride is tailored to be an individual experience at a gentle pace, with group discussion taking place during stops. Participants are also taught techniques about lane positioning, how to make oneself optimally visible in the roadway and how to steer clear of car doors or other road hazards. Also, riders encounter situations such as roads with high traffic volumes, one way streets and utilizing bicycle infrastructure.
+On August 24, 2017 Nick Kroncke with [Ohio Valley Regional Development Commission (OVRDC)](www.ovrdc.org) hosted the organizations first "How We Roll" ride with members of [Portsmouth Connex](https://connexmoves.org/). These educational bike rides are geared towards all levels of riders who want to learn more about bicycle riding safety, technique and Ohio law as it relates to bikes and roadways. 
+
+<img class="img img-resposnsive" src="/trails/images/nk_hwrportsmouth_cropped.jpg" width="100%" />
+
+This ride was held on a beautiful evening with four engaged individuals who truly wanted to learn more about riding and what the law says are their rights on the roadway. These rides differ from a group ride in that the ride is tailored to be an individual experience at a gentle pace, with group discussion taking place during stops. Participants are also taught techniques about lane positioning, how to make oneself optimally visible in the roadway and how to steer clear of car doors or other road hazards. Also, riders encounter situations such as roads with high traffic volumes, one way streets and utilizing bicycle infrastructure.
 
 >The goal of these rides is to make individuals feel more comfortable riding, and even to start replacing trips traditionally taken by motor vehicle, to be taken by bicycle.
 

@@ -6,6 +6,13 @@ layout: default
     <div class="row">
       <div class="col-lg-12">
         {{content}}
+        <hr>
+        <div class="pager">{% if page.previous.url %}
+          <a class="button" style="float:left;" href="{{ page.previous.url }}" data-balloon="{{page.previous.title}}" data-balloon-pos="up">&larr; Previous Post</a>
+        {% endif %}{% if page.next.url %}
+          <a class="button" style="float:right;" data-balloon="{{page.next.title}}" data-baloon-pos="up" href="{{ page.next.url }}">Next Post &rarr;</a>
+        {% endif %}
+        </div>
       </div>
     </div>
   </div>

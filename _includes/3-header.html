@@ -11,7 +11,20 @@
                         {% if page.list == true%}<a href="/map/" class="btn btn-outline btn-sm" style="margin-bottom:10px;width:219px;">Explore the Map</a>{% endif %}
                         {% if page.layout == 'post'%}
                         <div class="text-center">
-                            <span>Posted on {{ page.date  | date: "%B %-d, %Y" }}</span>
+                            <span>Posted on {{ page.date  | date: "%B %-d, %Y" }}{% if page.author %} by {{page.author}}{%endif%}{% if page.organization%}, {{page.organization}}{% endif%}</span>
+                        </div>
+                        {% comment %}
+                        capture word from title and tags for twitter share link{% endcomment %}
+                        <div class="sharelinks">
+                            <span>
+                                <a href="http://www.facebook.com/sharer.php?u={{site.baseurl}}{{page.url}}" target="_blank">
+                                    <i class="fa fa-facebook-square fa-2x"></i>
+                                </a>
+                                &nbsp;&nbsp;
+                                <a href="https://twitter.com/share?url=https://getbounds.com{{page.url}}&amp;text={% for word in title %}{{ word | replace: '&','and' }}{% if forloop.last%}{%else%}-{%endif%}{% endfor %}&amp;hashtags={{site.title}}{% for tag in pagetags %},{{tag}}{%endfor%}&amp;via={{site.twitter_username}}" target="_blank">
+                                    <i class="fa fa-twitter-square fa-2x"></i>
+                                </a>
+                            </span>
                         </div>
                         {% endif%}
                     </div>
