@@ -2,7 +2,7 @@
 layout: post
 title: Portsmouth How We Roll Ride
 date: 2017-11-20T16:12:59.409Z
-img: /_trails/images/nk_hwrportsmouth.jpg
+img: nk_hwrportsmouth.jpg
 ---
 On August 24, 2017 Nick Kroncke with Ohio Valley Regional Development Commission (OVRDC) hosted the organizations first "How We Roll" ride with members of Portsmouth Connex. These educational bike rides are geared towards all levels of riders who want to learn more about bicycle riding safety, technique and Ohio law as it relates to bikes and roadways. This ride was held on a beautiful evening with four engaged individuals who truly wanted to learn more about riding and what the law says are their rights on the roadway. These rides differ from a group ride in that the ride is tailored to be an individual experience at a gentle pace, with group discussion taking place during stops. Participants are also taught techniques about lane positioning, how to make oneself optimally visible in the roadway and how to steer clear of car doors or other road hazards. Also, riders encounter situations such as roads with high traffic volumes, one way streets and utilizing bicycle infrastructure.
 
