@@ -6,7 +6,7 @@ img: nk_hwrportsmouth.jpg
 author: Nick Kroncke
 org: OVRDC
 ---
-On August 24, 2017 Nick Kroncke with [Ohio Valley Regional Development Commission (OVRDC)](www.ovrdc.org) hosted the organizations first "How We Roll" ride with members of [Portsmouth Connex](https://connexmoves.org/). These educational bike rides are geared towards all levels of riders who want to learn more about bicycle riding safety, technique and Ohio law as it relates to bikes and roadways. 
+On August 24, 2017 Nick Kroncke with [Ohio Valley Regional Development Commission (OVRDC)](www.ovrdc.org) hosted the organization's first "How We Roll" ride with members of [Portsmouth Connex](https://connexmoves.org/). These educational bike rides are geared towards all levels of riders who want to learn more about bicycle riding safety, technique and Ohio law as it relates to bikes and roadways. 
 
 <img class="img img-resposnsive" src="/trails/images/nk_hwrportsmouth_cropped.jpg" width="100%" />
 
@@ -16,6 +16,7 @@ This ride was held on a beautiful evening with four engaged individuals who trul
 
 During this ride, we rode along a section of U.S. 23/Scioto Trail during rush hour, which led to higher than usual traffic volumes. The group handled it excellently and every driver that passed us politely used the adjacent lane and went by at a reasonable speed. During the entire ride, there were a number of motor vehicle drivers who waved or politely smiled at us, but zero drivers were honking or getting visibly upset with the group. This was reaffirming to everyone and instilled a confident feeling amongst the group. Stopping at various waypoints to discuss these experiences during the ride helped each individual realize and process what they experienced while riding.
 
-The goal of these rides is to make individuals feel more comfortable riding, and even to start replacing trips traditionally taken by motor vehicle, to be taken by bicycle. This doesn’t have to be commuting to work every day, it can be as simple as biking to meet friends for coffee instead of driving. If you want to learn more about these rides or just to discuss alternative transportation options, contact OVRDC. Happy trails!
+<iframe src='https://rwgps-embeds.com/embeds?type=route&id=26518337' style='margin-bottom:20px; width: 1px; min-width: 100%; height: 400px; border: none;' scrolling='no'></iframe>
 
-\-Nick Kroncke, Research and Planning Specialist, Ohio Valley Regional Development Commission
+
+The goal of these rides is to make individuals feel more comfortable riding, and even to start replacing trips traditionally taken by motor vehicle, to be taken by bicycle. This doesn’t have to be commuting to work every day, it can be as simple as biking to meet friends for coffee instead of driving. If you want to learn more about these rides or just to discuss alternative transportation options, contact OVRDC. Happy trails!
