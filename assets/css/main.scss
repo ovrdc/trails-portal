@@ -63,6 +63,10 @@ $h3-size: 30px;
   "base"
 ;
 /*custom*/
+blockquote {
+  border-left: 5px solid lightgray;
+  background: whitesmoke;
+}
 p img {
   max-width:100%;
 }
