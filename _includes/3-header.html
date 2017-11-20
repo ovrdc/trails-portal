@@ -9,6 +9,11 @@
                         {% if page.homepage == true %}<a href="#content" class="btn btn-outline btn-xl page-scroll" style="margin-bottom:10px;width:219px;">{%if page.anchor-text %}{{page.anchor-text}}{%else%}Trails List{%endif%}</a>
                         {% if page.permalink == "/mountain-biking/" %}{% else%}<a href="/map/" class="btn btn-outline btn-xl" style="margin-bottom:10px;width:219px;">Explore the Map</a>{% endif%}{% endif %}
                         {% if page.list == true%}<a href="/map/" class="btn btn-outline btn-sm" style="margin-bottom:10px;width:219px;">Explore the Map</a>{% endif %}
+                        {% if page.layout == 'post'%}
+                        <div class="text-center">
+                            <span>Posted on {{ page.date  | date: "%B %-d, %Y" }}</span>
+                        </div>
+                        {% endif%}
                     </div>
                 </div>
             </div>
