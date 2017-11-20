@@ -1,5 +1,5 @@
 publish_mode: editorial_workflow
-media_folder: "_trails/images" # Media files will be stored here
+media_folder: "netlify/images" # Netlify image files will be stored here, to keep separate
 backend:
   name: github
   repo: ovrdc/trails-portal
@@ -14,7 +14,7 @@ collections:
       - {label: "Layout", name: "layout", widget: "hidden", default: "post"}
       - {label: "Title", name: "title", widget: "string"}
       - {label: "Publish Date", name: "date", widget: "datetime"}
-      - {label: "Featured Image", name: "img", widget: "image"}
+      - {label: "Featured Image", name: "netlify-img", widget: "image"}
       - {label: "Author", name:"author",widget:"select",options:["Malcolm Meyer","Nick Kroncke"]}
       - {label: "Organization",name:"organization",widget:"select",options:["OVRDC", "CONNEX"]}
       - {label: "Body", name: "body", widget: "markdown"}
