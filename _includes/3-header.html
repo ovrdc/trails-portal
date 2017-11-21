@@ -21,7 +21,7 @@
                                     <i class="fa fa-facebook-square fa-2x"></i>
                                 </a>
                                 &nbsp;&nbsp;
-                                <a href="https://twitter.com/share?url=https://getbounds.com{{page.url}}&amp;text={% for word in title %}{{ word | replace: '&','and' }}{% if forloop.last%}{%else%}-{%endif%}{% endfor %}&amp;hashtags={{site.title}}{% for tag in pagetags %},{{tag}}{%endfor%}&amp;via={{site.twitter_username}}" target="_blank">
+                                <a href="https://twitter.com/share?url={{site.baseurl}}{{page.url}}&amp;text={% for word in title %}{{ word | replace: '&','and' }}{% if forloop.last%}{%else%}-{%endif%}{% endfor %}&amp;hashtags={{site.title}}{% for tag in pagetags %},{{tag}}{%endfor%}&amp;via={{site.twitter_username}}" target="_blank">
                                     <i class="fa fa-twitter-square fa-2x"></i>
                                 </a>
                             </span>
