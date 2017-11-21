@@ -17,11 +17,11 @@
                         capture word from title and tags for twitter share link{% endcomment %}
                         <div class="sharelinks">
                             <span>
-                                <a href="http://www.facebook.com/sharer.php?u={{site.baseurl}}{{page.url}}" target="_blank">
+                                <a href="http://www.facebook.com/sharer.php?u={{site.url}}{{page.url}}" target="_blank">
                                     <i class="fa fa-facebook-square fa-2x"></i>
                                 </a>
                                 &nbsp;&nbsp;
-                                <a href="https://twitter.com/share?url={{site.baseurl}}{{page.url}}&amp;text={% for word in title %}{{ word | replace: '&','and' }}{% if forloop.last%}{%else%}-{%endif%}{% endfor %}&amp;hashtags={{site.title}}{% for tag in pagetags %},{{tag}}{%endfor%}&amp;via={{site.twitter_username}}" target="_blank">
+                                <a href="https://twitter.com/share?url={{site.url}}{{page.url}}&amp;text={% for word in title %}{{ word | replace: '&','and' }}{% if forloop.last%}{%else%}-{%endif%}{% endfor %}&amp;hashtags={{site.title}}{% for tag in pagetags %},{{tag}}{%endfor%}&amp;via={{site.twitter_username}}" target="_blank">
                                     <i class="fa fa-twitter-square fa-2x"></i>
                                 </a>
                             </span>
