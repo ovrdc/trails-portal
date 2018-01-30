@@ -54,8 +54,8 @@ $theme-dark: #222;
 $font-primary: 'Catamaran';
 $font-secondary: 'Muli';
 $p-line-height: 1.4;
-$p-font-size: 20px;
-$h3-size: 30px;
+$p-font-size: 1.8rem;
+$h3-size: 28px;
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import
@@ -190,16 +190,22 @@ header .header-content .header-content-inner {
   left: 15px;
   right: 15px;
   margin: 10px 0;
+  max-height: 400px;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 #results-container.active {
   border: solid thin lightgray;
 }
 ul.active {
-  padding: 0;
+  padding: 0 10px;
 }
 #results-container li {
   list-style: none;
   padding: 10px 0;
+}
+#results-container li a {
+  font-size:2rem;
 }
 
 #trailmap {

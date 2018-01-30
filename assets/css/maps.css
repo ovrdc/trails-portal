@@ -56,15 +56,22 @@ layout: compress
 }
 
 .map-legend {
-  border: 1px solid rgba(0,0,0,.3);
+  /*border: 1px solid rgba(0,0,0,.3);*/
   background: white;
   padding: 10px;
   border-radius: 4px;
+  font-size: 1.5rem;
 }
 .map-legend span {
   padding: 4px;
 }
+.trails-list h4 {
+  margin: 5px 0;
+}
 /*modal*/
+.modal .close {
+  font-size: 3rem;
+}
 /*.modal {
   opacity: 0;
   transition: opacity .5s linear;
@@ -127,9 +134,16 @@ layout: compress
 .leaflet-sidebar {
   z-index: 1010;
 }
-.leaflet-sidebar .close {
+.leaflet-container .leaflet-sidebar .close {
+  color: #1b7837;
   font-size: 25pt;
   z-index: 1001;
+  opacity: 0.8;
+}
+.leaflet-container .leaflet-sidebar .close:hover,
+.leaflet-container .leaflet-sidebar .close:focus {
+  color: #333;
+  opacity: 1;
 }
 /*end sidebar tweaks*/
 .leaflet-control-layers-expanded {
