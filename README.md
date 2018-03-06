@@ -1,6 +1,6 @@
 # Trails Portal built with Jekyll
 
-A website hosting bike trails, hking trails and mountain bike trails for the southern Ohio region. Funded in part by the Ohio Department of Transportation, the Appalachian Regional Commission and OVRDC. This project uses Jekyll to build a searchable web portal with interactive maps for geographic data. This portal focuses on trails, but the project could be used for any type of geographic data. We make use of Jekyll Collections, defaults setup in the ``_config.yml`` file and the ``_data`` folder. 
+A website hosting bike trails, hiking trails and mountain bike trails for the southern Ohio region. Funded in part by the Ohio Department of Transportation, the Appalachian Regional Commission and OVRDC. This project uses Jekyll to build a searchable web portal with interactive maps for geographic data. This portal focuses on trails, but the project could be used for any type of geographic data. We make use of Jekyll Collections, defaults setup in the ``_config.yml`` file and the ``_data`` folder. The amazing thing about this site is that it is powered by one csv file and a series of templates.
 
 =========================
 ## About the Jekyll New Age Theme
